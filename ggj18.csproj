@@ -240,7 +240,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\GameFlow\GameInstance.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameFlow\SaveGame.cs" />
     <Compile Include="Assets\Scripts\startscript.cs" />
+    <Compile Include="Assets\Scripts\uGUITools.cs" />
+    <Compile Include="Assets\Scripts\ViewModel\MainMenuViewModel.cs" />
+    <Compile Include="Assets\Scripts\ViewModel\SaveGameViewModel.cs" />
+    <Compile Include="Assets\Scripts\View\SaveGameButtonView.cs" />
     <Compile Include="Assets\Scripts\View\MainMenuView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
