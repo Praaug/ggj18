@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 114370756009902320}
   - component: {fileID: 114236066879150622}
   - component: {fileID: 114128288034168286}
+  - component: {fileID: 114758132520240410}
+  - component: {fileID: 114211848598157586}
   m_Layer: 5
   m_Name: LoadSaveGameButton
   m_TagString: Untagged
@@ -116,6 +118,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 1/2
+--- !u!114 &114211848598157586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1239464575554950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 5, y: -5}
+  m_UseGraphicAlpha: 1
 --- !u!114 &114236066879150622
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +192,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 43c7c840516a3ae4b9548a2f4f24cf1d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -217,6 +233,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Praaug's Game
+--- !u!114 &114758132520240410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1239464575554950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2c0260d14d67c9419766b052c486c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_button: {fileID: 114236066879150622}
+  m_nameText: {fileID: 114595016911795472}
+  m_roundsText: {fileID: 114165480476588206}
 --- !u!222 &222079707312069188
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -19,6 +19,9 @@ class MainMenuView : MonoBehaviour
     private Button m_optionsButton;
 
     [SerializeField]
+    private Button m_websiteButton;
+
+    [SerializeField]
     private SaveGameButtonView m_saveGameButtonPrefab;
 
     [SerializeField]
@@ -41,6 +44,7 @@ class MainMenuView : MonoBehaviour
         m_newGameButton.onClick.AddListener(OnNewGameButtonClick);
         m_closeButton.onClick.AddListener(OnCloseButtonClick);
         m_optionsButton.onClick.AddListener(OnOptionsButtonClick);
+        m_websiteButton.onClick.AddListener(OnWebsiteButtonClick);
 
         m_saveGameButtonViewModelList = new List<SaveGameButtonView>(m_viewModel.SaveGameViewModelList.Count);
 
@@ -67,6 +71,11 @@ class MainMenuView : MonoBehaviour
     private void OnOptionsButtonClick()
     {
         m_viewModel.OpenOptionsCommand();
+    }
+
+    private void OnWebsiteButtonClick()
+    {
+        m_viewModel.OpenWebsiteCommand();
     }
     #endregion
 }

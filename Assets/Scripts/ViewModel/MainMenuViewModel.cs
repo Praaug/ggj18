@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class MainMenuViewModel
 {
@@ -6,7 +7,7 @@ public class MainMenuViewModel
 
     public MainMenuViewModel()
     {
-        List<SaveGame> saveGameList = GameManager.GetSavegames();
+        List<SaveGame> saveGameList = GameManagerMock.GetSavegames();
         SaveGameViewModelList = new List<SaveGameViewModel>(saveGameList.Count);
 
         for (int i = 0; i < saveGameList.Count; i++)
@@ -30,6 +31,12 @@ public class MainMenuViewModel
     public void CloseApplicationCommand()
     {
         UnityEngine.Debug.Log("close app command");
+        // Todo: model logic
+    }
+
+    internal void OpenWebsiteCommand()
+    {
+        UnityEngine.Debug.Log("open app command");
         // Todo: model logic
     }
 }
