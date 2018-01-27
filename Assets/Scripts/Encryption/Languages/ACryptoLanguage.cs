@@ -58,5 +58,6 @@ public enum LanguageType
 {
     Text,
     Image,
-    Sound
+    Sound,
+    Color
 }

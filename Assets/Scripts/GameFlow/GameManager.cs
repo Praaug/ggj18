@@ -14,9 +14,9 @@ public class GameManager : ScriptableObject
 
     public void StartNewGame()
     {
-        Session newSession = new Session();
+        m_sessionParameters = new SessionParameters();
 
-
+        Session newSession = new Session(m_sessionParameters);
 
         m_activeGameInstance = newSession;
     }
@@ -40,7 +40,6 @@ public class GameManager : ScriptableObject
         string directoryPath = Path.GetDirectoryName(m_saveGamePath);
         bool directoryExists = Directory.Exists(directoryPath);
 
-        Debug.Assert(directoryExists, "The directory of the save game folder does not exist");
         if (!directoryExists)
         {
             return new List<SaveGame>();
@@ -100,5 +99,10 @@ public class GameManager : ScriptableObject
     private List<SaveGame> m_saveGameList = new List<SaveGame>();
     [SerializeField]
     private UIManager m_UIManager = null;
+
+    /// <summary>
+    /// The session parameters of possible new game
+    /// </summary>
+    private SessionParameters m_sessionParameters;
     #endregion
 }
