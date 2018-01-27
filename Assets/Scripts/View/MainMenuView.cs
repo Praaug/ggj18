@@ -47,7 +47,7 @@ class MainMenuView : BaseView
 
         foreach (SaveGameViewModel sgViewModel in m_viewModel.SaveGameViewModelList)
         {
-            var buttonView = GameObject.Instantiate(m_saveGameButtonPrefab, m_contentTransform) as SaveGameButtonView;
+            var buttonView = Instantiate(m_saveGameButtonPrefab, m_contentTransform) as SaveGameButtonView;
             buttonView.transform.SetAsLastSibling();
             buttonView.Init(sgViewModel);
 

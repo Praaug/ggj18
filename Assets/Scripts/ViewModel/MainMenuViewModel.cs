@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class MainMenuViewModel : BaseViewModel
 {
@@ -11,6 +12,8 @@ public class MainMenuViewModel : BaseViewModel
 
     public event Action OnOpenOptionsCommand;
 
+    public event Action<int> OnLoadGameCommand;
+
     public MainMenuViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
         var saveGameList = GameManager.instance.SaveGameList;
@@ -18,7 +21,11 @@ public class MainMenuViewModel : BaseViewModel
 
         for (int i = 0; i < saveGameList.Count; i++)
         {
-            SaveGameViewModelList.Add(new SaveGameViewModel(saveGameList[i], i));
+            SaveGameViewModel saveGameViewModel = new SaveGameViewModel(saveGameList[i]);
+            saveGameViewModel.Index = i;
+            saveGameViewModel.OnLoadSaveGameCommand += SaveGameViewModel_OnLoadSaveGameCommand;
+
+            SaveGameViewModelList.Add(saveGameViewModel);
         }
     }
 
@@ -37,8 +44,23 @@ public class MainMenuViewModel : BaseViewModel
         UnityEngine.Application.Quit();
     }
 
-    internal void OpenWebsiteCommand()
+    public void OpenWebsiteCommand()
     {
         UnityEngine.Application.OpenURL("https://globalgamejam.org/2018/games/whisper-down-lane");
     }
+
+    private void SaveGameViewModel_OnLoadSaveGameCommand(SaveGameViewModel saveGameViewModel)
+    {
+        int index = saveGameViewModel.Index;
+        bool validIndex = index >= 0 && index < SaveGameViewModelList.Count;
+        Debug.Assert(validIndex, string.Format("Callback of save game view model with invalid index {0}", index));
+        if (!validIndex)
+        {
+            return;
+        }
+
+        // Load save game in model with index
+        OnLoadGameCommand?.Invoke(index);
+    }
+
 }

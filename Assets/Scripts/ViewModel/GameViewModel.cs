@@ -37,6 +37,7 @@ public class GameViewModel : BaseViewModel
         m_mainViewModel = new MainMenuViewModel(this);
         m_mainViewModel.OnOpenNewGameCommand += MainViewModel_OnOpenNewGameCommand;
         m_mainViewModel.OnOpenOptionsCommand += MainViewModel_OnOpenOptionsCommand;
+        m_mainViewModel.OnLoadGameCommand += MainViewModel_OnLoadGameCommand;
 
         m_newGameViewModel = new NewGameViewModel(this);
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
@@ -51,7 +52,7 @@ public class GameViewModel : BaseViewModel
         m_syllablesInputViewModel = new SyllablesInputViewModel(this);
         m_syllablesInputViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
-        m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();
+        m_incommingTransmissionViewModel = new IncommingTransmissionViewModel(this);
 
         m_endScreenViewModel = new EndScreenViewModel();
         m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
@@ -76,7 +77,11 @@ public class GameViewModel : BaseViewModel
 
     private void NewGameViewModel_OnStartGameCommand()
     {
-        throw new NotImplementedException();
+        // Start the game in the game manager
+        GameManager.instance.StartNewGame();
+
+        // Update the ui to show relvant game data
+        CurrentDisplayedMenu = m_incommingTransmissionViewModel;
     }
 
     private void NewGameViewModel_OnCloseNewGameCommand()
@@ -107,6 +112,11 @@ public class GameViewModel : BaseViewModel
     private void MainViewModel_OnOpenNewGameCommand()
     {
         CurrentDisplayedMenu = m_newGameViewModel;
+    }
+
+    private void MainViewModel_OnLoadGameCommand(int index)
+    {
+        GameManager.instance.LoadGame(index);
     }
 
     private MainMenuViewModel m_mainViewModel;

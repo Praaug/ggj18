@@ -34,7 +34,8 @@ public class GameManagerEditor : Editor
 
         if (GUILayout.Button("StartNewGame"))
         {
-            gameManager.StartNewGame(parameter);
+            gameManager.SetParameter(parameter);
+            gameManager.StartNewGame();
         }
 
         GUILayout.Space(64.0f); // some fancy empty space to seperate buttons from input fields

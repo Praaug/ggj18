@@ -34,11 +34,24 @@ public class GameManager : ScriptableObject
         LoadSaveGames();
     }
 
-    public void StartNewGame(SessionParameters sessionParameters)
+    public void SetParameter(SessionParameters parameter)
     {
-        m_sessionParameters = sessionParameters;
+        m_sessionParameters = parameter;
+    }
 
-        Session newSession = new Session(m_sessionParameters);
+    public void StartNewGame()
+    {
+        m_activeSession = new Session(m_sessionParameters, null, 0);
+    }
+
+    public void LoadGame(int index)
+    {
+        bool validIndex = index >= 0 && index < m_saveGameList.Count;
+        Debug.Assert(validIndex, string.Format("Tried load a game with invalid index {0}", index));
+
+        SaveGame saveGame = m_saveGameList[index];
+
+        Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.lastSyllableInput, saveGame.saveGameSession.CurrentRound);
 
         m_activeSession = newSession;
     }
@@ -148,6 +161,7 @@ public class GameManager : ScriptableObject
     /// <summary>
     /// The session parameters of possible new game
     /// </summary>
+    [SerializeField]
     private SessionParameters m_sessionParameters = null;
     #endregion
 }
