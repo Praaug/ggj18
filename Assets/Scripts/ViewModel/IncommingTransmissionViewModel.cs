@@ -5,7 +5,7 @@ public class IncommingTransmissionViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.IncommingTransmission;
 
-    public IncommingTransmissionViewModel() : base()
+    public IncommingTransmissionViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
     }

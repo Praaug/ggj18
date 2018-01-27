@@ -22,7 +22,7 @@ public class Session
     {
         bool validCurrentRoundIndex = currentRoundIndex >= 0 && currentRoundIndex < sessionParameter.RoundCount;
         Debug.Assert(validCurrentRoundIndex, string.Format("Tried to construct a session with invalid currentRoundIndex {0}", currentRoundIndex));
-        if (validCurrentRoundIndex)
+        if (!validCurrentRoundIndex)
         {
             return;
         }

@@ -13,3 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_wordManager: {fileID: 11400000, guid: a4aea4964984d7e4daf7689c49a3f41a, type: 2}
   m_saveGamePath: saves/
+  m_sessionParameters:
+    Seed: 215847651
+    RoundCount: 3
+    SessionName: SuperDuperSession
+    SyllableSearchedAmount: 3
+    SyllableChoiceAmount: 6

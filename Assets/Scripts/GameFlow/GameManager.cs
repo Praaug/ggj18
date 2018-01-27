@@ -34,13 +34,14 @@ public class GameManager : ScriptableObject
         LoadSaveGames();
     }
 
-    public void StartNewGame(SessionParameters sessionParameters)
+    public void SetParameter(SessionParameters parameter)
     {
-        m_sessionParameters = sessionParameters;
+        m_sessionParameters = parameter;
+    }
 
-        Session newSession = new Session(m_sessionParameters, null, 0);
-
-        m_activeSession = newSession;
+    public void StartNewGame()
+    {
+        m_activeSession = new Session(m_sessionParameters, null, 0);
     }
 
     public void LoadGame(int index)
@@ -160,6 +161,7 @@ public class GameManager : ScriptableObject
     /// <summary>
     /// The session parameters of possible new game
     /// </summary>
+    [SerializeField]
     private SessionParameters m_sessionParameters = null;
     #endregion
 }

@@ -49,7 +49,7 @@ public class GameViewModel : BaseViewModel
         m_syllablesViewModel = new SyllablesInputViewModel(this);
         m_syllablesViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
-        m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();
+        m_incommingTransmissionViewModel = new IncommingTransmissionViewModel(this);
 
         m_endScreenViewModel = new EndScreenViewModel();
         m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
@@ -74,7 +74,11 @@ public class GameViewModel : BaseViewModel
 
     private void NewGameViewModel_OnStartGameCommand()
     {
-        throw new NotImplementedException();
+        // Start the game in the game manager
+        GameManager.instance.StartNewGame();
+
+        // Update the ui to show relvant game data
+        CurrentDisplayedMenu = m_incommingTransmissionViewModel;
     }
 
     private void NewGameViewModel_OnCloseNewGameCommand()

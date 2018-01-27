@@ -14,7 +14,5 @@ public class IncommingTransmissionView : BaseView
         m_viewModel = GameViewModel.instance.IncommingTransmissionViewModel;
         Debug.Assert(m_viewModel != null, "OptionsViewModel not valid");
         base.Init(m_viewModel);
-
-
     }
 }
