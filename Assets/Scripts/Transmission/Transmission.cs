@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Representation of a transmission between two languages
@@ -17,9 +18,9 @@ public class Transmission
     public LanguageExcerpt OutLanguage;
 
     /// <summary>
-    /// The syllable index conversion array
+    /// The syllable index conversion dictionary
     /// </summary>
-    public byte[] Conversion;
+    public Dictionary<byte,byte> Conversion;
     #endregion
 
     #region Public Methods
@@ -35,7 +36,7 @@ public class Transmission
         OutLanguage = outLanguage;
 
         var tmpList = new List<byte>(syllableCount);
-        Conversion = new byte[syllableCount];
+        Conversion = new Dictionary<byte, byte>();
 
         for (byte i = 0; i < syllableCount; i++)
         {
@@ -45,7 +46,7 @@ public class Transmission
         for (byte i = 0; i < syllableCount; i++)
         {
             int index = random.Next(tmpList.Count);
-            Conversion[i] = tmpList[index];
+            Conversion.Add(inLanguage.usedSyllableIndices[i], outLanguage.usedSyllableIndices[tmpList[index]]);
             tmpList.RemoveAt(index);
         }
     }
@@ -57,10 +58,10 @@ public class Transmission
     /// <returns></returns>
     public TransmissionWord Encrypt(TransmissionWord inWord)
     {
-        byte[] reversion = new byte[Conversion.Length];
-        for (byte i = 0; i < reversion.Length; i++)
+        Dictionary<byte, byte> reversion = new Dictionary<byte, byte>();
+        foreach (var item in Conversion)
         {
-            reversion[Conversion[i]] = i;
+            reversion.Add(item.Value, item.Key);
         }
 
         var outWord = new TransmissionWord();
