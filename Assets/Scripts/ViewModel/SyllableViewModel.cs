@@ -3,15 +3,17 @@ using System.Collections;
 using UnityEngine.UI;
 using System;
 
-public class SyllableViewModel
+public class SyllableViewModel : BaseViewModel
 {
     #region Public Events
-    public event Action<Image> OnIconImageChanged;
-    public event Action<Text> OnIconTextChanged;
+    public event Action<Sprite> OnIconImageChanged;
+    public event Action<string> OnIconTextChanged;
     #endregion
 
     #region Public Properties
-    public Image IconImage
+    public override MenuEnum MenuType => (MenuEnum)(-1);
+
+    public Sprite IconImage
     {
         get { return m_IconImage; }
         set
@@ -26,7 +28,7 @@ public class SyllableViewModel
         }
     }
 
-    public Text IconText
+    public string IconText
     {
         get { return m_IconText; }
         set
@@ -61,30 +63,18 @@ public class SyllableViewModel
     public void SetImage(Sprite sprite)
     {
         Debug.Assert(sprite != null, "You should not set the sprite to manually to null");
-
-        // Disable text
-        m_IconText.gameObject.SetActive(false);
-
-        // Replace sprite in image
-        m_IconImage.gameObject.SetActive(true);
-        m_IconImage.sprite = sprite;
+        IconImage = sprite;
     }
 
     public void SetText(string text)
     {
         Debug.Assert(!string.IsNullOrEmpty(text), "You should not set the text of a syllable to an empty string");
-
-        // Disable image
-        m_IconImage.gameObject.SetActive(false);
-
-        // Replace text in image
-        m_IconText.gameObject.SetActive(true);
-        m_IconText.text = text;
+        IconText = text;
     }
     #endregion
 
     #region Private Members
-    private Image m_IconImage = null;
-    private Text m_IconText = null;
+    private Sprite m_IconImage = null;
+    private string m_IconText = null;
     #endregion
 }

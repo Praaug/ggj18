@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-public class GameView : BaseView
+public class GameView : BaseView<GameViewModel>
 {
     [SerializeField]
     private Animator m_animator;
 
-    private GameViewModel m_viewModel;
+    private GameViewModel m_viewModel = null;
 
     private void Awake()
     {

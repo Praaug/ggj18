@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 
-public class SyllablesInputView : BaseView
+public class SyllablesInputView : BaseView<SyllablesInputViewModel>
 {
-    private SyllablesInputViewModel m_viewModel;
+    private new SyllablesInputViewModel m_viewModel = null;
 
     private void Awake()
     {
         Init();
     }
-
     private void Init()
     {
         m_viewModel = GameViewModel.instance.SyllablesInputViewModel;
@@ -32,7 +31,6 @@ public class SyllablesInputView : BaseView
             if (m_InTableSyllables[i])
             {
                 m_InTableSyllables[i].gameObject.SetActive(i < m_viewModel.InTableSyllables.Length);
-                //m_InTableSyllables[i].s
             }
         }
     }
@@ -48,14 +46,14 @@ public class SyllablesInputView : BaseView
     }
 
     [SerializeField]
-    private UISyllable[] m_DisplaySyllables;
+    private SyllableView[] m_DisplaySyllables = null;
 
     [SerializeField]
-    private UISyllable[] m_InputSyllables;
+    private SyllableView[] m_InputSyllables = null;
 
     [SerializeField]
-    private UISyllable[] m_InTableSyllables;
+    private SyllableView[] m_InTableSyllables = null;
 
     [SerializeField]
-    private UISyllable[] m_OutTableSyllables;
+    private SyllableView[] m_OutTableSyllables = null;
 }

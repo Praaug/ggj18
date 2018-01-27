@@ -2,20 +2,20 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewGameView : BaseView
+public class NewGameView : BaseView<NewGameViewModel>
 {
 
     [SerializeField]
-    private Button m_startGameButton;
+    private Button m_startGameButton = null;
 
     [SerializeField]
-    private InputField m_displayDurationInput;
+    private InputField m_displayDurationInput = null;
 
     [SerializeField]
-    private InputField m_playerCountInput;
+    private InputField m_playerCountInput = null;
 
     [SerializeField]
-    private InputField m_sessionNameInput;
+    private InputField m_sessionNameInput = null;
 
     private NewGameViewModel m_viewModel;
 

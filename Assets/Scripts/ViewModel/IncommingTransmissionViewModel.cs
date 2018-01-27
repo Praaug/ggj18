@@ -5,9 +5,16 @@ public class IncommingTransmissionViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.IncommingTransmission;
 
+    public event Action OnDisplaySyllablesCountChanged;
+
     public IncommingTransmissionViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
+    }
+
+    public SyllableViewModel[] GetDisplayedSyllables()
+    {
+        return m_DisplayedSyllables;
     }
 
     public override void OnEnterState()
@@ -30,9 +37,13 @@ public class IncommingTransmissionViewModel : BaseViewModel
             var displayedSyllable = displayedSyllableList[i];
 
             // Update view model with model data
-            m_DisplayedSyllables[i] = new SyllableViewModel();
-            m_DisplayedSyllables[i].SetFromSyllable(displayedSyllable);
+            var syllableViewModel = new SyllableViewModel();
+            syllableViewModel.SetFromSyllable(displayedSyllable);
+
+            m_DisplayedSyllables[i] = syllableViewModel;
         }
+
+        OnDisplaySyllablesCountChanged?.Invoke();
     }
 
     private SyllableViewModel[] m_DisplayedSyllables;

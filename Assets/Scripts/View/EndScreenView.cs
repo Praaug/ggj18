@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class EndScreenView : BaseView
+public class EndScreenView : BaseView<EndScreenViewModel>
 {
     [SerializeField]
     private int m_normalTextSize = 80;
@@ -42,7 +42,7 @@ public class EndScreenView : BaseView
     [SerializeField]
     private Shadow m_resultShadow;
 
-    private EndScreenViewModel m_viewModel;
+    private EndScreenViewModel m_viewModel = null;
 
     private void Awake()
     {

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class BaseView : MonoBehaviour
+public abstract class BaseView<T> : MonoBehaviour where T : BaseViewModel
 {
+    protected T ViewModelConcrete => m_viewModel as T;
+
     public virtual void Init(BaseViewModel viewModel)
     {
         m_viewModel = viewModel;
@@ -15,7 +17,7 @@ public class BaseView : MonoBehaviour
     [SerializeField]
     private Button m_closeButton;
 
-    private BaseViewModel m_viewModel;
+    protected BaseViewModel m_viewModel;
 
     private void OnCloseClickButton()
     {

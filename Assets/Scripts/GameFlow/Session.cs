@@ -14,7 +14,7 @@ public class Session
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
     public byte[] LastSyllablesInput => m_LastSyllableInput;
     public SessionParameters SessionParams => m_sessionParameter;
-    public GameResult MyGameResult {get; set;}
+    public GameResult MyGameResult { get; set; }
     #endregion
 
     #region Constructor
@@ -29,6 +29,9 @@ public class Session
 
         m_sessionParameter = sessionParameter;
         m_LastSyllableInput = lastSyllableInput;
+
+        m_SyllableChoiceArray = new ICryptoSyllable[sessionParameter.SyllableChoiceAmount];
+        m_SyllableSearchArray = new ICryptoSyllable[sessionParameter.SyllableSearchedAmount];
 
         // Create transmission flow from parameter
         CreateTransmissionSetup();

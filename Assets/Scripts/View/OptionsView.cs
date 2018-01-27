@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class OptionsView : BaseView
+public class OptionsView : BaseView<OptionsViewModel>
 {
     private OptionsViewModel m_viewModel;
 

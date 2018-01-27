@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-class MainMenuView : BaseView
+class MainMenuView : BaseView<MainMenuViewModel>
 {
     #region Private Fields
     [SerializeField]
