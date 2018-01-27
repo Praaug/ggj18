@@ -34,19 +34,18 @@ public class GameViewModel : BaseViewModel
 
     public GameViewModel()
     {
-        m_mainViewModel = new MainMenuViewModel();
+        m_mainViewModel = new MainMenuViewModel(this);
         m_mainViewModel.OnOpenNewGameCommand += MainViewModel_OnOpenNewGameCommand;
         m_mainViewModel.OnOpenOptionsCommand += MainViewModel_OnOpenOptionsCommand;
-        m_mainViewModel.Init(this);
 
-        m_newGameViewModel = new NewGameViewModel();
+        m_newGameViewModel = new NewGameViewModel(this);
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
         m_newGameViewModel.OnStartGameCommand += NewGameViewModel_OnStartGameCommand;
 
-        m_optionsViewModel = new OptionsViewModel();
+        m_optionsViewModel = new OptionsViewModel(this);
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
 
-        m_syllablesInputViewModel = new SyllablesInputViewModel();
+        m_syllablesInputViewModel = new SyllablesInputViewModel(this);
         m_syllablesInputViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();

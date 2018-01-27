@@ -5,7 +5,25 @@ public class SyllablesInputViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.SyllableInput;
 
+    public SyllableViewModel[] InputSyllables => m_InputSyllables;
+
+    public SyllableViewModel[] InTableSyllables => m_InTableSyllables;
+
+    public SyllableViewModel[] OutTableSyllables => m_OutTableSyllables;
+
+    public SyllableViewModel[] DisplayedSyllables => m_DisplayedSyllables;
+
     public event Action OnAcceptCommand;
+
+    public event Action OnInputSyllablesChanged;
+
+    public event Action OnInTableSyllablesChanged;
+
+    public event Action OnOutTableSyllablesChanged;
+
+    public event Action OnDisplaySyllablesChanged;
+
+    public SyllablesInputViewModel(GameViewModel gameViewModel) : base(gameViewModel) { }
 
     public override void OnEnterState()
     {
@@ -54,6 +72,12 @@ public class SyllablesInputViewModel : BaseViewModel
             m_OutTableSyllables[i] = new SyllableViewModel();
             m_OutTableSyllables[i].SetFromSyllable(outSyllables[transmission.Conversion[m_ShuffledInLanguageIndexes[i]]]);
         }
+
+        OnInputSyllablesChanged?.Invoke();
+        OnOutTableSyllablesChanged?.Invoke();
+        OnInTableSyllablesChanged?.Invoke();
+        //OnDisplaySyllablesChanged?.Invoke();
+
 
         for (int i = 0; i < sessionParams.SyllableChoiceAmount; i++)
         {

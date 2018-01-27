@@ -11,7 +11,7 @@ public class MainMenuViewModel : BaseViewModel
 
     public event Action OnOpenOptionsCommand;
 
-    public MainMenuViewModel() : base()
+    public MainMenuViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
         var saveGameList = GameManager.instance.SaveGameList;
         SaveGameViewModelList = new List<SaveGameViewModel>(saveGameList.Count);
