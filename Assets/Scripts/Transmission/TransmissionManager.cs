@@ -45,14 +45,18 @@ public static class TransmissionManager
             if (i > 0)
             {
                 transmissions[i - 1] = new Transmission(
-                    new LanguageExcerpt(usedLanguages[i], displayedSyllables, random),
                     new LanguageExcerpt(usedLanguages[i - 1], displayedSyllables, random),
+                    new LanguageExcerpt(usedLanguages[i], displayedSyllables, random),
                     random,
                     displayedSyllables);
             }
         }
 
-        transmissions[transmissionCount - 1] = new Transmission(endpoint.HumanLanguage, new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random), random, displayedSyllables);
+        transmissions[transmissionCount - 1] = new Transmission(
+            new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random),
+            endpoint.HumanLanguage,
+            random,
+            displayedSyllables);
 
         var startWord = endpoint.RealWord;
         for (int i = transmissionCount - 1; i > -1; i--)

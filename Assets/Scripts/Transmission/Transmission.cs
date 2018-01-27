@@ -64,13 +64,10 @@ public class Transmission
             reversion.Add(OutLanguage.usedSyllableIndices[item.Value], InLanguage.usedSyllableIndices[item.Key]);
         }
 
-        var outWord = new TransmissionWord();
-        outWord.syllableIndices = new byte[inWord.syllableIndices.Length];
-
-        for (int i = 0; i < inWord.syllableIndices.Length; i++)
+        var outWord = new TransmissionWord
         {
-            outWord.syllableIndices[i] = reversion[inWord.syllableIndices[i]];
-        }
+            syllableIndices = new byte[inWord.syllableIndices.Length]
+        };
 
         return outWord;
     }
