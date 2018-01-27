@@ -6,6 +6,9 @@ public class NewGameViewModel : BaseViewModel
 
     public event Action OnStartGameCommand;
     public event Action OnCloseNewGameCommand;
+    public event Action<int> OnDisplayDurationChange;
+    public event Action<int> OnPlayerCountChange;
+    public event Action<string> OnSessionNameChange;
 
     public NewGameViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
@@ -20,5 +23,20 @@ public class NewGameViewModel : BaseViewModel
     public void StartGameCommand()
     {
         OnStartGameCommand?.Invoke();
+    }
+
+    public void ChangeDisplayDurationCommand(int duration)
+    {
+        OnDisplayDurationChange?.Invoke(duration);
+    }
+
+    public void ChangePlayerCountCommand(int playerCount)
+    {
+        OnPlayerCountChange?.Invoke(playerCount);
+    }
+
+    public void ChangeSessionNameCommand(string sessionName)
+    {
+        OnSessionNameChange?.Invoke(sessionName);
     }
 }
