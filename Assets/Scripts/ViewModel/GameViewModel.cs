@@ -58,12 +58,12 @@ public class GameViewModel : BaseViewModel
 
     private void EndScreenViewModel_OnOKCommand()
     {
-        throw new NotImplementedException();
+        CurrentDisplayedMenu = m_mainViewModel;
     }
 
     private void SyllablesViewModel_OnAcceptCommand()
     {
-        throw new NotImplementedException();
+        CurrentDisplayedMenu = m_endScreenViewModel;
     }
 
     private void OptionsViewModel_OnCloseOptionsCommand()

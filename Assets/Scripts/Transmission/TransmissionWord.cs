@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System;
+/// <summary>
 /// Representation of a language agnostic word
 /// </summary>
 [System.Serializable]
@@ -32,5 +33,16 @@ public class TransmissionWord
         return syllables;
     }
 
+    public string ToString(ACryptoLanguage sourceLanguage)
+    {
+        string text = string.Empty;
+        var syllables = ToSyllables(sourceLanguage);
+        foreach (var syllable in syllables)
+        {
+            text += syllable.GetSyllable().ToString();
+        }
+
+        return text;
+    }
     #endregion
 }
