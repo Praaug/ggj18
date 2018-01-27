@@ -11,4 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0894328f774873d4e8575bbb11c19626, type: 3}
   m_Name: Text_Animals
   m_EditorClassIdentifier: 
-  syllables: []
+  syllables:
+  - syllable: wuff
+  - syllable: miau
+  - syllable: umpf
+  - syllable: peng
+  - syllable: puff
+  - syllable: wau
+  - syllable: pauw
+  - syllable: poff
+  - syllable: pap
