@@ -46,7 +46,7 @@ public class GameManager : ScriptableObject
 
     public void StartNewGame()
     {
-        m_activeSession = new Session(m_sessionParameters, null, 0);
+        m_activeSession = new Session(m_sessionParameters);
     }
 
     public void LoadGame(int index)

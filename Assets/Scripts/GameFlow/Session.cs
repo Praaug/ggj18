@@ -18,6 +18,28 @@ public class Session
     #endregion
 
     #region Constructor
+    public Session(SessionParameters sessionParameter)
+    {
+        m_sessionParameter = sessionParameter;
+
+        m_SyllableChoiceArray = new ICryptoSyllable[sessionParameter.SyllableChoiceAmount];
+        m_SyllableSearchArray = new ICryptoSyllable[sessionParameter.SyllableSearchedAmount];
+
+        // Create transmission flow from parameter
+        SessionParameters sp = m_sessionParameter;
+        m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
+
+        m_LastSyllableInput = m_TransmissionSetup.StartWord.syllableIndices;
+
+        Debug.Assert(m_TransmissionSetup.Transmissions.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
+
+        // Set the active round index to the first entry
+        m_activeRoundIndex = 0;
+
+        // Start the first round
+        SetRound(m_activeRoundIndex);
+    }
+
     public Session(SessionParameters sessionParameter, byte[] lastSyllableInput, int currentRoundIndex)
     {
         bool validCurrentRoundIndex = currentRoundIndex >= 0 && currentRoundIndex < sessionParameter.RoundCount;
@@ -34,7 +56,10 @@ public class Session
         m_SyllableSearchArray = new ICryptoSyllable[sessionParameter.SyllableSearchedAmount];
 
         // Create transmission flow from parameter
-        CreateTransmissionSetup();
+        SessionParameters sp = m_sessionParameter;
+        m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
+
+        m_LastSyllableInput = m_TransmissionSetup.StartWord.syllableIndices;
 
         // Set the active round index to the first entry
         m_activeRoundIndex = currentRoundIndex;
@@ -168,16 +193,6 @@ public class Session
         sessionSaveGame.SessionParameters = m_sessionParameter;
 
         return sessionSaveGame;
-    }
-    #endregion
-
-    #region Private Methods
-    private void CreateTransmissionSetup()
-    {
-        SessionParameters sp = m_sessionParameter;
-        m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
-
-        Debug.Assert(m_TransmissionSetup.Transmissions.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
     }
     #endregion
 
