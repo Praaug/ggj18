@@ -19,7 +19,7 @@ public class Session
         m_sessionParameter = sessionParameter;
 
         // Create transmission flow from parameter
-        CreateTransmissionSetup(sessionParameter.Seed);
+        CreateTransmissionSetup();
 
         // Exerpt the possible syllable list
 
@@ -45,7 +45,7 @@ public class Session
         Debug.Assert(validIndex, string.Format("Tried to set round with invalid index {0}", index));
 
         // Refill possible syllable list
-        var currentTransmission = m_TransmissionArray[index];
+        var currentTransmission = m_TransmissionSetup.Transmissions[index];
         var languageExcerpt = currentTransmission.OutLanguage;
 
         Debug.Assert(m_SyllableChoiceArray.Length == languageExcerpt.GetSyllables().Length, "The current language excerpt does not have a proper count of possible syllables");
@@ -128,8 +128,8 @@ public class Session
     private void CreateTransmissionSetup()
     {
         SessionParameters sp = m_sessionParameter;
-        m_TransmissionArray = TransmissionManager.InitTransmission(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
-        Debug.Assert(m_TransmissionArray.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
+        m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
+        Debug.Assert(m_TransmissionSetup.Transmissions.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
     }
     #endregion
 
@@ -157,6 +157,6 @@ public class Session
     /// <summary>
     /// Information about 
     /// </summary>
-    private Transmission[] m_TransmissionArray = null;
+    private TransmissionSetup m_TransmissionSetup = null;
     #endregion
 }
