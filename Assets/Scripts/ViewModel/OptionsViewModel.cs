@@ -6,7 +6,7 @@ public class OptionsViewModel : BaseViewModel
 
     public event Action OnCloseOptionsCommand;
 
-    public OptionsViewModel() : base()
+    public OptionsViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
     }

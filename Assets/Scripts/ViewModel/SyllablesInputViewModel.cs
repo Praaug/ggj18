@@ -6,7 +6,7 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public event Action OnAcceptCommand;
 
-    public SyllablesInputViewModel() : base()
+    public SyllablesInputViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
     }
