@@ -27,18 +27,11 @@ public class IncommingTransmissionViewModel : BaseViewModel
 
         for (int i = 0; i < m_DisplayedSyllables.Length; ++i)
         {
+            // get model data
             var displayedSyllable = displayedSyllableList[i];
 
-            object syllableContent = displayedSyllable.GetSyllable();
-
-            if (syllableContent is Sprite)
-            {
-                m_DisplayedSyllables[i].SetImage((Sprite)syllableContent);
-            }
-            else if (syllableContent is string)
-            {
-                m_DisplayedSyllables[i].SetText((string)syllableContent);
-            }
+            // Update view model with model data
+            m_DisplayedSyllables[i].SetFromSyllable(displayedSyllable);
         }
     }
 

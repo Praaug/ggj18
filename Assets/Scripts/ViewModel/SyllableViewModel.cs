@@ -43,6 +43,21 @@ public class SyllableViewModel
     #endregion
 
     #region Public Methods
+    public void SetFromSyllable(ICryptoSyllable syllable)
+    {
+        object syllableContent = syllable.GetSyllable();
+
+        if (syllableContent is Sprite)
+        {
+            SetImage((Sprite)syllableContent);
+        }
+        else if (syllableContent is string)
+        {
+            SetText((string)syllableContent);
+        }
+
+    }
+
     public void SetImage(Sprite sprite)
     {
         Debug.Assert(sprite != null, "You should not set the sprite to manually to null");
