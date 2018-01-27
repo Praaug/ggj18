@@ -1,4 +1,7 @@
-﻿public interface ICryptoSyllable
+﻿/// <summary>
+/// Base interface for syllables
+/// </summary>
+public interface ICryptoSyllable
 {
 	#region Public Methods
 

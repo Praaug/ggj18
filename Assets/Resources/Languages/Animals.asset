@@ -8,9 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0894328f774873d4e8575bbb11c19626, type: 3}
-  m_Name: Human
+  m_Script: {fileID: 11500000, guid: 223f2a971cf7c4443b0256bac7845c3e, type: 3}
+  m_Name: Animals
   m_EditorClassIdentifier: 
-  syllables:
-  - syllable: 
-  - syllable: 
+  syllables: []

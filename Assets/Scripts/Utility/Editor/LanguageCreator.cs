@@ -12,19 +12,19 @@ public static class LanguageCreator
     /// <summary>
     /// Creates a text language
     /// </summary>
-    [MenuItem("Assets/Create/Languages/Text Language")]
+    //[MenuItem("Assets/Create/Languages/Text Language")]
     private static void CreateTextLanguage() => CreateLanguageAsset<CryptoLanguageText>();
 
     /// <summary>
     /// Creates an image language
     /// </summary>
-    [MenuItem("Assets/Create/Languages/Image Language")]
+    //[MenuItem("Assets/Create/Languages/Image Language")]
     private static void CreateImageLanguage() => CreateLanguageAsset<CryptoLanguageSprite>();
 
     /// <summary>
     /// Creates a sound language
     /// </summary>
-    [MenuItem("Assets/Create/Languages/Sound Language")]
+    //[MenuItem("Assets/Create/Languages/Sound Language")]
     private static void CreateSoundLanguage() => CreateLanguageAsset<CryptoLanguageSound>();
 
     /// <summary>

@@ -1,0 +1,114 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+/// <summary>
+/// Representation of the part of the language displayed in the current session
+/// </summary>
+public class LanguageExcerpt
+{
+    #region Public Fields
+    /// <summary>
+    /// The syllable indices this language excerpt uses
+    /// </summary>
+    public byte[] usedSyllableIndices;
+
+    /// <summary>
+    /// This excerpt's source language
+    /// </summary>
+    public ACryptoLanguage SourceLanguage;
+    #endregion
+
+    #region Public Properties
+    /// <summary>
+    /// Returns the language type
+    /// </summary>
+    public LanguageType Type { get { return SourceLanguage.Type; } }
+    #endregion
+
+    #region Public Methods
+
+    /// <summary>
+    /// Construct a new language excerpt
+    /// </summary>
+    /// <param name="sourceLanguage">The source language to draw from</param>
+    /// <param name="displayedSyllables">The number of displayed syllables</param>
+    /// <param name="random">The random number generator to use</param>
+    public LanguageExcerpt(ACryptoLanguage sourceLanguage, int displayedSyllables, System.Random random)
+    {
+        SourceLanguage = sourceLanguage;
+        usedSyllableIndices = new byte[displayedSyllables];
+
+        List<byte> indexList = new List<byte>(SourceLanguage.syllableCount);
+
+        for (byte i = 0; i < SourceLanguage.syllableCount; i++)
+        {
+            indexList.Add(i);
+        }
+
+        for (int i = 0; i < displayedSyllables; i++)
+        {
+            var index = random.Next(indexList.Count);
+            usedSyllableIndices[i] = indexList[index];
+            indexList.RemoveAt(index);
+        }
+    }
+
+    /// <summary>
+    /// Construct a new language excerpt
+    /// </summary>
+    /// <param name="word"></param>
+    /// <param name="sourceLanguage">The source language to draw from</param>
+    /// <param name="displayedSyllables">The number of displayed syllables</param>
+    /// <param name="random">The random number generator to use</param>
+    public LanguageExcerpt(TransmissionWord word, ACryptoLanguage sourceLanguage, int displayedSyllables, System.Random random)
+    {
+        SourceLanguage = sourceLanguage;
+        usedSyllableIndices = new byte[displayedSyllables];
+        for (int i = 0; i < displayedSyllables; i++)
+        {
+            usedSyllableIndices[i] = 255;
+        }
+
+        List<byte> indexList = new List<byte>(SourceLanguage.syllableCount - word.Syllables.Length);
+
+        for (byte i = 0; i < SourceLanguage.syllableCount; i++)
+        {
+            if (!word.Syllables.Contains(i))
+                indexList.Add(i);
+        }
+
+        var syllableIndex = 0;
+        for (int i = 0; i < word.Syllables.Length; i++)
+        {
+            if (!usedSyllableIndices.Contains(word.Syllables[i]))
+            {
+                usedSyllableIndices[syllableIndex] = word.Syllables[i];
+                syllableIndex++;
+            }
+        }
+
+        for (int i = syllableIndex; i < displayedSyllables; i++)
+        {
+            var index = random.Next(indexList.Count);
+            usedSyllableIndices[i] = indexList[index];
+            indexList.RemoveAt(index);
+        }
+    }
+
+    public ICryptoSyllable[] GetSyllables()
+    {
+        ICryptoSyllable[] syllables = new ICryptoSyllable[usedSyllableIndices.Length];
+
+        var sourceSyllables = SourceLanguage.GetSyllables();
+
+        for (int i = 0; i < syllables.Length; i++)
+        {
+            syllables[i] = sourceSyllables[usedSyllableIndices[i]];
+        }
+
+        return syllables;
+    }
+    #endregion
+}
