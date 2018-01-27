@@ -13,26 +13,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   words:
   - syllables:
-    - dach
+    - in
+    - tel
+    - li
+    - gence
+  - syllables:
+    - re
+    - la
+    - xa
+    - tion
+  - syllables:
+    - al
     - ter
-    - ras
-    - se
-  - syllables:
-    - zim
-    - mer
-    - pflan
-    - ze
-  - syllables:
-    - ein
-    - tags
-    - flie
-    - ge
+    - na
+    - tive
   - syllables:
     - flie
     - ger
     - staf
     - fel
   - syllables:
-    - Maus
-    - zei
-    - ger
+    - ox
+    - y
+    - gen
+  - syllables:
+    - ba
+    - na
+    - na
+  - syllables:
+    - chi
+    - pot
+    - le
