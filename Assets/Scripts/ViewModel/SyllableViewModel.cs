@@ -1,10 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
+using System;
 
-public class UISyllable : MonoBehaviour
+public class SyllableViewModel
 {
+    #region Public Events
+    public event Action<Image> OnIconImageChanged;
+    public event Action<Text> OnIconTextChanged;
+    #endregion
+
+    #region Public Properties
+    public Image IconImage
+    {
+        get { return m_IconImage; }
+        set
+        {
+            if (m_IconImage == value)
+            {
+                return;
+            }
+
+            m_IconImage = value;
+            OnIconImageChanged(m_IconImage);
+        }
+    }
+
+    public Text IconText
+    {
+        get { return m_IconText; }
+        set
+        {
+            if (m_IconText == value)
+            {
+                return;
+            }
+
+            m_IconText = value;
+            OnIconTextChanged(m_IconText);
+        }
+    }
+    #endregion
+
     #region Public Methods
     public void SetImage(Sprite sprite)
     {
@@ -31,18 +68,8 @@ public class UISyllable : MonoBehaviour
     }
     #endregion
 
-    #region Unity Callbacks
-    private void Awake()
-    {
-        m_IconText.gameObject.SetActive(false);
-        m_IconImage.gameObject.SetActive(false);
-    }
-    #endregion
-
     #region Private Members
-    [SerializeField]
     private Image m_IconImage = null;
-    [SerializeField]
     private Text m_IconText = null;
     #endregion
 }

@@ -13,6 +13,7 @@ public class Session
     public int ActiveRoundIndex => m_activeRoundIndex;
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
     public byte[] LastSyllablesInput => m_LastSyllableInput;
+    public SessionParameters SessionParams => m_sessionParameter;
     #endregion
 
     #region Constructor

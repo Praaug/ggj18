@@ -28,7 +28,7 @@ public class GameViewModel : BaseViewModel
     public MainMenuViewModel MainMenuViewModel => m_mainViewModel;
     public OptionsViewModel OptionsViewModel => m_optionsViewModel;
     public NewGameViewModel NewGameViewModel => m_newGameViewModel;
-    public SyllablesViewModel SyllablesViewModel => m_syllablesViewModel;
+    public SyllablesInputViewModel SyllablesViewModel => m_syllablesViewModel;
     public IncommingTransmissionViewModel IncommingTransmissionViewModel => m_incommingTransmissionViewModel;
     public EndScreenViewModel EndScreenViewModel => m_endScreenViewModel;
 
@@ -95,7 +95,7 @@ public class GameViewModel : BaseViewModel
     private MainMenuViewModel m_mainViewModel;
     private OptionsViewModel m_optionsViewModel;
     private NewGameViewModel m_newGameViewModel;
-    private SyllablesViewModel m_syllablesViewModel;
+    private SyllablesInputViewModel m_syllablesViewModel;
     private IncommingTransmissionViewModel m_incommingTransmissionViewModel;
     private EndScreenViewModel m_endScreenViewModel;
 
