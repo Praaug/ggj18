@@ -71,20 +71,20 @@ public class LanguageExcerpt
             usedSyllableIndices[i] = 255;
         }
 
-        List<byte> indexList = new List<byte>(SourceLanguage.syllableCount - word.Syllables.Length);
+        List<byte> indexList = new List<byte>(SourceLanguage.syllableCount - word.syllableIndices.Length);
 
         for (byte i = 0; i < SourceLanguage.syllableCount; i++)
         {
-            if (!word.Syllables.Contains(i))
+            if (!word.syllableIndices.Contains(i))
                 indexList.Add(i);
         }
 
         var syllableIndex = 0;
-        for (int i = 0; i < word.Syllables.Length; i++)
+        for (int i = 0; i < word.syllableIndices.Length; i++)
         {
-            if (!usedSyllableIndices.Contains(word.Syllables[i]))
+            if (!usedSyllableIndices.Contains(word.syllableIndices[i]))
             {
-                usedSyllableIndices[syllableIndex] = word.Syllables[i];
+                usedSyllableIndices[syllableIndex] = word.syllableIndices[i];
                 syllableIndex++;
             }
         }

@@ -65,11 +65,11 @@ public class Transmission
         }
 
         var outWord = new TransmissionWord();
-        outWord.Syllables = new byte[inWord.Syllables.Length];
+        outWord.syllableIndices = new byte[inWord.syllableIndices.Length];
 
-        for (byte i = 0; i < inWord.Syllables.Length; i++)
+        for (byte i = 0; i < inWord.syllableIndices.Length; i++)
         {
-            outWord.Syllables[i] = reversion[inWord.Syllables[i]];
+            outWord.syllableIndices[i] = reversion[inWord.syllableIndices[i]];
         }
 
         return outWord;
