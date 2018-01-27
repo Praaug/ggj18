@@ -2,6 +2,11 @@
 
 class NewGameViewModel : BaseViewModel
 {
+    public override MenuEnum MenuType => MenuEnum.NewGame;
+
+    public event Action OnStartGameCommand;
+    public event Action OnCloseNewGameCommand;
+
     public NewGameViewModel() : base()
     {
 
@@ -9,13 +14,11 @@ class NewGameViewModel : BaseViewModel
 
     public override void CloseButtonCommand()
     {
-        UnityEngine.Debug.Log("Close NewGame Command");
-        // Todo: model logic
+        OnCloseNewGameCommand?.Invoke();
     }
 
     public void StartGameCommand()
     {
-        UnityEngine.Debug.Log("Start New Command");
-        // Todo: model logic
+        OnStartGameCommand?.Invoke();
     }
 }
