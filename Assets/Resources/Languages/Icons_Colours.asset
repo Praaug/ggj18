@@ -11,4 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223f2a971cf7c4443b0256bac7845c3e, type: 3}
   m_Name: Icons_Colours
   m_EditorClassIdentifier: 
-  syllables: []
+  syllables:
+  - syllable: {fileID: 21300000, guid: 3a12a3a064701f94d8d51ea406776b12, type: 3}
+  - syllable: {fileID: 21300000, guid: ee8763479f8e1884c9f5b0f27e9f2e65, type: 3}
+  - syllable: {fileID: 21300000, guid: 59263aba9b4d31743ba55b264c474e1d, type: 3}
+  - syllable: {fileID: 21300000, guid: c3381c1f0d5cc1e4fa4bd24eaf8d6d8a, type: 3}
+  - syllable: {fileID: 21300000, guid: ed1a8f01c610c62438ce2ef021813c36, type: 3}
+  - syllable: {fileID: 21300000, guid: d3dba9d3d70eac6408f0b0d504533a52, type: 3}
+  - syllable: {fileID: 21300000, guid: 887a663541122c349af028dbbcf4385b, type: 3}
+  - syllable: {fileID: 21300000, guid: 101bb710196ea0648928173eb2cee3ba, type: 3}
+  - syllable: {fileID: 21300000, guid: 8fc0579cef315274991d60685bc5c617, type: 3}
