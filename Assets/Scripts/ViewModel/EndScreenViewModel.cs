@@ -6,6 +6,8 @@ public class EndScreenViewModel : BaseViewModel
 
     public event Action OnOKCommand;
 
+    public event Action OnEnterStateAction;
+
     public bool IsWin { get; private set; } = false;
 
     public bool IsLast { get; private set; } = false;
@@ -45,5 +47,7 @@ public class EndScreenViewModel : BaseViewModel
             ResultString = "send the save to the next person!";
             LastSessionName = result.SessionName;
         }
+
+        OnEnterStateAction?.Invoke();
     }
 }
