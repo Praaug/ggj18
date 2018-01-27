@@ -46,7 +46,7 @@ public class GameViewModel : BaseViewModel
         m_optionsViewModel = new OptionsViewModel();
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
 
-        m_syllablesViewModel = new SyllablesViewModel();
+        m_syllablesViewModel = new SyllablesInputViewModel();
         m_syllablesViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();
