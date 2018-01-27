@@ -14,6 +14,7 @@ public class Session
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
     public byte[] LastSyllablesInput => m_LastSyllableInput;
     public SessionParameters SessionParams => m_sessionParameter;
+    public GameResult MyGameResult {get; set;}
     #endregion
 
     #region Constructor

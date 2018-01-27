@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -15,6 +16,12 @@ public class GameManager : ScriptableObject
     public static GameManager instance { get; private set; }
 
     public Session ActiveSession => m_activeSession;
+
+    public GameResult GetResult()
+    {
+        return new GameResult();
+    }
+
     public List<SaveGame> SaveGameList => m_saveGameList;
     #endregion
 
@@ -56,13 +63,25 @@ public class GameManager : ScriptableObject
             return;
         }
 
+        // check if session has ended
+        if (m_activeSession.MaxRounds == m_activeSession.ActiveRoundIndex + 1)
+        {
+            // create Game Result
+            GameResult result = new GameResult();
+            result.SessionName = m_activeSession.SessionName;
+
+            TransmissionEndpoint endpoint = m_activeSession.TransmissionSetup.EndPoint;
+            result.RightWord = endpoint.RealWord.ToString(endpoint.HumanLanguage.SourceLanguage);
+            result.IsWin = result.RightWord == m_activeSession.LastSyllablesInput.ToString();
+
+            m_activeSession.MyGameResult = result;
+        }
+
         SaveCurrentGame();
     }
     #endregion
 
     #region Processing Methods
-
-    #region Loading of save games
     private void LoadSaveGames()
     {
         // Get the list of save games from disk
@@ -104,9 +123,7 @@ public class GameManager : ScriptableObject
         // Return the list of save games
         return saveGameList;
     }
-    #endregion
 
-    #region Saving of save games
     private void SaveCurrentGame()
     {
         Debug.Assert(m_activeSession != null, "Tried to save the game, but there is no active game instance");
@@ -128,7 +145,6 @@ public class GameManager : ScriptableObject
         bool fileCreationSuccess = FileUtilities.CreateOrOverwriteAllText(fileName, jsonContent);
         Debug.Assert(fileCreationSuccess, "Tried to save the current game, but file creation process failed");
     }
-    #endregion
     #endregion
 
     #region Private Fields
