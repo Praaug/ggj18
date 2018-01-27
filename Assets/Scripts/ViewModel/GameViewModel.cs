@@ -42,6 +42,9 @@ public class GameViewModel : BaseViewModel
         m_newGameViewModel = new NewGameViewModel(this);
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
         m_newGameViewModel.OnStartGameCommand += NewGameViewModel_OnStartGameCommand;
+        m_newGameViewModel.OnDisplayDurationChange += NewGameViewModel_OnDisplayDurationChange;
+        m_newGameViewModel.OnPlayerCountChange += NewGameViewModel_OnPlayerCountChange;
+        m_newGameViewModel.OnSessionNameChange += NewGameViewModel_OnSessionNameChange;
 
         m_optionsViewModel = new OptionsViewModel(this);
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
@@ -56,7 +59,7 @@ public class GameViewModel : BaseViewModel
 
         CurrentDisplayedMenu = m_mainViewModel;
     }
-
+    
     private void EndScreenViewModel_OnOKCommand()
     {
         CurrentDisplayedMenu = m_mainViewModel;
@@ -84,6 +87,21 @@ public class GameViewModel : BaseViewModel
     private void NewGameViewModel_OnCloseNewGameCommand()
     {
         CurrentDisplayedMenu = m_mainViewModel;
+    }
+
+    private void NewGameViewModel_OnPlayerCountChange(int palyerCount)
+    {
+        
+    }
+
+    private void NewGameViewModel_OnDisplayDurationChange(int displayDuration)
+    {
+
+    }
+
+    private void NewGameViewModel_OnSessionNameChange(string sessionName)
+    {
+
     }
 
     private void MainViewModel_OnOpenOptionsCommand()
