@@ -26,6 +26,8 @@ public class WordManager : ScriptableObject
     /// </summary>
     private CryptoLanguageText humanLanguage;
 
+    [System.NonSerialized]
+    private bool m_isInitialized = false;
     #endregion
 
     #region Public Properties
@@ -64,11 +66,23 @@ public class WordManager : ScriptableObject
     /// </summary>
     private void Awake()
     {
+        Init();
+    }
+
+    public void Init()
+    {
+        if (m_isInitialized)
+        {
+            return;
+        }
+
 #if UNITY_EDITOR
         if (!Application.isPlaying)
             return;
 #endif
         BuildHumanLanguage();
+
+        m_isInitialized = true;
     }
 
     private void BuildHumanLanguage()
@@ -92,7 +106,7 @@ public class WordManager : ScriptableObject
             }
         }
 
-        humanLanguage = ScriptableObject.CreateInstance<CryptoLanguageText>();
+        humanLanguage = CreateInstance<CryptoLanguageText>();
         humanLanguage.SetSyllables(syllableList);
     }
 

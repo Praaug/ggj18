@@ -11,4 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a367ad57d29b05f45a32b3377244b147, type: 3}
   m_Name: GameManager
   m_EditorClassIdentifier: 
-  m_saveGamePath: saves
+  m_wordManager: {fileID: 11400000, guid: a4aea4964984d7e4daf7689c49a3f41a, type: 2}
+  m_saveGamePath: saves/

@@ -29,18 +29,17 @@ public class Transmission
     /// <param name="inLanguage">The incoming language</param>
     /// <param name="outLanguage">The outgoing language</param>
     /// <param name="random">The random number generator to use</param>
-    public Transmission(LanguageExcerpt inLanguage, LanguageExcerpt outLanguage, System.Random random)
+    public Transmission(LanguageExcerpt inLanguage, LanguageExcerpt outLanguage, System.Random random, int syllableCount)
     {
-        int syllableCount = 8;
-
         InLanguage = inLanguage;
         OutLanguage = outLanguage;
 
         var tmpList = new List<byte>(syllableCount);
+        Conversion = new byte[syllableCount];
 
         for (byte i = 0; i < syllableCount; i++)
         {
-            tmpList[i] = i;
+            tmpList.Add(i);
         }
 
         for (byte i = 0; i < syllableCount; i++)
@@ -67,7 +66,7 @@ public class Transmission
         var outWord = new TransmissionWord();
         outWord.syllableIndices = new byte[inWord.syllableIndices.Length];
 
-        for (byte i = 0; i < inWord.syllableIndices.Length; i++)
+        for (int i = 0; i < inWord.syllableIndices.Length; i++)
         {
             outWord.syllableIndices[i] = reversion[inWord.syllableIndices[i]];
         }

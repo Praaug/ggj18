@@ -1,32 +1,28 @@
-﻿public class SessionParameters
+﻿[System.Serializable]
+public class SessionParameters
 {
     /// <summary>
     /// The seed used to determine the transmission setup
     /// </summary>
-    public int Seed;
-
-    /// <summary>
-    /// Number of players in this session
-    /// </summary>
-    public byte PlayerCount;
+    public int Seed = 0;
 
     /// <summary>
     /// The number of rounds int the session
     /// </summary>
-    public byte RoundCount;
+    public byte RoundCount = 3;
 
     /// <summary>
     /// The name of the current session
     /// </summary>
-    public string SessionName;
+    public string SessionName = "SuperDuperSession";
 
     /// <summary>
     /// The amount of syllables of the searched word
     /// </summary>
-    public int SyllableSearchedAmount;
+    public int SyllableSearchedAmount = 3;
 
     /// <summary>
     /// 
     /// </summary>
-    public int SyllableChoiceAmount;
+    public int SyllableChoiceAmount = 6;
 }
