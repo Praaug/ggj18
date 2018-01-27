@@ -7,7 +7,7 @@ public class NewGameViewModel : BaseViewModel
     public event Action OnStartGameCommand;
     public event Action OnCloseNewGameCommand;
 
-    public NewGameViewModel() : base()
+    public NewGameViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
     }

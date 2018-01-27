@@ -15,14 +15,13 @@ public class IncommingTransmissionViewModel : BaseViewModel
         base.OnEnterState();
 
         Session session = GameManager.instance.ActiveSession;
-
         SessionParameters sessionParams = session.SessionParams;
 
         // Resize array
         m_DisplayedSyllables = new SyllableViewModel[sessionParams.SyllableSearchedAmount];
 
         // Fill UI Elements from model
-        ICryptoSyllable[] displayedSyllableList = GameManager.instance.ActiveSession.GetLastInputSyllables();
+        ICryptoSyllable[] displayedSyllableList = session.GetLastInputSyllables();
         Debug.Assert(displayedSyllableList.Length == m_DisplayedSyllables.Length, "WHY WOULD YOU DO THAT!?");
 
         for (int i = 0; i < m_DisplayedSyllables.Length; ++i)
