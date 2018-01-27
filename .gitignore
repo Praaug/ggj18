@@ -1,17 +1,9 @@
-<<<<<<< .mine
 /.vs/ggj18/v15/.suo
-=======
 Library
->>>>>>> .theirs
 Temp
 UnityPackageManager
-<<<<<<< .mine
 /ggj18.sln
 /ggj18.csproj
-=======
-
-
->>>>>>> .theirs
 .vs
 *.csproj
 Builds

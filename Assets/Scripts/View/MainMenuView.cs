@@ -3,15 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-class MainMenuView : MonoBehaviour
+class MainMenuView : BaseView
 {
-    #region Public Methods
+    #region Public Method
+    /// <summary>
+    /// Opens the Options Screen
+    /// </summary>
+    public void OpenOptions()
+    {
+        m_animator.SetBool("OptionsOpen", true);
+    }
+
+    /// <summary>
+    /// Closes the Option Screen
+    /// </summary>
+    public void CloseOptions()
+    {
+        m_animator.SetBool("OptionsOpen", false);
+    }
+
+    /// <summary>
+    /// Opens the newGame Screen
+    /// </summary>
+    public void OpenNewGame()
+    {
+        m_animator.SetBool("NewGameOpen", true);
+    }
+
+    /// <summary>
+    /// Closes the newGame Screen
+    /// </summary>
+    public void CloseNewGame()
+    {
+        m_animator.SetBool("NewGameOpen", false);
+    }
+
     #endregion
 
     #region Private Fields
-    [SerializeField]
-    private Button m_closeButton;
-
     [SerializeField]
     private Button m_newGameButton;
 
@@ -27,6 +56,9 @@ class MainMenuView : MonoBehaviour
     [SerializeField]
     private RectTransform m_contentTransform;
 
+    [SerializeField]
+    private Animator m_animator;
+
     private MainMenuViewModel m_viewModel;
 
     private List<SaveGameButtonView> m_saveGameButtonViewModelList;
@@ -36,13 +68,14 @@ class MainMenuView : MonoBehaviour
     private void Awake()
     {
         m_viewModel = new MainMenuViewModel();
-        Init();
+        Init(m_viewModel);
     }
 
-    private void Init()
+    private void Init(MainMenuViewModel viewModel)
     {
+        base.Init(m_viewModel);
+
         m_newGameButton.onClick.AddListener(OnNewGameButtonClick);
-        m_closeButton.onClick.AddListener(OnCloseButtonClick);
         m_optionsButton.onClick.AddListener(OnOptionsButtonClick);
         m_websiteButton.onClick.AddListener(OnWebsiteButtonClick);
 
@@ -61,11 +94,6 @@ class MainMenuView : MonoBehaviour
     private void OnNewGameButtonClick()
     {
         m_viewModel.StartNewGameCommand();
-    }
-
-    private void OnCloseButtonClick()
-    {
-        m_viewModel.CloseApplicationCommand();
     }
 
     private void OnOptionsButtonClick()

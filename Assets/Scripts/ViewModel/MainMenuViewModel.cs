@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class MainMenuViewModel
+public class MainMenuViewModel : BaseViewModel
 {
     public List<SaveGameViewModel> SaveGameViewModelList { get; set; }
 
-    public MainMenuViewModel()
+    public MainMenuViewModel() : base()
     {
         List<SaveGame> saveGameList = GameManagerMock.GetSavegames();
         SaveGameViewModelList = new List<SaveGameViewModel>(saveGameList.Count);
@@ -28,7 +28,7 @@ public class MainMenuViewModel
         // Todo: model logic
     }
 
-    public void CloseApplicationCommand()
+    public override void CloseButtonCommand()
     {
         UnityEngine.Debug.Log("close app command");
         // Todo: model logic
