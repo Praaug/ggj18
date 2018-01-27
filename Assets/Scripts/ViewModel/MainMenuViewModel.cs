@@ -13,7 +13,7 @@ public class MainMenuViewModel : BaseViewModel
 
     public MainMenuViewModel() : base()
     {
-        List<SaveGame> saveGameList = GameManagerMock.GetSavegames();
+        var saveGameList = GameManager.instance.SaveGameList;
         SaveGameViewModelList = new List<SaveGameViewModel>(saveGameList.Count);
 
         for (int i = 0; i < saveGameList.Count; i++)

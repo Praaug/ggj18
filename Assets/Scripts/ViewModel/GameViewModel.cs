@@ -42,10 +42,29 @@ public class GameViewModel : BaseViewModel
         m_newGameViewModel = new NewGameViewModel();
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
         m_newGameViewModel.OnStartGameCommand += NewGameViewModel_OnStartGameCommand;
+
         m_optionsViewModel = new OptionsViewModel();
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
 
+        m_syllablesViewModel = new SyllablesViewModel();
+        m_syllablesViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
+
+        m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();
+
+        m_endScreenViewModel = new EndScreenViewModel();
+        m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
+
         CurrentDisplayedMenu = m_mainViewModel;
+    }
+
+    private void EndScreenViewModel_OnOKCommand()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void SyllablesViewModel_OnAcceptCommand()
+    {
+        throw new NotImplementedException();
     }
 
     private void OptionsViewModel_OnCloseOptionsCommand()
