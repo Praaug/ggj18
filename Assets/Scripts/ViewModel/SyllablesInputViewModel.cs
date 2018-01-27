@@ -1,12 +1,12 @@
 ﻿using System;
 
-public class SyllablesViewModel : BaseViewModel
+public class SyllablesInputViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.Syllables;
 
     public event Action OnAcceptCommand;
 
-    public SyllablesViewModel() : base()
+    public SyllablesInputViewModel() : base()
     {
 
     }

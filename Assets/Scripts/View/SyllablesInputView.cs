@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class SyllablesView : BaseView
+public class SyllablesInputView : BaseView
 {
     private OptionsViewModel m_viewModel;
 
