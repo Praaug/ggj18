@@ -5,7 +5,6 @@ using UnityEngine;
 public class UIManager
 {
     #region Public Methods
-
     public void Init()
     {
         foreach (UIScene scene in m_SceneList)

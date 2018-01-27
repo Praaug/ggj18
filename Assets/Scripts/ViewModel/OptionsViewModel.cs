@@ -1,5 +1,11 @@
-﻿class OptionsViewModel : BaseViewModel
+﻿using System;
+
+class OptionsViewModel : BaseViewModel
 {
+    public override MenuEnum MenuType => MenuEnum.Options;
+
+    public event Action OnCloseOptionsCommand;
+
     public OptionsViewModel() : base()
     {
 
@@ -7,7 +13,6 @@
 
     public override void CloseButtonCommand()
     {
-        UnityEngine.Debug.Log("Close Options Command");
-        // Todo: model logic
+        OnCloseOptionsCommand?.Invoke();
     }
 }

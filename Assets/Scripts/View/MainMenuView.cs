@@ -5,41 +5,6 @@ using UnityEngine.UI;
 
 class MainMenuView : BaseView
 {
-    #region Public Method
-    /// <summary>
-    /// Opens the Options Screen
-    /// </summary>
-    public void OpenOptions()
-    {
-        m_animator.SetBool("OptionsOpen", true);
-    }
-
-    /// <summary>
-    /// Closes the Option Screen
-    /// </summary>
-    public void CloseOptions()
-    {
-        m_animator.SetBool("OptionsOpen", false);
-    }
-
-    /// <summary>
-    /// Opens the newGame Screen
-    /// </summary>
-    public void OpenNewGame()
-    {
-        m_animator.SetBool("NewGameOpen", true);
-    }
-
-    /// <summary>
-    /// Closes the newGame Screen
-    /// </summary>
-    public void CloseNewGame()
-    {
-        m_animator.SetBool("NewGameOpen", false);
-    }
-
-    #endregion
-
     #region Private Fields
     [SerializeField]
     private Button m_newGameButton;
@@ -56,9 +21,6 @@ class MainMenuView : BaseView
     [SerializeField]
     private RectTransform m_contentTransform;
 
-    [SerializeField]
-    private Animator m_animator;
-
     private MainMenuViewModel m_viewModel;
 
     private List<SaveGameButtonView> m_saveGameButtonViewModelList;
@@ -67,12 +29,14 @@ class MainMenuView : BaseView
     #region Private Methods
     private void Awake()
     {
-        m_viewModel = new MainMenuViewModel();
-        Init(m_viewModel);
+        Init();
     }
 
-    private void Init(MainMenuViewModel viewModel)
+    private void Init()
     {
+        m_viewModel = GameViewModel.instance.MainMenuViewModel;
+        Debug.Assert(m_viewModel != null, "MainMenuViewModel not valid");
+
         base.Init(m_viewModel);
 
         m_newGameButton.onClick.AddListener(OnNewGameButtonClick);
@@ -93,7 +57,7 @@ class MainMenuView : BaseView
 
     private void OnNewGameButtonClick()
     {
-        m_viewModel.StartNewGameCommand();
+        m_viewModel.OpenNewGameCommand();
     }
 
     private void OnOptionsButtonClick()

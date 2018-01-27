@@ -8,14 +8,8 @@ AnimatorController:
   m_Name: MainMenuController
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: NewGameOpen
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: OptionsOpen
-    m_Type: 4
+  - m_Name: menu
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -40,9 +34,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: NewGameOpen
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: menu
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102806543542506820}
   m_Solo: 0
@@ -85,9 +79,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: NewGameOpen
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: menu
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102329302846590802}
   m_Solo: 0
@@ -130,9 +124,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: OptionsOpen
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: menu
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102981099436397476}
   m_Solo: 0
@@ -196,9 +190,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: OptionsOpen
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: menu
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102354309389871052}
   m_Solo: 0

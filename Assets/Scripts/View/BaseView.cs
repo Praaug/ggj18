@@ -6,7 +6,10 @@ public class BaseView : MonoBehaviour
     public virtual void Init(BaseViewModel viewModel)
     {
         m_viewModel = viewModel;
-        m_closeButton.onClick.AddListener(OnCloseClickButton);
+        if (m_closeButton != null)
+        {
+            m_closeButton.onClick.AddListener(OnCloseClickButton);
+        }
     }
 
     [SerializeField]
