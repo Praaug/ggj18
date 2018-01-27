@@ -36,24 +36,26 @@ public static class TransmissionManager
         List<ACryptoLanguage> buffer = new List<ACryptoLanguage>(LanguageSet);
 
         var usedLanguages = new ACryptoLanguage[transmissionCount];
+        var excerpts = new LanguageExcerpt[transmissionCount];
 
         for (int i = 0; i < transmissionCount; i++)
         {
             var index = random.Next(buffer.Count);
             usedLanguages[i] = buffer[index];
+            excerpts[i] = new LanguageExcerpt(usedLanguages[i], displayedSyllables, random);
             buffer.RemoveAt(index);
             if (i > 0)
             {
                 transmissions[i - 1] = new Transmission(
-                    new LanguageExcerpt(usedLanguages[i - 1], displayedSyllables, random),
-                    new LanguageExcerpt(usedLanguages[i], displayedSyllables, random),
+                    excerpts[i - 1],
+                    excerpts[i],
                     random,
                     displayedSyllables);
             }
         }
 
         transmissions[transmissionCount - 1] = new Transmission(
-            new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random),
+            excerpts[transmissionCount - 1],
             endpoint.HumanLanguage,
             random,
             displayedSyllables);

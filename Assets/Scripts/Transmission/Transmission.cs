@@ -69,6 +69,11 @@ public class Transmission
             syllableIndices = new byte[inWord.syllableIndices.Length]
         };
 
+        for (int i = 0; i < inWord.syllableIndices.Length; i++)
+        {
+            outWord.syllableIndices[i] = reversion[inWord.syllableIndices[i]];
+        }
+
         return outWord;
     }
     #endregion
