@@ -28,7 +28,7 @@ public class GameViewModel : BaseViewModel
     public MainMenuViewModel MainMenuViewModel => m_mainViewModel;
     public OptionsViewModel OptionsViewModel => m_optionsViewModel;
     public NewGameViewModel NewGameViewModel => m_newGameViewModel;
-    public SyllablesInputViewModel SyllablesViewModel => m_syllablesViewModel;
+    public SyllablesInputViewModel SyllablesInputViewModel => m_syllablesInputViewModel;
     public IncommingTransmissionViewModel IncommingTransmissionViewModel => m_incommingTransmissionViewModel;
     public EndScreenViewModel EndScreenViewModel => m_endScreenViewModel;
 
@@ -46,8 +46,8 @@ public class GameViewModel : BaseViewModel
         m_optionsViewModel = new OptionsViewModel();
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
 
-        m_syllablesViewModel = new SyllablesInputViewModel();
-        m_syllablesViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
+        m_syllablesInputViewModel = new SyllablesInputViewModel();
+        m_syllablesInputViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel();
 
@@ -95,7 +95,7 @@ public class GameViewModel : BaseViewModel
     private MainMenuViewModel m_mainViewModel;
     private OptionsViewModel m_optionsViewModel;
     private NewGameViewModel m_newGameViewModel;
-    private SyllablesInputViewModel m_syllablesViewModel;
+    private SyllablesInputViewModel m_syllablesInputViewModel;
     private IncommingTransmissionViewModel m_incommingTransmissionViewModel;
     private EndScreenViewModel m_endScreenViewModel;
 

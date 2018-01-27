@@ -4,6 +4,6 @@
     Options,
     NewGame,
     IncommingTransmission,
-    Syllables,
+    SyllableInput,
     EndScreen
 }

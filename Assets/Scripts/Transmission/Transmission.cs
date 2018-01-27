@@ -20,7 +20,7 @@ public class Transmission
     /// <summary>
     /// The syllable index conversion dictionary
     /// </summary>
-    public Dictionary<byte,byte> Conversion;
+    public Dictionary<byte, byte> Conversion;
     #endregion
 
     #region Public Methods
@@ -46,7 +46,7 @@ public class Transmission
         for (byte i = 0; i < syllableCount; i++)
         {
             int index = random.Next(tmpList.Count);
-            Conversion.Add(inLanguage.usedSyllableIndices[i], outLanguage.usedSyllableIndices[tmpList[index]]);
+            Conversion.Add(i, tmpList[index]);
             tmpList.RemoveAt(index);
         }
     }
@@ -61,7 +61,7 @@ public class Transmission
         Dictionary<byte, byte> reversion = new Dictionary<byte, byte>();
         foreach (var item in Conversion)
         {
-            reversion.Add(item.Value, item.Key);
+            reversion.Add(OutLanguage.usedSyllableIndices[item.Value], InLanguage.usedSyllableIndices[item.Key]);
         }
 
         var outWord = new TransmissionWord();
