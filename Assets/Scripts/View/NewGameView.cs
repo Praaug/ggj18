@@ -36,11 +36,6 @@ public class NewGameView : BaseView
         m_sessionNameInput.onEndEdit.AddListener(OnSessionNameEndEdit);
     }
 
-    private void OnSessionNameEndEdit(string inputString)
-    {
-
-    }
-
     private void OnStartButtonClick()
     {
         m_viewModel.StartGameCommand();
@@ -48,7 +43,7 @@ public class NewGameView : BaseView
 
     private void OnDisplayDurationEndEdit(string inputString)
     {
-        m_viewModel.ChangeDisplayDurationCommand(int.Parse(inputString));
+        m_viewModel.ChangeDisplayDurationCommand(float.Parse(inputString));
     }
 
     private void OnPlayerCountEndEdit(string inputString)
@@ -56,4 +51,8 @@ public class NewGameView : BaseView
         m_viewModel.ChangePlayerCountCommand(int.Parse(inputString));
     }
 
+    private void OnSessionNameEndEdit(string inputString)
+    {
+        m_viewModel.ChangeSessionNameCommand(inputString);
+    }
 }
