@@ -4,11 +4,7 @@ public static class TransmissionManager
 {
     private static HashSet<ACryptoLanguage> languages;
 
-    private static Transmission[] transmissions;
-
-    public static TransmissionWord StartWord { get; private set; }
-
-    public static TransmissionEndpoint Endpoint { get; private set; }
+    public static TransmissionSetup Setup { get; private set; }
 
     private static HashSet<ACryptoLanguage> LanguageSet
     {
@@ -29,13 +25,13 @@ public static class TransmissionManager
     /// <param name="transmissionCount">The number of transmissions</param>
     /// <param name="wordLength">The number of syllables the current word has</param>
     /// <param name="displayedSyllables">The number of syllables to display as possibilities</param>
-    /// <returns>The transmission chain</returns>
-    public static Transmission[] InitTransmission(int seed, byte transmissionCount, int wordLength, int displayedSyllables)
+    /// <returns>The transmission setup</returns>
+    public static TransmissionSetup BuildTransmissionSetup(int seed, byte transmissionCount, int wordLength, int displayedSyllables)
     {
         var random = new System.Random(seed);
-        Endpoint = WordManager.Instance.CreateEndpoint(wordLength, displayedSyllables, random);
+        var endpoint = WordManager.Instance.CreateEndpoint(wordLength, displayedSyllables, random);
 
-        transmissions = new Transmission[transmissionCount];
+        var transmissions = new Transmission[transmissionCount];
 
         List<ACryptoLanguage> buffer = new List<ACryptoLanguage>(LanguageSet);
 
@@ -55,15 +51,15 @@ public static class TransmissionManager
             }
         }
 
-        transmissions[transmissionCount - 1] = new Transmission(Endpoint.HumanLanguage, new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random), random);
+        transmissions[transmissionCount - 1] = new Transmission(endpoint.HumanLanguage, new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random), random);
 
-        StartWord = Endpoint.RealWord;
+        var startWord = endpoint.RealWord;
         for (int i = transmissionCount - 1; i > -1; i--)
         {
-            StartWord = transmissions[i].Encrypt(StartWord);
+            startWord = transmissions[i].Encrypt(startWord);
         }
-
-        return transmissions;
+        Setup = new TransmissionSetup(startWord, endpoint, transmissions);
+        return Setup;
     }
 
 
