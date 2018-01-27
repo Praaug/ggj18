@@ -25,4 +25,9 @@ public class SessionParameters
     /// 
     /// </summary>
     public int SyllableChoiceAmount = 6;
+
+    /// <summary>
+    /// The duration of the incomming syllables
+    /// </summary>
+    public float DisplayDuration = 3.0f;
 }
