@@ -11,6 +11,8 @@ public class Session
     public ICryptoSyllable[] CurrentSyllableChoice => m_SyllableChoiceArray;
     public int MaxRounds => m_maxRounds;
     public int ActiveRoundIndex => m_activeRoundIndex;
+    public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
+    public byte[] LastSyllablesInput => m_LastSyllableInput;
     #endregion
 
     #region Constructor
@@ -34,7 +36,40 @@ public class Session
     }
     #endregion
 
+
     #region Public Methods
+    public ICryptoSyllable[] GetLastInputSyllables()
+    {
+        ICryptoSyllable[] result = new ICryptoSyllable[m_sessionParameter.SyllableSearchedAmount];
+
+        Debug.Assert(m_LastSyllableInput.Length == result.Length, "Array length of last syllable input does not match the required syllable amount");
+        if (m_LastSyllableInput.Length != result.Length)
+        {
+            return result;
+        }
+
+        bool hasValidRoundIndex = m_activeRoundIndex >= 0 && m_activeRoundIndex < m_TransmissionSetup.Transmissions.Length;
+        Debug.Assert(hasValidRoundIndex, "Active round index is out of range for transmission array");
+        if (!hasValidRoundIndex)
+        {
+            return result;
+        }
+
+        Transmission currentTransmission = m_TransmissionSetup.Transmissions[m_activeRoundIndex];
+
+        var inSyllables = currentTransmission.InLanguage.GetSyllables();
+
+        for (int i = 0; i < m_LastSyllableInput.Length; ++i)
+        {
+            int syllableIndex = m_LastSyllableInput[i];
+            Debug.Assert(syllableIndex >= 0 && syllableIndex < inSyllables.Length, "last syllable indices are out of range for the language excerpt");
+
+            result[i] = inSyllables[syllableIndex];
+        }
+
+        return result;
+    }
+
     /// <summary>
     /// Sets the a specific round in this session. Will force a restart for the given round
     /// </summary>
@@ -151,6 +186,12 @@ public class Session
     /// The amount of rounds before the session will finish
     /// </summary>
     private int m_maxRounds = 0;
+
+
+    /// <summary>
+    ///  Array containing the indices of the last used syllables
+    /// </summary>
+    private byte[] m_LastSyllableInput = null;
 
     /// <summary>
     /// The current list of syllable choices entered in this round

@@ -1,6 +1,6 @@
 ﻿using System;
 
-class SyllablesViewModel : BaseViewModel
+public class SyllablesViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.Syllables;
 

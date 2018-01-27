@@ -2,7 +2,7 @@
 
 public class IncommingTransmissionView : BaseView
 {
-    private OptionsViewModel m_viewModel;
+    private IncommingTransmissionViewModel m_viewModel;
 
     private void Awake()
     {
@@ -11,8 +11,10 @@ public class IncommingTransmissionView : BaseView
 
     private void Init()
     {
-        m_viewModel = GameViewModel.instance.OptionsViewModel;
+        m_viewModel = GameViewModel.instance.IncommingTransmissionViewModel;
         Debug.Assert(m_viewModel != null, "OptionsViewModel not valid");
         base.Init(m_viewModel);
+
+
     }
 }
