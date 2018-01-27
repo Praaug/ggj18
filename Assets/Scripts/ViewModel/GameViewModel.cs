@@ -37,6 +37,7 @@ public class GameViewModel : BaseViewModel
         m_mainViewModel = new MainMenuViewModel(this);
         m_mainViewModel.OnOpenNewGameCommand += MainViewModel_OnOpenNewGameCommand;
         m_mainViewModel.OnOpenOptionsCommand += MainViewModel_OnOpenOptionsCommand;
+        m_mainViewModel.OnLoadGameCommand += MainViewModel_OnLoadGameCommand;
 
         m_newGameViewModel = new NewGameViewModel(this);
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
@@ -89,6 +90,11 @@ public class GameViewModel : BaseViewModel
     private void MainViewModel_OnOpenNewGameCommand()
     {
         CurrentDisplayedMenu = m_newGameViewModel;
+    }
+
+    private void MainViewModel_OnLoadGameCommand(int index)
+    {
+        GameManager.instance.LoadGame(index);
     }
 
     private MainMenuViewModel m_mainViewModel;

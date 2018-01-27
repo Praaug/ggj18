@@ -1,5 +1,9 @@
-﻿public class SaveGameViewModel
+﻿public class SaveGameViewModel : BaseViewModel
 {
+    public override MenuEnum MenuType => (MenuEnum)(-1);
+
+    public event System.Action<SaveGameViewModel> OnLoadSaveGameCommand;
+
     /// <summary>
     /// The name of the Savegame
     /// </summary>
@@ -13,20 +17,19 @@
     /// <summary>
     /// The max rounds of the game
     /// </summary>
-    public int MaxRounds => m_saveGame.saveGameSession.MaxRounds;
+    public int MaxRounds => m_saveGame.saveGameSession.SessionParameters.RoundCount;
 
-    public SaveGameViewModel(SaveGame saveGame, int index)
+    public SaveGameViewModel(SaveGame saveGame)
     {
         m_saveGame = saveGame;
-        m_index = index;
     }
 
     public void LoadSaveGameCommand()
     {
         UnityEngine.Debug.Log("Load Save Game Commnd");
-        // Todo: Model logic
+
+        OnLoadSaveGameCommand?.Invoke(this);
     }
 
-    private int m_index = 0;
     private SaveGame m_saveGame;
 }

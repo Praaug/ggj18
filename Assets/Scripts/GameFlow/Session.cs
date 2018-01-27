@@ -9,7 +9,7 @@ public class Session
 {
     #region Public Properties
     public ICryptoSyllable[] CurrentSyllableChoice => m_SyllableChoiceArray;
-    public int MaxRounds => m_maxRounds;
+    public int MaxRounds => m_sessionParameter.RoundCount;
     public int ActiveRoundIndex => m_activeRoundIndex;
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
     public byte[] LastSyllablesInput => m_LastSyllableInput;
@@ -17,20 +17,23 @@ public class Session
     #endregion
 
     #region Constructor
-    public Session(SessionParameters sessionParameter)
+    public Session(SessionParameters sessionParameter, byte[] lastSyllableInput, int currentRoundIndex)
     {
+        bool validCurrentRoundIndex = currentRoundIndex >= 0 && currentRoundIndex < sessionParameter.RoundCount;
+        Debug.Assert(validCurrentRoundIndex, string.Format("Tried to construct a session with invalid currentRoundIndex {0}", currentRoundIndex));
+        if (validCurrentRoundIndex)
+        {
+            return;
+        }
+
         m_sessionParameter = sessionParameter;
+        m_LastSyllableInput = lastSyllableInput;
 
         // Create transmission flow from parameter
         CreateTransmissionSetup();
 
-        // Excerpt the possible syllable list
-
-        // Reset 
-        m_maxRounds = m_sessionParameter.SyllableSearchedAmount;
-
         // Set the active round index to the first entry
-        m_activeRoundIndex = 0;
+        m_activeRoundIndex = currentRoundIndex;
 
         // Start the first round
         SetRound(m_activeRoundIndex);
@@ -76,7 +79,7 @@ public class Session
     /// </summary>
     public void SetRound(int index)
     {
-        bool validIndex = index >= 0 && index < m_maxRounds;
+        bool validIndex = index >= 0 && index < MaxRounds;
         Debug.Assert(validIndex, string.Format("Tried to set round with invalid index {0}", index));
 
         // Refill possible syllable list
@@ -158,7 +161,6 @@ public class Session
         SaveGameSession sessionSaveGame = new SaveGameSession();
 
         sessionSaveGame.CurrentRound = m_activeRoundIndex;
-        sessionSaveGame.MaxRounds = m_maxRounds;
         sessionSaveGame.SessionParameters = m_sessionParameter;
 
         return sessionSaveGame;
@@ -184,12 +186,6 @@ public class Session
     private int m_activeRoundIndex = 0;
 
     /// <summary>
-    /// The amount of rounds before the session will finish
-    /// </summary>
-    private int m_maxRounds = 0;
-
-
-    /// <summary>
     ///  Array containing the indices of the last used syllables
     /// </summary>
     private byte[] m_LastSyllableInput = null;
@@ -212,6 +208,5 @@ public class Session
 public class SaveGameSession
 {
     public int CurrentRound;
-    public int MaxRounds;
     public SessionParameters SessionParameters;
 }

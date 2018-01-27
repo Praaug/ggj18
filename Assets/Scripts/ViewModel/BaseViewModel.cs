@@ -2,6 +2,11 @@
 {
     public abstract MenuEnum MenuType { get; }
 
+    /// <summary>
+    /// The ref index of the view model
+    /// </summary>
+    public int Index { get; set; } = -1;
+
     public BaseViewModel()
     {
 

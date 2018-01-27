@@ -30,6 +30,7 @@ public class IncommingTransmissionViewModel : BaseViewModel
             var displayedSyllable = displayedSyllableList[i];
 
             // Update view model with model data
+            m_DisplayedSyllables[i] = new SyllableViewModel();
             m_DisplayedSyllables[i].SetFromSyllable(displayedSyllable);
         }
     }
