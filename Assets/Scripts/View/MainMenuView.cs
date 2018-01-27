@@ -21,9 +21,6 @@ class MainMenuView : BaseView
     [SerializeField]
     private RectTransform m_contentTransform;
 
-    [SerializeField]
-    private Animator m_animator;
-
     private MainMenuViewModel m_viewModel;
 
     private List<SaveGameButtonView> m_saveGameButtonViewModelList;

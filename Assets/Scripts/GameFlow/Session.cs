@@ -19,7 +19,7 @@ public class Session
         m_sessionParameter = sessionParameter;
 
         // Create transmission flow from parameter
-        CreateTransmissionSetup(sessionParameter.Seed);
+        CreateTransmissionSetup();
 
         // Exerpt the possible syllable list
 
@@ -128,7 +128,7 @@ public class Session
     private void CreateTransmissionSetup()
     {
         SessionParameters sp = m_sessionParameter;
-        m_TransmissionArray = TransmissionManager.InitTransmission(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
+        //m_TransmissionArray = TransmissionManager.InitTransmission(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
         Debug.Assert(m_TransmissionArray.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
     }
     #endregion
