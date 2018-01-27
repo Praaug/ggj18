@@ -42,7 +42,7 @@ public static class TransmissionManager
             var index = random.Next(buffer.Count);
             usedLanguages[i] = buffer[index];
             buffer.RemoveAt(index);
-            if (i < 0)
+            if (i > 0)
             {
                 transmissions[i - 1] = new Transmission(
                     new LanguageExcerpt(usedLanguages[i], displayedSyllables, random),
