@@ -35,7 +35,7 @@ public static class TransmissionManager
 
         List<ACryptoLanguage> buffer = new List<ACryptoLanguage>(LanguageSet);
 
-        List<ACryptoLanguage> usedLanguages = new List<ACryptoLanguage>(transmissionCount);
+        var usedLanguages = new ACryptoLanguage[transmissionCount];
 
         for (int i = 0; i < transmissionCount; i++)
         {
@@ -47,11 +47,12 @@ public static class TransmissionManager
                 transmissions[i - 1] = new Transmission(
                     new LanguageExcerpt(usedLanguages[i], displayedSyllables, random),
                     new LanguageExcerpt(usedLanguages[i - 1], displayedSyllables, random),
-                    random);
+                    random,
+                    displayedSyllables);
             }
         }
 
-        transmissions[transmissionCount - 1] = new Transmission(endpoint.HumanLanguage, new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random), random);
+        transmissions[transmissionCount - 1] = new Transmission(endpoint.HumanLanguage, new LanguageExcerpt(usedLanguages[transmissionCount - 1], displayedSyllables, random), random, displayedSyllables);
 
         var startWord = endpoint.RealWord;
         for (int i = transmissionCount - 1; i > -1; i--)

@@ -9,8 +9,10 @@ public class Session
 {
     #region Public Properties
     public ICryptoSyllable[] CurrentSyllableChoice => m_SyllableChoiceArray;
-    public int MaxRounds => m_MaxRounds;
-    public int ActiveRoundIndex => m_ActiveRoundIndex;
+    public int MaxRounds => m_maxRounds;
+    public int ActiveRoundIndex => m_activeRoundIndex;
+    public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
+    public byte[] LastSyllablesInput => m_LastSyllableInput;
     #endregion
 
     #region Constructor
@@ -21,27 +23,59 @@ public class Session
         // Create transmission flow from parameter
         CreateTransmissionSetup();
 
-        // Exerpt the possible syllable list
+        // Excerpt the possible syllable list
 
         // Reset 
-
-        m_MaxRounds = m_sessionParameter.SyllableSearchedAmount;
+        m_maxRounds = m_sessionParameter.SyllableSearchedAmount;
 
         // Set the active round index to the first entry
-        m_ActiveRoundIndex = 0;
+        m_activeRoundIndex = 0;
 
         // Start the first round
-        SetRound(m_ActiveRoundIndex);
+        SetRound(m_activeRoundIndex);
     }
     #endregion
 
+
     #region Public Methods
+    public ICryptoSyllable[] GetLastInputSyllables()
+    {
+        ICryptoSyllable[] result = new ICryptoSyllable[m_sessionParameter.SyllableSearchedAmount];
+
+        Debug.Assert(m_LastSyllableInput.Length == result.Length, "Array length of last syllable input does not match the required syllable amount");
+        if (m_LastSyllableInput.Length != result.Length)
+        {
+            return result;
+        }
+
+        bool hasValidRoundIndex = m_activeRoundIndex >= 0 && m_activeRoundIndex < m_TransmissionSetup.Transmissions.Length;
+        Debug.Assert(hasValidRoundIndex, "Active round index is out of range for transmission array");
+        if (!hasValidRoundIndex)
+        {
+            return result;
+        }
+
+        Transmission currentTransmission = m_TransmissionSetup.Transmissions[m_activeRoundIndex];
+
+        var inSyllables = currentTransmission.InLanguage.GetSyllables();
+
+        for (int i = 0; i < m_LastSyllableInput.Length; ++i)
+        {
+            int syllableIndex = m_LastSyllableInput[i];
+            Debug.Assert(syllableIndex >= 0 && syllableIndex < inSyllables.Length, "last syllable indices are out of range for the language excerpt");
+
+            result[i] = inSyllables[syllableIndex];
+        }
+
+        return result;
+    }
+
     /// <summary>
     /// Sets the a specific round in this session. Will force a restart for the given round
     /// </summary>
     public void SetRound(int index)
     {
-        bool validIndex = index >= 0 && index < m_MaxRounds;
+        bool validIndex = index >= 0 && index < m_maxRounds;
         Debug.Assert(validIndex, string.Format("Tried to set round with invalid index {0}", index));
 
         // Refill possible syllable list
@@ -118,9 +152,15 @@ public class Session
     /// <summary>
     /// Returns the save game info of this game instance
     /// </summary>
-    public SaveGame CreateSaveGame()
+    public SaveGameSession CreateSaveGame()
     {
-        return null;
+        SaveGameSession sessionSaveGame = new SaveGameSession();
+
+        sessionSaveGame.CurrentRound = m_activeRoundIndex;
+        sessionSaveGame.MaxRounds = m_maxRounds;
+        sessionSaveGame.SessionParameters = m_sessionParameter;
+
+        return sessionSaveGame;
     }
     #endregion
 
@@ -129,6 +169,7 @@ public class Session
     {
         SessionParameters sp = m_sessionParameter;
         m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
+
         Debug.Assert(m_TransmissionSetup.Transmissions.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
     }
     #endregion
@@ -139,12 +180,18 @@ public class Session
     /// <summary>
     /// Index of the currently active round inside this session
     /// </summary>
-    private int m_ActiveRoundIndex = 0;
+    private int m_activeRoundIndex = 0;
 
     /// <summary>
     /// The amount of rounds before the session will finish
     /// </summary>
-    private int m_MaxRounds = 0;
+    private int m_maxRounds = 0;
+
+
+    /// <summary>
+    ///  Array containing the indices of the last used syllables
+    /// </summary>
+    private byte[] m_LastSyllableInput = null;
 
     /// <summary>
     /// The current list of syllable choices entered in this round
@@ -159,4 +206,11 @@ public class Session
     /// </summary>
     private TransmissionSetup m_TransmissionSetup = null;
     #endregion
+}
+
+public class SaveGameSession
+{
+    public int CurrentRound;
+    public int MaxRounds;
+    public SessionParameters SessionParameters;
 }

@@ -11,4 +11,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223f2a971cf7c4443b0256bac7845c3e, type: 3}
   m_Name: Icons_Arrows
   m_EditorClassIdentifier: 
-  syllables: []
+  syllables:
+  - syllable: {fileID: 21300000, guid: 241f1ecd38c0fb346a968b821927ace3, type: 3}
+  - syllable: {fileID: 21300000, guid: a536ec25c8472aa47b4f67e18fe4f7b4, type: 3}
+  - syllable: {fileID: 21300000, guid: 1b809b1b54fd29043a3dd820d81619fc, type: 3}
+  - syllable: {fileID: 21300000, guid: 2920cafbda6f97b498e081317746356f, type: 3}
+  - syllable: {fileID: 21300000, guid: 145e7bb07f0d40a49bdeb5181b273732, type: 3}
+  - syllable: {fileID: 21300000, guid: 9dc3bdb9905861840a5548a458d6e3dc, type: 3}
+  - syllable: {fileID: 21300000, guid: 0cc904173042b9041acb781c7d97b315, type: 3}
+  - syllable: {fileID: 21300000, guid: cbca554eae1a1544489b839d3fde4bdf, type: 3}
+  - syllable: {fileID: 21300000, guid: 686ab753766809b45853e2cffc144ad7, type: 3}
+  - syllable: {fileID: 21300000, guid: 707702dd966dcbf4ead9a94fdf26045c, type: 3}
+  - syllable: {fileID: 21300000, guid: a5fe3c0047eea9f4693bf1402d2fc45b, type: 3}
+  - syllable: {fileID: 21300000, guid: 6594bc4fec40c4449b9fe195ea13af16, type: 3}
+  - syllable: {fileID: 21300000, guid: feb05cdfba39a0a48ae78609997a2e50, type: 3}
+  - syllable: {fileID: 21300000, guid: 5e1b03cca97f644409cb2af72f11e7b8, type: 3}
+  - syllable: {fileID: 21300000, guid: 328e91e634167634699efde5e0d36cad, type: 3}
+  - syllable: {fileID: 21300000, guid: 03c62676a9af74940b04a83b64f33c3a, type: 3}
+  - syllable: {fileID: 21300000, guid: eb283e67b7d9573409c13d0409923037, type: 3}
+  - syllable: {fileID: 21300000, guid: 158a88cf44d05b54dbaf08b5c2184fa8, type: 3}
+  - syllable: {fileID: 21300000, guid: 5e82236b38e206f4fa4bafacc080c61e, type: 3}
+  - syllable: {fileID: 21300000, guid: ae58f5c7ab9a1524e914b7d6ae71a04d, type: 3}
+  - syllable: {fileID: 21300000, guid: 8783724c90206264fac83dd801a55bba, type: 3}
+  - syllable: {fileID: 21300000, guid: a2aaace4b6bdbf340ae7aa07a210edc9, type: 3}
+  - syllable: {fileID: 21300000, guid: 9b26c28a1ff51d846a039be290eb312e, type: 3}
+  - syllable: {fileID: 21300000, guid: 3f7e720d964194d4eaa4086cc097cbe4, type: 3}

@@ -3,17 +3,17 @@
     /// <summary>
     /// The name of the Savegame
     /// </summary>
-    public string Name => m_saveGame.Name;
+    public string Name => m_saveGame.saveGameSession.SessionParameters.SessionName;
 
     /// <summary>
     /// The currently played rounds
     /// </summary>
-    public int CurrentRound => m_saveGame.CurrentRound;
+    public int CurrentRound => m_saveGame.saveGameSession.CurrentRound;
 
     /// <summary>
     /// The max rounds of the game
     /// </summary>
-    public int MaxRounds => m_saveGame.MaxRounds;
+    public int MaxRounds => m_saveGame.saveGameSession.MaxRounds;
 
     public SaveGameViewModel(SaveGame saveGame, int index)
     {

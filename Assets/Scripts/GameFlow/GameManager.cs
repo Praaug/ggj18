@@ -6,22 +6,47 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameManager", menuName = "GameManager")]
 public class GameManager : ScriptableObject
 {
-    #region Private Methods
+    public GameManager()
+    {
+        instance = this;
+    }
+
+    #region Public Properties
+    public static GameManager instance { get; private set; }
+
+    public Session ActiveSession => m_activeSession;
+    public List<SaveGame> SaveGameList => m_saveGameList;
+    #endregion
+
+    #region Public Methods
     public void Init()
     {
+        Debug.Assert(m_wordManager != null, "No Word manager assigned to the game manager");
+        m_wordManager?.Init();
+
         LoadSaveGames();
     }
 
-    public void StartNewGame()
+    public void StartNewGame(SessionParameters sessionParameters)
     {
-        m_sessionParameters = new SessionParameters();
+        m_sessionParameters = sessionParameters;
 
         Session newSession = new Session(m_sessionParameters);
 
-        m_activeGameInstance = newSession;
+        m_activeSession = newSession;
+    }
+
+    public void SubmitRound()
+    {
+        Debug.Assert(m_activeSession != null, "Tried to submit a round, event though there is no active session");
+        if (m_activeSession == null)
+        {
+            return;
+        }
+
+        SaveCurrentGame();
     }
     #endregion
-
 
     #region Processing Methods
 
@@ -72,18 +97,22 @@ public class GameManager : ScriptableObject
     #region Saving of save games
     private void SaveCurrentGame()
     {
-        Debug.Assert(m_activeGameInstance != null, "Tried to save the game, but there is no active game instance");
-        if (m_activeGameInstance == null)
+        Debug.Assert(m_activeSession != null, "Tried to save the game, but there is no active game instance");
+        if (m_activeSession == null)
         {
             return;
         }
-        SaveGame saveGame = m_activeGameInstance.CreateSaveGame();
+
+        // Save the session to file
+        SaveGame saveGame = new SaveGame();
+        saveGame.saveGameSession = m_activeSession.CreateSaveGame();
+
         Debug.Assert(saveGame != null, "Tried to save the current game, but the save game returned by the instance was invalid");
 
         string jsonContent = JsonUtility.ToJson(saveGame);
 
         // Save the save game to disk
-        string fileName = FileUtilities.GetFilepathWithTimestamp(m_activeGameInstance.SessionName);
+        string fileName = FileUtilities.GetFilepathWithTimestamp(m_activeSession.SessionName);
         bool fileCreationSuccess = FileUtilities.CreateOrOverwriteAllText(fileName, jsonContent);
         Debug.Assert(fileCreationSuccess, "Tried to save the current game, but file creation process failed");
     }
@@ -91,18 +120,18 @@ public class GameManager : ScriptableObject
     #endregion
 
     #region Private Fields
-    private Session m_activeGameInstance = null;
+    private Session m_activeSession = null;
 
+    [SerializeField]
+    private WordManager m_wordManager = null;
     [SerializeField]
     private string m_saveGamePath = "";
 
     private List<SaveGame> m_saveGameList = new List<SaveGame>();
-    [SerializeField]
-    private UIManager m_UIManager = null;
 
     /// <summary>
     /// The session parameters of possible new game
     /// </summary>
-    private SessionParameters m_sessionParameters;
+    private SessionParameters m_sessionParameters = null;
     #endregion
 }

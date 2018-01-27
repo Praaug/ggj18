@@ -6,16 +6,5 @@ using System.Collections;
 /// </summary>
 public class SaveGame
 {
-    public string Name { get; set; }
-
-    public int CurrentRound { get; set; }
-
-    public int MaxRounds { get; set; }
-
-    public SaveGame()
-    {
-        Name = "testing";
-        CurrentRound = Random.Range(0, 5);
-        MaxRounds = Random.Range(CurrentRound, 5);
-    }
+    public SaveGameSession saveGameSession;
 }

@@ -11,4 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223f2a971cf7c4443b0256bac7845c3e, type: 3}
   m_Name: Icons_tools
   m_EditorClassIdentifier: 
-  syllables: []
+  syllables:
+  - syllable: {fileID: 21300000, guid: fc5a24aaa9297c5409b1f61e81710666, type: 3}
+  - syllable: {fileID: 21300000, guid: 5b51df9c7b0b78244aa2c02e6a4b5035, type: 3}
+  - syllable: {fileID: 21300000, guid: 5558048a91f1ece44b27fd96b40bc744, type: 3}
+  - syllable: {fileID: 21300000, guid: 597a3328fc4ca5649af2d9562b516615, type: 3}
+  - syllable: {fileID: 21300000, guid: f78e1c2bac3e38240a542b6ed79e4560, type: 3}
+  - syllable: {fileID: 21300000, guid: dbb279c1d2e81d04b870a693aece72ae, type: 3}
+  - syllable: {fileID: 21300000, guid: b9fe8cc13a9501940a58e80443798ab8, type: 3}
+  - syllable: {fileID: 21300000, guid: 477fd78cf75371740bfaa17330abdc1d, type: 3}
+  - syllable: {fileID: 21300000, guid: 5f95b5d0591092f48a07c921a49de033, type: 3}
+  - syllable: {fileID: 21300000, guid: 551983ea5daaf8040b1eba390ea9963f, type: 3}
+  - syllable: {fileID: 21300000, guid: b3a1c64c46d1c7d4eba25bb470c26362, type: 3}
+  - syllable: {fileID: 21300000, guid: cac67afeed25b39419a0dab7157e67cf, type: 3}
+  - syllable: {fileID: 21300000, guid: d34db2902926fa14bbcd7948563cb596, type: 3}
+  - syllable: {fileID: 21300000, guid: a98076f66e15abd4483cda9aff14c95f, type: 3}
+  - syllable: {fileID: 21300000, guid: 54a318c4f8a8b71418eecb24446dc9d3, type: 3}

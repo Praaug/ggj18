@@ -1,6 +1,6 @@
 ﻿using System;
 
-class NewGameViewModel : BaseViewModel
+public class NewGameViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.NewGame;
 

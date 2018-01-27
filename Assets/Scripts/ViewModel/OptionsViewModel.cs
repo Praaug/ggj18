@@ -1,6 +1,6 @@
 ﻿using System;
 
-class OptionsViewModel : BaseViewModel
+public class OptionsViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.Options;
 
