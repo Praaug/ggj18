@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 223f2a971cf7c4443b0256bac7845c3e, type: 3}
+  m_Name: Icons_Valentines
+  m_EditorClassIdentifier: 
+  syllables:
+  - syllable: {fileID: 21300000, guid: 110a056e3edb37b469ce64eb7c804b2b, type: 3}
+  - syllable: {fileID: 21300000, guid: 06be6d07a4d98924189b8a64df59ca00, type: 3}
+  - syllable: {fileID: 21300000, guid: 02d41cfbc0610e946b72c094c5f24b8b, type: 3}
+  - syllable: {fileID: 21300000, guid: 55179d4e02f131f4982d4206da18ff12, type: 3}
+  - syllable: {fileID: 21300000, guid: 77011881b3674c142b7ddac458466715, type: 3}
+  - syllable: {fileID: 21300000, guid: 6773f7671a3740f4f995c207cadeb208, type: 3}
+  - syllable: {fileID: 21300000, guid: 3d2445a6d2547cd499ed15793476e9af, type: 3}
+  - syllable: {fileID: 21300000, guid: 0c620ca2dbec8914bbca1ff4f4d5c238, type: 3}
+  - syllable: {fileID: 21300000, guid: f6c04b6623bb02443b2f1396ed1e3a09, type: 3}
+  - syllable: {fileID: 21300000, guid: cfa836208e0643a4383ec905a87c17cd, type: 3}
+  - syllable: {fileID: 21300000, guid: 96ce5ad86a946f54d8e5c80b52797439, type: 3}
+  - syllable: {fileID: 21300000, guid: 9601304ff2ac6ee4489106f909bb25b1, type: 3}
