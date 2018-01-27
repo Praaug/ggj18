@@ -1,11 +1,11 @@
 ﻿using System;
 
-class GameViewModel : BaseViewModel
+public class GameViewModel : BaseViewModel
 {
     public static GameViewModel instance { get; } = new GameViewModel();
     public override MenuEnum MenuType { get { throw new InvalidOperationException(); } }
 
-    public Action<BaseViewModel> OnUpdateMenu;
+    public event Action<BaseViewModel> OnUpdateMenu;
 
     public BaseViewModel CurrentDisplayedMenu
     {
@@ -37,6 +37,8 @@ class GameViewModel : BaseViewModel
         m_mainViewModel = new MainMenuViewModel();
         m_mainViewModel.OnOpenNewGameCommand += MainViewModel_OnOpenNewGameCommand;
         m_mainViewModel.OnOpenOptionsCommand += MainViewModel_OnOpenOptionsCommand;
+        m_mainViewModel.Init(this);
+
         m_newGameViewModel = new NewGameViewModel();
         m_newGameViewModel.OnCloseNewGameCommand += NewGameViewModel_OnCloseNewGameCommand;
         m_newGameViewModel.OnStartGameCommand += NewGameViewModel_OnStartGameCommand;

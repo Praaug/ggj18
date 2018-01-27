@@ -6,7 +6,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GameManager", menuName = "GameManager")]
 public class GameManager : ScriptableObject
 {
+    public GameManager()
+    {
+        instance = this;
+    }
+
     #region Public Properties
+    public static GameManager instance { get; private set; }
+
     public Session ActiveSession => m_activeSession;
     public List<SaveGame> SaveGameList => m_saveGameList;
     #endregion

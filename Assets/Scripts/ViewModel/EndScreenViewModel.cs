@@ -1,6 +1,6 @@
 ﻿using System;
 
-class EndScreenViewModel : BaseViewModel
+public class EndScreenViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.EndScreen;
 
