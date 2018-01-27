@@ -2,7 +2,7 @@
 
 public class SyllablesInputView : BaseView
 {
-    private OptionsViewModel m_viewModel;
+    private SyllablesInputViewModel m_viewModel;
 
     private void Awake()
     {
@@ -11,7 +11,7 @@ public class SyllablesInputView : BaseView
 
     private void Init()
     {
-        m_viewModel = GameViewModel.instance.OptionsViewModel;
+        m_viewModel = GameViewModel.instance.SyllablesInputViewModel;
         Debug.Assert(m_viewModel != null, "OptionsViewModel not valid");
         base.Init(m_viewModel);
     }
