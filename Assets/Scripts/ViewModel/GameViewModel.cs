@@ -89,19 +89,25 @@ public class GameViewModel : BaseViewModel
         CurrentDisplayedMenu = m_mainViewModel;
     }
 
-    private void NewGameViewModel_OnPlayerCountChange(int palyerCount)
+    private void NewGameViewModel_OnPlayerCountChange(int playerCount)
     {
-        
+        SessionParameters currentParameter = GameManager.instance.GetParameter();
+        currentParameter.RoundCount = (byte)playerCount;
+        GameManager.instance.SetParameter(currentParameter);
     }
 
-    private void NewGameViewModel_OnDisplayDurationChange(int displayDuration)
+    private void NewGameViewModel_OnDisplayDurationChange(float displayDuration)
     {
-
+        SessionParameters currentParameter = GameManager.instance.GetParameter();
+        currentParameter.DisplayDuration = displayDuration;
+        GameManager.instance.SetParameter(currentParameter);
     }
 
     private void NewGameViewModel_OnSessionNameChange(string sessionName)
     {
-
+        SessionParameters currentParameter = GameManager.instance.GetParameter();
+        currentParameter.SessionName = sessionName;
+        GameManager.instance.SetParameter(currentParameter);
     }
 
     private void MainViewModel_OnOpenOptionsCommand()

@@ -39,6 +39,11 @@ public class GameManager : ScriptableObject
         m_sessionParameters = parameter;
     }
 
+    public SessionParameters GetParameter()
+    {
+        return m_sessionParameters;
+    }
+
     public void StartNewGame()
     {
         m_activeSession = new Session(m_sessionParameters, null, 0);

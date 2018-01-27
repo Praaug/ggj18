@@ -6,7 +6,7 @@ public class NewGameViewModel : BaseViewModel
 
     public event Action OnStartGameCommand;
     public event Action OnCloseNewGameCommand;
-    public event Action<int> OnDisplayDurationChange;
+    public event Action<float> OnDisplayDurationChange;
     public event Action<int> OnPlayerCountChange;
     public event Action<string> OnSessionNameChange;
 
@@ -25,7 +25,7 @@ public class NewGameViewModel : BaseViewModel
         OnStartGameCommand?.Invoke();
     }
 
-    public void ChangeDisplayDurationCommand(int duration)
+    public void ChangeDisplayDurationCommand(float duration)
     {
         OnDisplayDurationChange?.Invoke(duration);
     }
