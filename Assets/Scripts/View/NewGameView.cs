@@ -10,12 +10,13 @@ public class NewGameView : BaseView
 
     private void Awake()
     {
-        m_viewModel = new NewGameViewModel();
         Init();
     }
 
     private void Init()
     {
+        m_viewModel = GameViewModel.instance.NewGameViewModel;
+        Debug.Assert(m_viewModel != null, "NewGameViewModel not valid");
         base.Init(m_viewModel);
 
         m_startGameButton.onClick.AddListener(OnStartButtonClick);

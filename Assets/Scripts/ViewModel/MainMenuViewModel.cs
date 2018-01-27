@@ -3,7 +3,13 @@ using System.Collections.Generic;
 
 public class MainMenuViewModel : BaseViewModel
 {
+    public override MenuEnum MenuType => MenuEnum.MainMenu;
+
     public List<SaveGameViewModel> SaveGameViewModelList { get; set; }
+
+    public event Action OnOpenNewGameCommand;
+
+    public event Action OnOpenOptionsCommand;
 
     public MainMenuViewModel() : base()
     {
@@ -16,27 +22,23 @@ public class MainMenuViewModel : BaseViewModel
         }
     }
 
-    public void StartNewGameCommand()
+    public void OpenNewGameCommand()
     {
-        UnityEngine.Debug.Log("Start new game command");
-        // Todo: model logic
+        OnOpenNewGameCommand?.Invoke();
     }
 
     public void OpenOptionsCommand()
     {
-        UnityEngine.Debug.Log("open options command");
-        // Todo: model logic
+        OnOpenOptionsCommand?.Invoke();
     }
 
     public override void CloseButtonCommand()
     {
-        UnityEngine.Debug.Log("close app command");
-        // Todo: model logic
+        UnityEngine.Application.Quit();
     }
 
     internal void OpenWebsiteCommand()
     {
-        UnityEngine.Debug.Log("open app command");
-        // Todo: model logic
+        UnityEngine.Application.OpenURL("https://globalgamejam.org/2018/games/whisper-down-lane");
     }
 }

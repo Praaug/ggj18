@@ -1,5 +1,7 @@
-﻿public class BaseViewModel
+﻿public abstract class BaseViewModel
 {
+    public abstract MenuEnum MenuType { get; }
+
     public BaseViewModel()
     {
         
