@@ -19,6 +19,8 @@ public class EndScreenViewModel : BaseViewModel
 
     public string DescriptionString { get; private set; } = string.Empty;
 
+    public string RightWordString { get; private set; } = string.Empty;
+
     public EndScreenViewModel(GameViewModel viewModel) : base(viewModel) { }
 
     public void OKButtonCommand()
@@ -38,8 +40,9 @@ public class EndScreenViewModel : BaseViewModel
         if (IsLast)
         {
             IsWin = result.IsWin;
-            ResultString = "YOU WON!";
+            ResultString = IsWin?"YOU WON!":"YOU LOST";
             LastSessionName = result.SessionName;
+            RightWordString = result.RightWord;
         }
         else
         {

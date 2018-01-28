@@ -77,6 +77,7 @@ MonoBehaviour:
   m_closeButton: {fileID: 0}
   m_IconImage: {fileID: 114859590401512580}
   m_IconText: {fileID: 114769683099489444}
+  m_overrideObject: {fileID: 0}
 --- !u!114 &114203071205704638
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.8602941, g: 0.8602941, b: 0.8602941, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
