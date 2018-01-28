@@ -19,3 +19,5 @@ MonoBehaviour:
   - syllable: {fileID: 21300000, guid: 5c466fb20c38f894f9edfbae4c741b5e, type: 3}
   - syllable: {fileID: 21300000, guid: 384049d0a13701144afc2033043a202d, type: 3}
   - syllable: {fileID: 21300000, guid: 484d10325cd362a4785a12ea8bb8c80a, type: 3}
+  - syllable: {fileID: 21300000, guid: ffdb5d96db870bc46bfe775089358780, type: 3}
+  - syllable: {fileID: 21300000, guid: c4def3609200c5340a9fc21b73dfe25f, type: 3}
