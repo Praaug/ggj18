@@ -73,6 +73,10 @@ public class GameViewModel : BaseViewModel
 
     private void SyllablesViewModel_OnAcceptCommand()
     {
+        // Submit round to model
+
+
+        // Update UI
         CurrentDisplayedMenu = m_endScreenViewModel;
     }
 

@@ -45,7 +45,7 @@ public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel
     private void FinishTimer()
     {
         if (m_viewModel != null)
-            (m_viewModel as IncommingTransmissionViewModel).TimerFinishCommand();
+            ViewModelConcrete.TimerFinishCommand();
         else
             Debug.Log("Could not finish timer, view model missing");
     }

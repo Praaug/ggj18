@@ -149,6 +149,8 @@ public class GameManager : ScriptableObject
 
         // Save the save game to disk
         string fileName = FileUtilities.GetFilepathWithTimestamp(m_activeSession.SessionName);
+        fileName += ".lit";
+
         bool fileCreationSuccess = FileUtilities.CreateOrOverwriteAllText(fileName, jsonContent);
         Debug.Assert(fileCreationSuccess, "Tried to save the current game, but file creation process failed");
     }
