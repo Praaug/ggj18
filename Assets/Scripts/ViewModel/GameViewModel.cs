@@ -74,7 +74,7 @@ public class GameViewModel : BaseViewModel
     private void SyllablesViewModel_OnAcceptCommand()
     {
         // Submit round to model
-
+        GameManager.instance.SubmitRound();
 
         // Update UI
         CurrentDisplayedMenu = m_endScreenViewModel;
@@ -133,6 +133,9 @@ public class GameViewModel : BaseViewModel
     private void MainViewModel_OnLoadGameCommand(int index)
     {
         GameManager.instance.LoadGame(index);
+
+        // Update the ui to show relvant game data
+        CurrentDisplayedMenu = m_incommingTransmissionViewModel;
     }
 
     private MainMenuViewModel m_mainViewModel;

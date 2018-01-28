@@ -23,7 +23,7 @@ class MainMenuView : BaseView<MainMenuViewModel>
 
     private MainMenuViewModel m_viewModel;
 
-    private List<SaveGameButtonView> m_saveGameButtonViewModelList;
+    private List<SaveGameButtonView> m_saveGameButtonViewModelList = new List<SaveGameButtonView>();
     #endregion
 
     #region Private Methods
@@ -39,9 +39,21 @@ class MainMenuView : BaseView<MainMenuViewModel>
 
         base.Init(m_viewModel);
 
+        ViewModelConcrete.OnUpdateSaveGameList += ViewModelConcrete_OnUpdateSaveGameList;
+
         m_newGameButton.onClick.AddListener(OnNewGameButtonClick);
         m_optionsButton.onClick.AddListener(OnOptionsButtonClick);
         m_websiteButton.onClick.AddListener(OnWebsiteButtonClick);
+
+        UpdateView();
+    }
+
+    private void UpdateView()
+    {
+        for (int i = m_saveGameButtonViewModelList.Count - 1; i >= 0; --i)
+        {
+            Destroy(m_saveGameButtonViewModelList[i].gameObject);
+        }
 
         m_saveGameButtonViewModelList = new List<SaveGameButtonView>(m_viewModel.SaveGameViewModelList.Count);
 
@@ -51,8 +63,27 @@ class MainMenuView : BaseView<MainMenuViewModel>
             buttonView.transform.SetAsLastSibling();
             buttonView.Init(sgViewModel);
 
+            SaveGameSession saveGame = sgViewModel.MySaveGame.saveGameSession;
+            buttonView.MyButton.interactable = saveGame.CurrentRound < saveGame.SessionParameters.RoundCount;
+
             m_saveGameButtonViewModelList.Add(buttonView);
         }
+
+        foreach (var saveGameButton in m_saveGameButtonViewModelList)
+        {
+            if (saveGameButton.MyButton.IsInteractable())
+            {
+                continue;
+            }
+
+            saveGameButton.transform.SetAsLastSibling();
+        }
+    }
+
+
+    private void ViewModelConcrete_OnUpdateSaveGameList()
+    {
+        UpdateView();
     }
 
     private void OnNewGameButtonClick()

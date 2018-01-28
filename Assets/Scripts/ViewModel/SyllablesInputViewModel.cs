@@ -24,12 +24,12 @@ public class SyllablesInputViewModel : BaseViewModel
     public override void OnEnterState()
     {
         base.OnEnterState();
+        m_InputIndex = 0;
+        m_Session = GameManager.instance.ActiveSession;
 
-        Session session = GameManager.instance.ActiveSession;
+        SessionParameters sessionParams = m_Session.SessionParams;
 
-        SessionParameters sessionParams = session.SessionParams;
-
-        var transmission = session.TransmissionSetup.Transmissions[session.ActiveRoundIndex];
+        var transmission = m_Session.TransmissionSetup.Transmissions[m_Session.ActiveRoundIndex];
 
         // Resize array
         m_DisplayedSyllables = new SyllableViewModel[sessionParams.SyllableSearchedAmount];
@@ -84,9 +84,17 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public void OnInputCommand(int inputIndex)
     {
-        var transmission = GameManager.instance.ActiveSession.TransmissionSetup.Transmissions[GameManager.instance.ActiveSession.ActiveRoundIndex];
+        var transmission = m_Session.TransmissionSetup.Transmissions[m_Session.ActiveRoundIndex];
 
-        UnityEngine.Debug.LogFormat("Pressed {0}, setting {1}", inputIndex, transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]]);
+        UnityEngine.Debug.LogFormat("Pressed: {0}, setting: {1}", inputIndex, transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]]);
+
+        var syllableIndex = transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]];
+        m_Session.TransmissionWord.syllableIndices[m_InputIndex] = syllableIndex;
+
+        var lang = m_Session.TransmissionSetup.Transmissions[m_Session.ActiveRoundIndex].OutLanguage;
+        m_DisplayedSyllables[m_InputIndex].SetFromSyllable(lang.GetSyllables()[syllableIndex]);
+
+        m_InputIndex = (m_InputIndex + 1) % m_Session.SessionParams.SyllableSearchedAmount;
     }
 
     public SyllablesInputViewModel() : base()
@@ -131,4 +139,8 @@ public class SyllablesInputViewModel : BaseViewModel
     private SyllableViewModel[] m_OutTableSyllables;
 
     private byte[] m_ShuffledInLanguageIndexes;
+
+    private Session m_Session;
+
+    private int m_InputIndex;
 }

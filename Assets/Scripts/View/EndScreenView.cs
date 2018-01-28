@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class EndScreenView : BaseView<EndScreenViewModel>
@@ -42,6 +43,9 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     [SerializeField]
     private Shadow m_resultShadow;
 
+    [SerializeField]
+    private Button m_OkButton;
+
     private EndScreenViewModel m_viewModel = null;
 
     private void Awake()
@@ -54,7 +58,13 @@ public class EndScreenView : BaseView<EndScreenViewModel>
         m_viewModel = GameViewModel.instance.EndScreenViewModel;
         Debug.Assert(m_viewModel != null, "OptionsViewModel not valid");
         base.Init(m_viewModel);
+        m_OkButton.onClick.AddListener(OnOkButtonClick);
         m_viewModel.OnEnterStateAction += ViewModel_OnEnterStateAction;
+    }
+
+    private void OnOkButtonClick()
+    {
+        m_viewModel.OKButtonCommand();
     }
 
     private void ViewModel_OnEnterStateAction()
