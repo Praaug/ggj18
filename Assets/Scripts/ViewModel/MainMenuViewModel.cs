@@ -70,7 +70,7 @@ public class MainMenuViewModel : BaseViewModel
     }
 
     public void DeleteFinishedGamesCommand()
-    {
+    { 
         GameManager.instance.DeleteFinishedGames();
 
         UpdateSaveGameList();
