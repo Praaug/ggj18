@@ -1,0 +1,21 @@
+{
+    "saveGameSession": {
+        "CurrentRound": 3,
+        "SessionParameters": {
+            "Seed": -708790172,
+            "RoundCount": 3,
+            "SessionName": "SuperDuperSession",
+            "SyllableSearchedAmount": 4,
+            "SyllableChoiceAmount": 6,
+            "LastWordDisplayTime": 3.0
+        },
+        "TransmissionWord": {
+            "syllableIndices": [
+                0,
+                1,
+                2,
+                3
+            ]
+        }
+    }
+}

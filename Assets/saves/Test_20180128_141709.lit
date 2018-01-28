@@ -1,0 +1,21 @@
+{
+    "saveGameSession": {
+        "CurrentRound": 1,
+        "SessionParameters": {
+            "Seed": 2082818341,
+            "RoundCount": 2,
+            "SessionName": "Praaug",
+            "SyllableSearchedAmount": 4,
+            "SyllableChoiceAmount": 6,
+            "LastWordDisplayTime": 3.0
+        },
+        "TransmissionWord": {
+            "syllableIndices": [
+                3,
+                4,
+                1,
+                2
+            ]
+        }
+    }
+}

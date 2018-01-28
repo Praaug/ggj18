@@ -49,6 +49,9 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     [SerializeField]
     private Button m_OkButton;
 
+    [SerializeField]
+    private GameObject m_lastTextGameObject;
+
     private new EndScreenViewModel m_viewModel = null;
 
     private void Awake()
@@ -72,7 +75,6 @@ public class EndScreenView : BaseView<EndScreenViewModel>
 
     private void ViewModel_OnEnterStateAction()
     {
-        m_resultText.text = m_viewModel.ResultString;
         m_sessionNameText.text = m_viewModel.LastSessionName;
         Vector2 effectDistance = Vector2.zero;
 
@@ -83,6 +85,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
             effectDistance.y = -m_resultShadowSize;
             m_resultShadow.effectDistance = effectDistance;
             m_rightWordText.text = m_viewModel.RightWordString;
+            m_lastTextGameObject.SetActive(true);
 
             if (m_viewModel.IsWin)
             {
@@ -104,6 +107,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
             effectDistance.y = -m_normalShadowSize;
             m_resultShadow.effectDistance = effectDistance;
             m_rightWordText.text = string.Empty;
+            m_lastTextGameObject.SetActive(false);
         }
     }
 }

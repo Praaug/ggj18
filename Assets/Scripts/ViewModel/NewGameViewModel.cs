@@ -21,6 +21,11 @@ public class NewGameViewModel : BaseViewModel
         OnCloseNewGameCommand?.Invoke();
     }
 
+    public override void OnEnterState()
+    {
+        GameManager.instance.SetParameter(null);
+    }
+
     public void StartGameCommand()
     {
         OnStartGameCommand?.Invoke();
