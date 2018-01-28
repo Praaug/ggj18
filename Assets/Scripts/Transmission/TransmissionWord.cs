@@ -10,9 +10,23 @@ public class TransmissionWord
     /// This word's syllable indices
     /// </summary>
     public byte[] syllableIndices;
+
     #endregion
 
     #region Public Methods
+
+    public TransmissionWord()
+    {
+    }
+
+    public TransmissionWord(TransmissionWord startWord)
+    {
+        syllableIndices = new byte[startWord.syllableIndices.Length];
+        for (int i = 0; i < syllableIndices.Length; i++)
+        {
+            syllableIndices[i] = startWord.syllableIndices[i];
+        }
+    }
 
     /// <summary>
     /// Represents the word in a language

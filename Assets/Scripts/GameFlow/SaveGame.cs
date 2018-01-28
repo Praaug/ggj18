@@ -6,6 +6,6 @@ using System.Collections;
 /// </summary>
 public class SaveGame
 {
-    public byte[] lastSyllableInput;
     public SaveGameSession saveGameSession;
+
 }

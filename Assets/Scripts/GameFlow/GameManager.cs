@@ -57,7 +57,7 @@ public class GameManager : ScriptableObject
 
         SaveGame saveGame = m_saveGameList[index];
 
-        Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.lastSyllableInput, saveGame.saveGameSession.CurrentRound);
+        Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.saveGameSession.TransmissionWord, saveGame.saveGameSession.CurrentRound);
 
         m_activeSession = newSession;
     }
@@ -65,6 +65,7 @@ public class GameManager : ScriptableObject
     public void SubmitRound()
     {
         Debug.Assert(m_activeSession != null, "Tried to submit a round, event though there is no active session");
+
         if (m_activeSession == null)
         {
             return;
