@@ -16,8 +16,10 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
         m_viewModel.OnSyllablesChanged += ViewModel_OnSyllablesChanged;
         m_viewModel.OnSwitchTableCommand += ViewModel_OnSwitchTableCommand;
 
-        m_AcceptButton.onClick.AddListener(m_viewModel.AcceptButtonCommand);
+        m_AcceptButton.onClick.AddListener(() => m_popUp.SetActive(true));
         m_TableButton.onClick.AddListener(m_viewModel.TableButtonCommand);
+        m_popUpNoButton.onClick.AddListener(() => m_popUp.SetActive(false));
+        m_popUpYesButton.onClick.AddListener(m_viewModel.AcceptButtonCommand);
 
         for (int i = 0; i < m_InputButtons.Length; i++)
         {
@@ -112,4 +114,13 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
 
     [SerializeField]
     private GameObject m_Table = null;
+
+    [SerializeField]
+    private GameObject m_popUp = null;
+
+    [SerializeField]
+    private Button m_popUpYesButton;
+
+    [SerializeField]
+    private Button m_popUpNoButton;
 }
