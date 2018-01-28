@@ -14,6 +14,7 @@
     {
 
     }
+
     public BaseViewModel(GameViewModel gameViewModel)
     {
         gameViewModel.OnUpdateMenu += GameViewModel_OnUpdateMenu;

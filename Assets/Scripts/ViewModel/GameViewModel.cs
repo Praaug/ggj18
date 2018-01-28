@@ -55,7 +55,7 @@ public class GameViewModel : BaseViewModel
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel(this);
         m_incommingTransmissionViewModel.OnWaitTimePassed += IncommingTransmissionViewModel_OnWaitTimePassed;
 
-        m_endScreenViewModel = new EndScreenViewModel();
+        m_endScreenViewModel = new EndScreenViewModel(this);
         m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
 
         CurrentDisplayedMenu = m_mainViewModel;
