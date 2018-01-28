@@ -49,15 +49,22 @@ public class SyllableView : BaseView<SyllableViewModel>
         Debug.Log("Registering OnIconImageChanged");
         syllableViewModel.OnIconImageChanged += SyllableViewModel_OnIconImageChanged;
         syllableViewModel.OnIconTextChanged += SyllableViewModel_OnIconTextChanged;
+        syllableViewModel.OnIconHide += SyllableViewModel_OnIconHide;
+        SyncOnInit(true);
+    }
 
-        SyncOnInit();
+    private void SyllableViewModel_OnIconHide()
+    {
+        m_IconImage.gameObject.SetActive(false);
+        m_IconText.gameObject.SetActive(false);
+        Activate(false);
     }
     #endregion
 
     #region Unity Callbacks
     private void Awake()
     {
-        SyncOnInit();
+        SyncOnInit(false);
     }
     #endregion
 
@@ -72,9 +79,9 @@ public class SyllableView : BaseView<SyllableViewModel>
         SetImage(image);
     }
 
-    private void SyncOnInit()
+    private void SyncOnInit(bool overrideIsInitialized)
     {
-        if(m_IsSyncInitialized || m_viewModel == null)
+        if (m_viewModel == null || (!overrideIsInitialized && m_IsSyncInitialized))
         {
             return;
         }

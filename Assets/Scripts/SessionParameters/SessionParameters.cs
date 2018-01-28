@@ -24,7 +24,7 @@ public class SessionParameters
     /// <summary>
     /// 
     /// </summary>
-    public int SyllableChoiceAmount = 6;
+    public int SyllableChoiceAmount = 9;
 
     /// <summary>
     /// The duration of the incomming syllables
