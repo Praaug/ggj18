@@ -110,7 +110,7 @@ public class GameViewModel : BaseViewModel
     private void NewGameViewModel_OnDisplayDurationChange(float displayDuration)
     {
         SessionParameters currentParameter = GameManager.instance.GetParameter();
-        currentParameter.DisplayDuration = displayDuration;
+        currentParameter.LastWordDisplayTime = displayDuration;
         GameManager.instance.SetParameter(currentParameter);
     }
 
