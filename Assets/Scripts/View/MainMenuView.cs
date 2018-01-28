@@ -19,6 +19,9 @@ class MainMenuView : BaseView<MainMenuViewModel>
     private Button m_openSavegamebutton;
 
     [SerializeField]
+    private Button m_deleteFinishedGamesCommand;
+
+    [SerializeField]
     private SaveGameButtonView m_saveGameButtonPrefab;
 
     [SerializeField]
@@ -46,6 +49,7 @@ class MainMenuView : BaseView<MainMenuViewModel>
         m_optionsButton.onClick.AddListener(m_viewModel.OpenOptionsCommand);
         m_websiteButton.onClick.AddListener(m_viewModel.OpenWebsiteCommand);
         m_openSavegamebutton.onClick.AddListener(m_viewModel.OpenSavegameFolderCommand);
+        m_deleteFinishedGamesCommand.onClick.AddListener(m_viewModel.DeleteFinishedGamesCommand);
         ViewModelConcrete.OnUpdateSaveGameList += ViewModelConcrete_OnUpdateSaveGameList;
 
         UpdateView();

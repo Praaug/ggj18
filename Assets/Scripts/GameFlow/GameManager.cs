@@ -55,7 +55,7 @@ public class GameManager : ScriptableObject
 
     public void DeleteFinishedGames()
     {
-        for (int i = m_saveGameList.Count; i >= 0; --i)
+        for (int i = m_saveGameList.Count - 1; i >= 0; --i)
         {
             var saveGameRuntimeData = m_saveGameList[i];
             SaveGame saveGame = saveGameRuntimeData.saveGame;
