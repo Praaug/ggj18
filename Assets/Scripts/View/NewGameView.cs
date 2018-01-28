@@ -17,6 +17,9 @@ public class NewGameView : BaseView<NewGameViewModel>
     [SerializeField]
     private InputField m_sessionNameInput = null;
 
+    [SerializeField]
+    private InputField m_searchedCountInput = null;
+
     private new NewGameViewModel m_viewModel;
 
     private void Awake()
@@ -34,6 +37,7 @@ public class NewGameView : BaseView<NewGameViewModel>
         m_displayDurationInput.onEndEdit.AddListener(OnDisplayDurationEndEdit);
         m_playerCountInput.onEndEdit.AddListener(OnPlayerCountEndEdit);
         m_sessionNameInput.onEndEdit.AddListener(OnSessionNameEndEdit);
+        m_searchedCountInput.onEndEdit.AddListener(OnSearchedCountEndEdit);
     }
 
     private void OnStartButtonClick()
@@ -48,11 +52,28 @@ public class NewGameView : BaseView<NewGameViewModel>
 
     private void OnPlayerCountEndEdit(string inputString)
     {
-        m_viewModel.ChangePlayerCountCommand(int.Parse(inputString));
+        int playerCount;
+        if (!int.TryParse(inputString, out playerCount))
+        {
+            return;
+        }
+
+        m_viewModel.ChangePlayerCountCommand(playerCount);
     }
 
     private void OnSessionNameEndEdit(string inputString)
     {
         m_viewModel.ChangeSessionNameCommand(inputString);
+    }
+
+    private void OnSearchedCountEndEdit(string inputString)
+    {
+        int searchedCount;
+        if (!int.TryParse(inputString, out searchedCount))
+        {
+            return;
+        }
+
+        m_viewModel.ChangeSearchedCountChange(searchedCount);
     }
 }

@@ -9,6 +9,7 @@ public class NewGameViewModel : BaseViewModel
     public event Action<float> OnDisplayDurationChange;
     public event Action<int> OnPlayerCountChange;
     public event Action<string> OnSessionNameChange;
+    public event Action<int> OnSearchedCountChange;
 
     public NewGameViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
@@ -38,5 +39,10 @@ public class NewGameViewModel : BaseViewModel
     public void ChangeSessionNameCommand(string sessionName)
     {
         OnSessionNameChange?.Invoke(sessionName);
+    }
+
+    public void ChangeSearchedCountChange(int searchedCount)
+    {
+        OnSearchedCountChange?.Invoke(searchedCount);
     }
 }

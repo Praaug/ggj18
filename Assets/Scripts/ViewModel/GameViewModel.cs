@@ -46,6 +46,7 @@ public class GameViewModel : BaseViewModel
         m_newGameViewModel.OnDisplayDurationChange += NewGameViewModel_OnDisplayDurationChange;
         m_newGameViewModel.OnPlayerCountChange += NewGameViewModel_OnPlayerCountChange;
         m_newGameViewModel.OnSessionNameChange += NewGameViewModel_OnSessionNameChange;
+        m_newGameViewModel.OnSearchedCountChange += NewGameViewModel_OnSearchedCountChange; ;
 
         m_optionsViewModel = new OptionsViewModel(this);
         m_optionsViewModel.OnCloseOptionsCommand += OptionsViewModel_OnCloseOptionsCommand;
@@ -118,6 +119,13 @@ public class GameViewModel : BaseViewModel
     {
         SessionParameters currentParameter = GameManager.instance.GetParameter();
         currentParameter.SessionName = sessionName;
+        GameManager.instance.SetParameter(currentParameter);
+    }
+
+    private void NewGameViewModel_OnSearchedCountChange(int searchedCount)
+    {
+        SessionParameters currentParameter = GameManager.instance.GetParameter();
+        currentParameter.SyllableSearchedAmount = searchedCount;
         GameManager.instance.SetParameter(currentParameter);
     }
 
