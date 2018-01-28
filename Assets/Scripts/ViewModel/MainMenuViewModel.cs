@@ -46,7 +46,7 @@ public class MainMenuViewModel : BaseViewModel
 
     internal void OpenSavegameFolderCommand()
     {
-        
+        System.Diagnostics.Process.Start(Application.dataPath);
     }
 
     public void OpenWebsiteCommand()
