@@ -15,6 +15,7 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
         Debug.Assert(m_viewModel != null, "OptionsViewModel not valid");
         m_viewModel.OnSyllablesChanged += ViewModel_OnSyllablesChanged;
         m_viewModel.OnSwitchTableCommand += ViewModel_OnSwitchTableCommand;
+        m_viewModel.OnHide += ViewModel_OnHide;
 
         m_AcceptButton.onClick.AddListener(() => m_popUp.SetActive(true));
         m_TableButton.onClick.AddListener(m_viewModel.TableButtonCommand);
@@ -28,6 +29,12 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
         }
 
         base.Init(m_viewModel);
+    }
+
+    private void ViewModel_OnHide()
+    {
+        m_popUp.gameObject.SetActive(false);
+        m_Table.gameObject.SetActive(false);
     }
 
     private void ViewModel_OnSwitchTableCommand()

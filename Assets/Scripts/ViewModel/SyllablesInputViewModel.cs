@@ -21,6 +21,23 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public SyllablesInputViewModel(GameViewModel gameViewModel) : base(gameViewModel) { }
 
+    public override void OnExitState()
+    {
+        base.OnExitState();
+
+        for (int i = 0; i < m_DisplayedSyllables.Length; i++)
+        {
+            m_DisplayedSyllables[i].OnExitState();
+        }
+
+        for (int i = 0; i < m_InputSyllables.Length; i++)
+        {
+            m_InputSyllables[i].OnExitState();
+            m_InTableSyllables[i].OnExitState();
+            m_OutTableSyllables[i].OnExitState();
+        }
+    }
+
     public override void OnEnterState()
     {
         base.OnEnterState();

@@ -8,6 +8,7 @@ public class SyllableViewModel : BaseViewModel
     #region Public Events
     public event Action<Sprite> OnIconImageChanged;
     public event Action<string> OnIconTextChanged;
+    public event Action OnIconHide;
     #endregion
 
     #region Public Properties
@@ -73,6 +74,11 @@ public class SyllableViewModel : BaseViewModel
         Debug.Assert(!string.IsNullOrEmpty(text), "You should not set the text of a syllable to an empty string");
         m_IconImage = null;
         IconText = text;
+    }
+
+    public override void OnExitState()
+    {
+        OnIconHide?.Invoke();
     }
     #endregion
 
