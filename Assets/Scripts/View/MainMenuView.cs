@@ -16,6 +16,9 @@ class MainMenuView : BaseView<MainMenuViewModel>
     private Button m_websiteButton;
 
     [SerializeField]
+    private Button m_openSavegamebutton;
+
+    [SerializeField]
     private SaveGameButtonView m_saveGameButtonPrefab;
 
     [SerializeField]
@@ -39,9 +42,10 @@ class MainMenuView : BaseView<MainMenuViewModel>
 
         base.Init(m_viewModel);
 
-        m_newGameButton.onClick.AddListener(OnNewGameButtonClick);
-        m_optionsButton.onClick.AddListener(OnOptionsButtonClick);
-        m_websiteButton.onClick.AddListener(OnWebsiteButtonClick);
+        m_newGameButton.onClick.AddListener(m_viewModel.OpenNewGameCommand);
+        m_optionsButton.onClick.AddListener(m_viewModel.OpenOptionsCommand);
+        m_websiteButton.onClick.AddListener(m_viewModel.OpenWebsiteCommand);
+        m_openSavegamebutton.onClick.AddListener(m_viewModel.OpenSavegameFolderCommand);
 
         m_saveGameButtonViewModelList = new List<SaveGameButtonView>(m_viewModel.SaveGameViewModelList.Count);
 
@@ -53,21 +57,6 @@ class MainMenuView : BaseView<MainMenuViewModel>
 
             m_saveGameButtonViewModelList.Add(buttonView);
         }
-    }
-
-    private void OnNewGameButtonClick()
-    {
-        m_viewModel.OpenNewGameCommand();
-    }
-
-    private void OnOptionsButtonClick()
-    {
-        m_viewModel.OpenOptionsCommand();
-    }
-
-    private void OnWebsiteButtonClick()
-    {
-        m_viewModel.OpenWebsiteCommand();
     }
     #endregion
 }
