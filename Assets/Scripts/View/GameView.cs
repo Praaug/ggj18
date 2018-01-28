@@ -20,7 +20,7 @@ public class GameView : BaseView<GameViewModel>
         m_viewModel.OnUpdateMenu += ViewModel_OnUpdateMenu;
     }
 
-    private void ViewModel_OnUpdateMenu(BaseViewModel menu)
+    private void ViewModel_OnUpdateMenu(BaseViewModel menu, BaseViewModel oldMenu)
     {
         m_animator.SetInteger("menu", (int)menu.MenuType);
     }

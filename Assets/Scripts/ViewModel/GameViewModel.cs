@@ -5,7 +5,7 @@ public class GameViewModel : BaseViewModel
     public static GameViewModel instance { get; } = new GameViewModel();
     public override MenuEnum MenuType { get { throw new InvalidOperationException(); } }
 
-    public event Action<BaseViewModel> OnUpdateMenu;
+    public event Action<BaseViewModel, BaseViewModel> OnUpdateMenu;
 
     public BaseViewModel CurrentDisplayedMenu
     {
@@ -20,8 +20,9 @@ public class GameViewModel : BaseViewModel
                 return;
             }
 
+            BaseViewModel oldMenu = m_currentDisplayedMenu;
             m_currentDisplayedMenu = value;
-            OnUpdateMenu?.Invoke(m_currentDisplayedMenu);
+            OnUpdateMenu?.Invoke(m_currentDisplayedMenu, oldMenu);
         }
     }
 
@@ -55,7 +56,7 @@ public class GameViewModel : BaseViewModel
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel(this);
         m_incommingTransmissionViewModel.OnWaitTimePassed += IncommingTransmissionViewModel_OnWaitTimePassed;
 
-        m_endScreenViewModel = new EndScreenViewModel();
+        m_endScreenViewModel = new EndScreenViewModel(this);
         m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
 
         CurrentDisplayedMenu = m_mainViewModel;

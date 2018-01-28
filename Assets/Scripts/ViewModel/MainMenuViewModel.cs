@@ -61,12 +61,17 @@ public class MainMenuViewModel : BaseViewModel
 
     public override void CloseButtonCommand()
     {
-        UnityEngine.Application.Quit();
+        Application.Quit();
+    }
+
+    internal void OpenSavegameFolderCommand()
+    {
+        System.Diagnostics.Process.Start(Application.dataPath);
     }
 
     public void OpenWebsiteCommand()
     {
-        UnityEngine.Application.OpenURL("https://globalgamejam.org/2018/games/whisper-down-lane");
+        Application.OpenURL("https://globalgamejam.org/2018/games/lost-transmission-14");
     }
 
     private void SaveGameViewModel_OnLoadSaveGameCommand(SaveGameViewModel saveGameViewModel)

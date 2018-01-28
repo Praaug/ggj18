@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 public class EndScreenViewModel : BaseViewModel
 {
@@ -18,10 +19,7 @@ public class EndScreenViewModel : BaseViewModel
 
     public string DescriptionString { get; private set; } = string.Empty;
 
-    public EndScreenViewModel() : base()
-    {
-
-    }
+    public EndScreenViewModel(GameViewModel viewModel) : base(viewModel) { }
 
     public void OKButtonCommand()
     {
@@ -32,10 +30,12 @@ public class EndScreenViewModel : BaseViewModel
     {
         base.OnEnterState();
 
-        GameResult result = GameManager.instance.ActiveSession?.MyGameResult;
+        Session activeSession = GameManager.instance.ActiveSession;
+        Debug.Assert(activeSession != null, "The active Session is null, this is not valid");
+        GameResult result = activeSession.MyGameResult;
         IsLast = result != null;
 
-        if(IsLast)
+        if (IsLast)
         {
             IsWin = result.IsWin;
             ResultString = "YOU WON!";
@@ -45,7 +45,7 @@ public class EndScreenViewModel : BaseViewModel
         {
             IsWin = false;
             ResultString = "send the save to the next person!";
-            LastSessionName = result.SessionName;
+            LastSessionName = activeSession.SessionName;
         }
 
         OnEnterStateAction?.Invoke();

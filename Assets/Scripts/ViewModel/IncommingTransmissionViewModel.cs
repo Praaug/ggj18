@@ -9,6 +9,8 @@ public class IncommingTransmissionViewModel : BaseViewModel
 
     public event Action OnWaitTimePassed;
 
+    public event Action OnExitStateAction;
+
     public IncommingTransmissionViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
@@ -47,6 +49,11 @@ public class IncommingTransmissionViewModel : BaseViewModel
 
         Debug.Log("OnDisplaySyllablesCountChanged");
         OnDisplaySyllablesCountChanged?.Invoke();
+    }
+
+    public override void OnExitState()
+    {
+        base.OnExitState();
     }
 
     public void TimerFinishCommand()

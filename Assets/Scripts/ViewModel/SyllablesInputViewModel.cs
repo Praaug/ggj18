@@ -104,19 +104,7 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public void AcceptButtonCommand()
     {
-        // TODO: open Tooltip
-
-        ToolTipYesCommand();
-    }
-
-    public void ToolTipYesCommand()
-    {
         OnAcceptCommand?.Invoke();
-    }
-
-    public void ToolTipNoCommand()
-    {
-        // close Tooltip
     }
 
     public void TableButtonCommand()

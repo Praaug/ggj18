@@ -14,13 +14,19 @@
     {
 
     }
+
     public BaseViewModel(GameViewModel gameViewModel)
     {
         gameViewModel.OnUpdateMenu += GameViewModel_OnUpdateMenu;
     }
 
-    private void GameViewModel_OnUpdateMenu(BaseViewModel viewModel)
+    private void GameViewModel_OnUpdateMenu(BaseViewModel viewModel, BaseViewModel oldModel)
     {
+        if(oldModel == this)
+        {
+            OnExitState();
+        }
+
         if (viewModel != this)
         {
             // Hide this view model
@@ -43,6 +49,8 @@
     }
 
     public virtual void OnEnterState() { }
+
+    public virtual void OnExitState() { }
 
     public virtual void CloseButtonCommand()
     {
