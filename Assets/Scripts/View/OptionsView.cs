@@ -2,7 +2,7 @@
 
 public class OptionsView : BaseView<OptionsViewModel>
 {
-    private OptionsViewModel m_viewModel;
+    private new OptionsViewModel m_viewModel;
 
     private void Awake()
     {

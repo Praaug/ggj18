@@ -27,7 +27,7 @@ class MainMenuView : BaseView<MainMenuViewModel>
     [SerializeField]
     private RectTransform m_contentTransform;
 
-    private MainMenuViewModel m_viewModel;
+    private new MainMenuViewModel m_viewModel;
 
     private List<SaveGameButtonView> m_saveGameButtonViewModelList = new List<SaveGameButtonView>();
     #endregion

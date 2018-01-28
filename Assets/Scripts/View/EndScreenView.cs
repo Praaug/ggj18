@@ -46,7 +46,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     [SerializeField]
     private Button m_OkButton;
 
-    private EndScreenViewModel m_viewModel = null;
+    private new EndScreenViewModel m_viewModel = null;
 
     private void Awake()
     {

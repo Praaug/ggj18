@@ -6,7 +6,7 @@ public class GameView : BaseView<GameViewModel>
     [SerializeField]
     private Animator m_animator;
 
-    private GameViewModel m_viewModel = null;
+    private new GameViewModel m_viewModel = null;
 
     private void Awake()
     {

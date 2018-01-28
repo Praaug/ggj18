@@ -17,7 +17,7 @@ public class NewGameView : BaseView<NewGameViewModel>
     [SerializeField]
     private InputField m_sessionNameInput = null;
 
-    private NewGameViewModel m_viewModel;
+    private new NewGameViewModel m_viewModel;
 
     private void Awake()
     {
