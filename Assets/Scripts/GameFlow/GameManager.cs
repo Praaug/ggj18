@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class SaveGameRuntimeData
 {
-    public string filename = "";
+    public string filepath = "";
     public SaveGame saveGame = null;
 }
 
@@ -53,6 +53,37 @@ public class GameManager : ScriptableObject
         return m_sessionParameters;
     }
 
+    public void DeleteFinishedGames()
+    {
+        for (int i = m_saveGameList.Count; i >= 0; --i)
+        {
+            var saveGameRuntimeData = m_saveGameList[i];
+            SaveGame saveGame = saveGameRuntimeData.saveGame;
+            string filepath = saveGameRuntimeData.filepath;
+
+            if (saveGame.saveGameSession.CurrentRound < saveGame.saveGameSession.SessionParameters.RoundCount)
+            {
+                continue;
+            }
+
+            File.Delete(filepath);
+            m_saveGameList.RemoveAt(i);
+        }
+
+        foreach (SaveGameRuntimeData saveGameRuntimeData in m_saveGameList)
+        {
+            SaveGame saveGame = saveGameRuntimeData.saveGame;
+            string filepath = saveGameRuntimeData.filepath;
+
+            if (saveGame.saveGameSession.CurrentRound < saveGame.saveGameSession.SessionParameters.RoundCount)
+            {
+                continue;
+            }
+
+            File.Delete(filepath);
+        }
+    }
+
     public void StartNewGame()
     {
         m_UsedSaveGameFilename = "";
@@ -67,7 +98,7 @@ public class GameManager : ScriptableObject
 
         SaveGameRuntimeData saveDataRuntimeData = m_saveGameList[index];
 
-        m_UsedSaveGameFilename = saveDataRuntimeData.filename;
+        m_UsedSaveGameFilename = saveDataRuntimeData.filepath;
         SaveGame saveGame = saveDataRuntimeData.saveGame;
 
         Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.saveGameSession.TransmissionWord, saveGame.saveGameSession.CurrentRound);
@@ -149,7 +180,7 @@ public class GameManager : ScriptableObject
 
             // Add loaded savegame to the save game list
             SaveGameRuntimeData saveGameRuntimeData = new SaveGameRuntimeData();
-            saveGameRuntimeData.filename = fileName;
+            saveGameRuntimeData.filepath = fileName;
             saveGameRuntimeData.saveGame = saveGame;
 
             saveGameList.Add(saveGameRuntimeData);
