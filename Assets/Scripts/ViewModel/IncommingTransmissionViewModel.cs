@@ -9,8 +9,6 @@ public class IncommingTransmissionViewModel : BaseViewModel
 
     public event Action OnWaitTimePassed;
 
-    public event Action OnExitStateAction;
-
     public IncommingTransmissionViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
