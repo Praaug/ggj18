@@ -39,7 +39,7 @@ public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel
         }
 
         // todo: Change this abomination
-        Invoke("FinishTimer", 5);
+        Invoke("FinishTimer", GameManager.instance.ActiveSession.LastWordDisplayTime);
     }
 
     private void FinishTimer()

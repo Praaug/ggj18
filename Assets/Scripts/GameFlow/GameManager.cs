@@ -25,6 +25,7 @@ public class GameManager : ScriptableObject
     public static GameManager instance { get; private set; }
 
     public Session ActiveSession => m_activeSession;
+    public string saveGameFolderPath => Path.Combine(Application.dataPath, m_saveGamePath);
 
     public GameResult GetResult()
     {

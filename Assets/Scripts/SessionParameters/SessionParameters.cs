@@ -29,5 +29,5 @@ public class SessionParameters
     /// <summary>
     /// The duration of the incomming syllables
     /// </summary>
-    public float DisplayDuration = 3.0f;
+    public float LastWordDisplayTime = 3.0f;
 }

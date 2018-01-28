@@ -66,7 +66,7 @@ public class MainMenuViewModel : BaseViewModel
 
     public void OpenSavegameFolderCommand()
     {
-        System.Diagnostics.Process.Start(Application.dataPath);
+        System.Diagnostics.Process.Start(GameManager.instance.saveGameFolderPath);
     }
 
     public void DeleteFinishedGamesCommand()

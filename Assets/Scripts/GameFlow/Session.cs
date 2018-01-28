@@ -19,7 +19,7 @@ public class Session
     public SessionParameters SessionParams => m_sessionParameter;
     public GameResult MyGameResult { get; set; } = null;
     public TransmissionWord TransmissionWord => m_TransmissionWord;
-
+    public float LastWordDisplayTime => m_sessionParameter.LastWordDisplayTime;
     #endregion
 
     #region Constructor

@@ -1,0 +1,20 @@
+{
+    "saveGameSession": {
+        "CurrentRound": 1,
+        "SessionParameters": {
+            "Seed": -385153416,
+            "RoundCount": 3,
+            "SessionName": "Toodles",
+            "SyllableSearchedAmount": 3,
+            "SyllableChoiceAmount": 6,
+            "LastWordDisplayTime": 1.0
+        },
+        "TransmissionWord": {
+            "syllableIndices": [
+                5,
+                0,
+                1
+            ]
+        }
+    }
+}
