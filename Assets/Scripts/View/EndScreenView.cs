@@ -76,6 +76,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     private void ViewModel_OnEnterStateAction()
     {
         m_sessionNameText.text = m_viewModel.LastSessionName;
+        m_resultText.text = m_viewModel.ResultString;
         Vector2 effectDistance = Vector2.zero;
 
         if (m_viewModel.IsLast)
