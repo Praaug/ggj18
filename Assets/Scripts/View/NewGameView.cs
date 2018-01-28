@@ -47,7 +47,13 @@ public class NewGameView : BaseView<NewGameViewModel>
 
     private void OnDisplayDurationEndEdit(string inputString)
     {
-        m_viewModel.ChangeDisplayDurationCommand(float.Parse(inputString));
+        float displayDuration;
+        if (!float.TryParse(inputString, out displayDuration))
+        {
+            return;
+        }
+
+        m_viewModel.ChangeDisplayDurationCommand(displayDuration);
     }
 
     private void OnPlayerCountEndEdit(string inputString)

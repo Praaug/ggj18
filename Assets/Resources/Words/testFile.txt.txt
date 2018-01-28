@@ -1,0 +1,7 @@
+aardvark=aard-vark
+abattoir=ab-at-toir
+abaci=ab-a-ci
+abacus=ab-a-cus
+abacuses=ab-a-cus-es
+abalone=ab-a-lo-ne
+abatis=ab-a-tis

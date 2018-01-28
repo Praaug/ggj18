@@ -9,7 +9,7 @@ public class TransmissionWord
     /// <summary>
     /// This word's syllable indices
     /// </summary>
-    public byte[] syllableIndices;
+    public int[] syllableIndices;
 
     #endregion
 
@@ -21,7 +21,7 @@ public class TransmissionWord
 
     public TransmissionWord(TransmissionWord startWord)
     {
-        syllableIndices = new byte[startWord.syllableIndices.Length];
+        syllableIndices = new int[startWord.syllableIndices.Length];
         for (int i = 0; i < syllableIndices.Length; i++)
         {
             syllableIndices[i] = startWord.syllableIndices[i];

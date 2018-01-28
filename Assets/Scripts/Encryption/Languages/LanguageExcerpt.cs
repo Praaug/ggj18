@@ -12,7 +12,7 @@ public class LanguageExcerpt
     /// <summary>
     /// The syllable indices this language excerpt uses
     /// </summary>
-    public byte[] usedSyllableIndices;
+    public int[] usedSyllableIndices;
 
     /// <summary>
     /// This excerpt's source language
@@ -38,7 +38,7 @@ public class LanguageExcerpt
     public LanguageExcerpt(ACryptoLanguage sourceLanguage, int displayedSyllables, System.Random random)
     {
         SourceLanguage = sourceLanguage;
-        usedSyllableIndices = new byte[displayedSyllables];
+        usedSyllableIndices = new int[displayedSyllables];
 
         List<byte> indexList = new List<byte>(SourceLanguage.syllableCount);
 
@@ -65,48 +65,37 @@ public class LanguageExcerpt
     public LanguageExcerpt(TransmissionWord word, ACryptoLanguage sourceLanguage, int displayedSyllables, System.Random random)
     {
         SourceLanguage = sourceLanguage;
-        usedSyllableIndices = new byte[displayedSyllables];
-        for (int i = 0; i < displayedSyllables; i++)
-        {
-            usedSyllableIndices[i] = 255;
-        }
 
-        List<byte> indexList = new List<byte>(SourceLanguage.syllableCount - word.syllableIndices.Length);
-
-        for (byte i = 0; i < SourceLanguage.syllableCount; i++)
+        var tmpList = new List<int>(); // Tmp list to store displayed indices
+        for (int i = 0; i < word.syllableIndices.Length; ++i)
         {
-            if (!word.syllableIndices.Contains(i))
-                indexList.Add(i);
-        }
+            int index = word.syllableIndices[i]; // Get the index of the word
 
-        var syllableIndex = 0;
-        for (int i = 0; i < word.syllableIndices.Length; i++)
-        {
-            if (!usedSyllableIndices.Contains(word.syllableIndices[i]))
+            // If a word contains a syllable twice, it should not be added twice
+            if (tmpList.Contains(index))
             {
-                usedSyllableIndices[syllableIndex] = word.syllableIndices[i];
-                syllableIndex++;
+                continue;
             }
+
+            // Add the index to the available list
+            tmpList.Add(index);
+            word.syllableIndices[i] = i;
         }
 
-        for (int i = syllableIndex; i < displayedSyllables; i++)
+        // Fill up the list with random syllables
+        for (int i = tmpList.Count; i < displayedSyllables; ++i)
         {
-            var index = random.Next(indexList.Count);
-            usedSyllableIndices[i] = indexList[index];
-            indexList.RemoveAt(index);
-        }
+            int randomIndex = random.Next(SourceLanguage.syllableCount);
 
-        for (int i = 0; i < word.syllableIndices.Length; i++)
-        {
-            for (byte j = 0; j < usedSyllableIndices.Length; j++)
+            // attention, might result in a very very bad and ugly, yet happy, game jam endless loop 
+            while (tmpList.Contains(randomIndex))
             {
-                if (word.syllableIndices[i] == usedSyllableIndices[j])
-                {
-                    word.syllableIndices[i] = j;
-                    break;
-                }
+                randomIndex = (randomIndex + 1) % SourceLanguage.syllableCount;
             }
+
+            tmpList.Add(randomIndex);
         }
+        usedSyllableIndices = tmpList.ToArray();
     }
 
     public ICryptoSyllable[] GetSyllables()

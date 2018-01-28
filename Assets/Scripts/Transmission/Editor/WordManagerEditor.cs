@@ -13,7 +13,7 @@ public class WordManagerEditor : Editor
 
         if (GUILayout.Button("Add word"))
         {
-            ArrayUtility.Add(ref wordManager.words, new Word());
+            ArrayUtility.Add(ref wordManager.wordList, new Word());
         }
     }
 }

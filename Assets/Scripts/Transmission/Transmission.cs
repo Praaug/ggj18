@@ -58,7 +58,7 @@ public class Transmission
     /// <returns></returns>
     public TransmissionWord Encrypt(TransmissionWord inWord)
     {
-        Dictionary<byte, byte> reversion = new Dictionary<byte, byte>();
+        Dictionary<int, int> reversion = new Dictionary<int, int>();
         foreach (var item in Conversion)
         {
             reversion.Add(item.Value, item.Key);
@@ -66,7 +66,7 @@ public class Transmission
 
         var outWord = new TransmissionWord
         {
-            syllableIndices = new byte[inWord.syllableIndices.Length]
+            syllableIndices = new int[inWord.syllableIndices.Length]
         };
 
         for (byte i = 0; i < inWord.syllableIndices.Length; i++)

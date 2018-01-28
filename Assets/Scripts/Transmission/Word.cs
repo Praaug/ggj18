@@ -11,5 +11,5 @@ public class Word
     public string[] syllables;
 
     [System.NonSerialized]
-    public byte[] syllableIndices;
+    public int[] syllableIndices;
 }

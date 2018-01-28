@@ -18,8 +18,7 @@ public class WordManager : ScriptableObject
     /// <summary>
     /// The list of words this manager holds
     /// </summary>
-    [SerializeField]
-    public Word[] words;
+    public Word[] wordList;
 
     /// <summary>
     /// The generated human language
@@ -52,7 +51,7 @@ public class WordManager : ScriptableObject
     /// <returns></returns>
     public TransmissionEndpoint CreateEndpoint(int wordSyllables, int displaySyllables, System.Random random)
     {
-        var wordCollection = words.Where(w => w.syllables.Length == wordSyllables).ToArray();
+        var wordCollection = wordList.Where(w => w.syllables.Length == wordSyllables).ToArray();
 
         var word = wordCollection[random.Next(wordCollection.Length)];
 
@@ -87,34 +86,50 @@ public class WordManager : ScriptableObject
         if (!Application.isPlaying)
             return;
 #endif
+        LoadWords();
+
         BuildHumanLanguage();
 
         m_isInitialized = true;
     }
 
+    private void LoadWords()
+    {
+        TextAsset textAsset = Resources.Load<TextAsset>("Words/Syllables");
+        wordList = WordUtility.GetWordsFromFile(textAsset);
+    }
+
     private void BuildHumanLanguage()
     {
-        List<string> syllableList = new List<string>();
+        Dictionary<string, int> tmpMap = new Dictionary<string, int>();
+        int index = 0;
 
-        foreach (var word in words)
+        for (int i = 0; i < wordList.Length; ++i)
         {
-            word.syllableIndices = new byte[word.syllables.Length];
+            Word word = wordList[i];
+            string[] worldSyllable = word.syllables;
 
-            for (int i = 0; i < word.syllables.Length; i++)
+            for (int j = 0; j < worldSyllable.Length; ++j)
             {
-                var index = syllableList.IndexOf(word.syllables[i]);
-                if (index == -1)
+                string syllable = worldSyllable[j];
+
+                // Check if the syllable was already used
+                if (!tmpMap.ContainsKey(syllable))
                 {
-                    index = syllableList.Count;
-                    syllableList.Add(word.syllables[i]);
+                    // Add the new syllable and store index
+                    tmpMap.Add(worldSyllable[j], index);
+
+                    // Increment the index to ensure index continues to be unique
+                    index++;
                 }
 
-                word.syllableIndices[i] = (byte)index;
+                // Get the index of the current syllable
+                word.syllableIndices[j] = tmpMap[syllable];
             }
         }
 
         humanLanguage = CreateInstance<CryptoLanguageText>();
-        humanLanguage.SetSyllables(syllableList);
+        humanLanguage.SetSyllables(tmpMap.Keys.ToList());
     }
 
 }

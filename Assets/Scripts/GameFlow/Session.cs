@@ -15,7 +15,7 @@ public class Session
     /// </summary>
     public int ActiveRoundIndex { get; set; } = 0;
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
-    public byte[] LastSyllablesInput => m_TransmissionWord.syllableIndices;
+    public int[] LastSyllablesInput => m_TransmissionWord.syllableIndices;
     public SessionParameters SessionParams => m_sessionParameter;
     public GameResult MyGameResult { get; set; } = null;
     public TransmissionWord TransmissionWord => m_TransmissionWord;
