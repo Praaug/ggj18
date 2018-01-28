@@ -16,6 +16,7 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
         m_viewModel.OnSyllablesChanged += ViewModel_OnSyllablesChanged;
         m_viewModel.OnSwitchTableCommand += ViewModel_OnSwitchTableCommand;
         m_viewModel.OnHide += ViewModel_OnHide;
+        m_viewModel.OnCanTransmitChanged += ViewModel_OnCanTransmitChanged;
 
         m_AcceptButton.onClick.AddListener(() => m_popUp.SetActive(true));
         m_TableButton.onClick.AddListener(m_viewModel.TableButtonCommand);
@@ -29,6 +30,11 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
         }
 
         base.Init(m_viewModel);
+    }
+
+    private void ViewModel_OnCanTransmitChanged(bool canTransmit)
+    {
+        m_AcceptButton.interactable = canTransmit;
     }
 
     private void ViewModel_OnHide()

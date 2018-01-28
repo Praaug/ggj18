@@ -28,6 +28,20 @@ public class TransmissionWord
         }
     }
 
+    public bool IsEqualTo(TransmissionWord other)
+    {
+        if (syllableIndices.Length != other.syllableIndices.Length)
+            return false;
+
+        for (int i = 0; i < syllableIndices.Length; i++)
+        {
+            if (syllableIndices[i] != other.syllableIndices[i])
+                return false;
+        }
+
+        return true;
+    }
+
     /// <summary>
     /// Represents the word in a language
     /// </summary>

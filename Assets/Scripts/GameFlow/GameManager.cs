@@ -130,7 +130,7 @@ public class GameManager : ScriptableObject
 
             TransmissionEndpoint endpoint = m_activeSession.TransmissionSetup.EndPoint;
             result.RightWord = endpoint.RealWord.ToString(endpoint.HumanLanguage);
-            result.IsWin = result.RightWord == m_activeSession.LastSyllablesInput.ToString();
+            result.IsWin = endpoint.RealWord.IsEqualTo(m_activeSession.TransmissionWord);
 
             m_activeSession.MyGameResult = result;
         }
