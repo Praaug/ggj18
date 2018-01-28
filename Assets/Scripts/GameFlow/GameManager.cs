@@ -65,6 +65,7 @@ public class GameManager : ScriptableObject
     public void SubmitRound()
     {
         Debug.Assert(m_activeSession != null, "Tried to submit a round, event though there is no active session");
+
         if (m_activeSession == null)
         {
             return;

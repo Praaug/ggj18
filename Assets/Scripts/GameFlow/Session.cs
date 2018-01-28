@@ -219,7 +219,7 @@ public class Session
     private TransmissionSetup m_TransmissionSetup = null;
 
     /// <summary>
-    /// The transmission word
+    /// The active transmission word
     /// </summary>
     private TransmissionWord m_TransmissionWord = null;
     #endregion

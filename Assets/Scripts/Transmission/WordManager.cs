@@ -56,7 +56,7 @@ public class WordManager : ScriptableObject
 
         var word = wordCollection[random.Next(wordCollection.Length)];
 
-        string msg = "Chose word";
+        string msg = "Choosing word";
         for (int i = 0; i < word.syllables.Length; i++)
         {
             msg += " " + word.syllables[i];

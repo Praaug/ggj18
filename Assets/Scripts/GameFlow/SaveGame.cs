@@ -7,4 +7,5 @@ using System.Collections;
 public class SaveGame
 {
     public SaveGameSession saveGameSession;
+
 }

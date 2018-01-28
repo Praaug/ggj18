@@ -15,7 +15,9 @@ public class TransmissionWord
 
     #region Public Methods
 
-    public TransmissionWord() { }
+    public TransmissionWord()
+    {
+    }
 
     public TransmissionWord(TransmissionWord startWord)
     {
