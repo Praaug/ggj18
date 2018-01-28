@@ -19,7 +19,7 @@ public class TransmissionWord
     /// </summary>
     /// <param name="language">The language to set to</param>
     /// <returns>The syllable chain representation</returns>
-    public ICryptoSyllable[] ToSyllables(ACryptoLanguage language)
+    public ICryptoSyllable[] ToSyllables(LanguageExcerpt language)
     {
         ICryptoSyllable[] syllables = new ICryptoSyllable[syllableIndices.Length];
 
@@ -33,7 +33,7 @@ public class TransmissionWord
         return syllables;
     }
 
-    public string ToString(ACryptoLanguage sourceLanguage)
+    public string ToString(LanguageExcerpt sourceLanguage)
     {
         string text = string.Empty;
         var syllables = ToSyllables(sourceLanguage);

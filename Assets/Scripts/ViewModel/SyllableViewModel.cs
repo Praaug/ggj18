@@ -24,7 +24,8 @@ public class SyllableViewModel : BaseViewModel
             }
 
             m_IconImage = value;
-            OnIconImageChanged(m_IconImage);
+            Debug.Log("OnIconChanged");
+            OnIconImageChanged?.Invoke(m_IconImage);
         }
     }
 
@@ -39,7 +40,7 @@ public class SyllableViewModel : BaseViewModel
             }
 
             m_IconText = value;
-            OnIconTextChanged(m_IconText);
+            OnIconTextChanged?.Invoke(m_IconText);
         }
     }
     #endregion
@@ -63,12 +64,14 @@ public class SyllableViewModel : BaseViewModel
     public void SetImage(Sprite sprite)
     {
         Debug.Assert(sprite != null, "You should not set the sprite to manually to null");
+        m_IconText = null;
         IconImage = sprite;
     }
 
     public void SetText(string text)
     {
         Debug.Assert(!string.IsNullOrEmpty(text), "You should not set the text of a syllable to an empty string");
+        m_IconImage = null;
         IconText = text;
     }
     #endregion

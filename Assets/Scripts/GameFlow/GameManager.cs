@@ -46,6 +46,7 @@ public class GameManager : ScriptableObject
 
     public void StartNewGame()
     {
+        m_sessionParameters.Seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
         m_activeSession = new Session(m_sessionParameters);
     }
 
@@ -77,7 +78,7 @@ public class GameManager : ScriptableObject
             result.SessionName = m_activeSession.SessionName;
 
             TransmissionEndpoint endpoint = m_activeSession.TransmissionSetup.EndPoint;
-            result.RightWord = endpoint.RealWord.ToString(endpoint.HumanLanguage.SourceLanguage);
+            result.RightWord = endpoint.RealWord.ToString(endpoint.HumanLanguage);
             result.IsWin = result.RightWord == m_activeSession.LastSyllablesInput.ToString();
 
             m_activeSession.MyGameResult = result;

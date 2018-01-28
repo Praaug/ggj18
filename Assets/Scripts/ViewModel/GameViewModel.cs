@@ -53,13 +53,19 @@ public class GameViewModel : BaseViewModel
         m_syllablesInputViewModel.OnAcceptCommand += SyllablesViewModel_OnAcceptCommand;
 
         m_incommingTransmissionViewModel = new IncommingTransmissionViewModel(this);
+        m_incommingTransmissionViewModel.OnWaitTimePassed += IncommingTransmissionViewModel_OnWaitTimePassed;
 
         m_endScreenViewModel = new EndScreenViewModel();
         m_endScreenViewModel.OnOKCommand += EndScreenViewModel_OnOKCommand;
 
         CurrentDisplayedMenu = m_mainViewModel;
     }
-    
+
+    private void IncommingTransmissionViewModel_OnWaitTimePassed()
+    {
+        CurrentDisplayedMenu = m_syllablesInputViewModel;
+    }
+
     private void EndScreenViewModel_OnOKCommand()
     {
         CurrentDisplayedMenu = m_mainViewModel;

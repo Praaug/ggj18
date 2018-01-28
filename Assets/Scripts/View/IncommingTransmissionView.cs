@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel>
 {
-    private IncommingTransmissionViewModel m_viewModel = null;
-
     private void Awake()
     {
         Init();
@@ -16,7 +14,7 @@ public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel
         Debug.Assert(base.m_viewModel != null, "OptionsViewModel not valid");
         base.Init(base.m_viewModel);
 
-
+        Debug.Log("Registering OnDisplaySyllablesCountChanged");
         ViewModelConcrete.OnDisplaySyllablesCountChanged += ViewModel_OnDisplaySyllablesCountChanged;
     }
 
@@ -39,6 +37,17 @@ public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel
                 syllableView.gameObject.SetActive(false);
             }
         }
+
+        // todo: Change this abomination
+        Invoke("FinishTimer", 5);
+    }
+
+    private void FinishTimer()
+    {
+        if (m_viewModel != null)
+            (m_viewModel as IncommingTransmissionViewModel).TimerFinishCommand();
+        else
+            Debug.Log("Could not finish timer, view model missing");
     }
 
     #region Private Members

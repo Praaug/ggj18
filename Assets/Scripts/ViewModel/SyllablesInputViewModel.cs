@@ -15,13 +15,9 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public event Action OnAcceptCommand;
 
-    public event Action OnInputSyllablesChanged;
+    public event Action OnSwitchTableCommand;
 
-    public event Action OnInTableSyllablesChanged;
-
-    public event Action OnOutTableSyllablesChanged;
-
-    public event Action OnDisplaySyllablesChanged;
+    public event Action OnSyllablesChanged;
 
     public SyllablesInputViewModel(GameViewModel gameViewModel) : base(gameViewModel) { }
 
@@ -44,6 +40,8 @@ public class SyllablesInputViewModel : BaseViewModel
 
         m_OutTableSyllables = new SyllableViewModel[sessionParams.SyllableChoiceAmount];
 
+
+
         m_ShuffledInLanguageIndexes = new byte[sessionParams.SyllableChoiceAmount];
 
         var tmpList = new List<byte>(sessionParams.SyllableChoiceAmount);
@@ -65,24 +63,30 @@ public class SyllablesInputViewModel : BaseViewModel
         for (int i = 0; i < sessionParams.SyllableChoiceAmount; i++)
         {
             m_InputSyllables[i] = new SyllableViewModel();
-            m_InputSyllables[i].SetFromSyllable(outSyllables[transmission.Conversion[m_ShuffledInLanguageIndexes[i]]]);
-
             m_InTableSyllables[i] = new SyllableViewModel();
-            m_InTableSyllables[i].SetFromSyllable(inSyllables[m_ShuffledInLanguageIndexes[i]]);
             m_OutTableSyllables[i] = new SyllableViewModel();
-            m_OutTableSyllables[i].SetFromSyllable(outSyllables[transmission.Conversion[m_ShuffledInLanguageIndexes[i]]]);
         }
 
-        OnInputSyllablesChanged?.Invoke();
-        OnOutTableSyllablesChanged?.Invoke();
-        OnInTableSyllablesChanged?.Invoke();
-        //OnDisplaySyllablesChanged?.Invoke();
-
-
-        for (int i = 0; i < sessionParams.SyllableChoiceAmount; i++)
+        for (int i = 0; i < sessionParams.SyllableSearchedAmount; i++)
         {
             m_DisplayedSyllables[i] = new SyllableViewModel();
         }
+
+        OnSyllablesChanged?.Invoke();
+
+        for (int i = 0; i < sessionParams.SyllableChoiceAmount; i++)
+        {
+            m_InputSyllables[i].SetFromSyllable(outSyllables[transmission.Conversion[m_ShuffledInLanguageIndexes[i]]]);
+            m_InTableSyllables[i].SetFromSyllable(inSyllables[m_ShuffledInLanguageIndexes[i]]);
+            m_OutTableSyllables[i].SetFromSyllable(outSyllables[transmission.Conversion[m_ShuffledInLanguageIndexes[i]]]);
+        }
+    }
+
+    public void OnInputCommand(int inputIndex)
+    {
+        var transmission = GameManager.instance.ActiveSession.TransmissionSetup.Transmissions[GameManager.instance.ActiveSession.ActiveRoundIndex];
+
+        UnityEngine.Debug.LogFormat("Pressed {0}, setting {1}", inputIndex, transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]]);
     }
 
     public SyllablesInputViewModel() : base()
@@ -92,7 +96,9 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public void AcceptButtonCommand()
     {
-        // open Tooltip
+        // TODO: open Tooltip
+
+        ToolTipYesCommand();
     }
 
     public void ToolTipYesCommand()
@@ -103,6 +109,17 @@ public class SyllablesInputViewModel : BaseViewModel
     public void ToolTipNoCommand()
     {
         // close Tooltip
+    }
+
+    public void TableButtonCommand()
+    {
+        UnityEngine.Debug.Log("Table switch!");
+        OnSwitchTableCommand?.Invoke();
+    }
+
+    private void Awake()
+    {
+
     }
 
     private SyllableViewModel[] m_DisplayedSyllables;

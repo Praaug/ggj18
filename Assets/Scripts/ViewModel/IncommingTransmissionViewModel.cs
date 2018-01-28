@@ -7,6 +7,8 @@ public class IncommingTransmissionViewModel : BaseViewModel
 
     public event Action OnDisplaySyllablesCountChanged;
 
+    public event Action OnWaitTimePassed;
+
     public IncommingTransmissionViewModel(GameViewModel gameViewModel) : base(gameViewModel)
     {
 
@@ -43,7 +45,13 @@ public class IncommingTransmissionViewModel : BaseViewModel
             m_DisplayedSyllables[i] = syllableViewModel;
         }
 
+        Debug.Log("OnDisplaySyllablesCountChanged");
         OnDisplaySyllablesCountChanged?.Invoke();
+    }
+
+    public void TimerFinishCommand()
+    {
+        OnWaitTimePassed?.Invoke();
     }
 
     private SyllableViewModel[] m_DisplayedSyllables;

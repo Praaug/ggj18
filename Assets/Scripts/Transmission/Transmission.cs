@@ -61,7 +61,7 @@ public class Transmission
         Dictionary<byte, byte> reversion = new Dictionary<byte, byte>();
         foreach (var item in Conversion)
         {
-            reversion.Add(OutLanguage.usedSyllableIndices[item.Value], InLanguage.usedSyllableIndices[item.Key]);
+            reversion.Add(item.Value, item.Key);
         }
 
         var outWord = new TransmissionWord
@@ -69,10 +69,25 @@ public class Transmission
             syllableIndices = new byte[inWord.syllableIndices.Length]
         };
 
-        for (int i = 0; i < inWord.syllableIndices.Length; i++)
+        for (byte i = 0; i < inWord.syllableIndices.Length; i++)
         {
             outWord.syllableIndices[i] = reversion[inWord.syllableIndices[i]];
         }
+
+        string msg = "Encrypt from";
+        for (int i = 0; i < inWord.syllableIndices.Length; i++)
+        {
+            msg += " " + inWord.syllableIndices[i];
+        }
+
+        msg += " to";
+
+        for (int i = 0; i < outWord.syllableIndices.Length; i++)
+        {
+            msg += " " + outWord.syllableIndices[i];
+        }
+
+        UnityEngine.Debug.Log(msg);
 
         return outWord;
     }

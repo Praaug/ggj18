@@ -95,6 +95,18 @@ public class LanguageExcerpt
             usedSyllableIndices[i] = indexList[index];
             indexList.RemoveAt(index);
         }
+
+        for (int i = 0; i < word.syllableIndices.Length; i++)
+        {
+            for (byte j = 0; j < usedSyllableIndices.Length; j++)
+            {
+                if (word.syllableIndices[i] == usedSyllableIndices[j])
+                {
+                    word.syllableIndices[i] = j;
+                    break;
+                }
+            }
+        }
     }
 
     public ICryptoSyllable[] GetSyllables()
