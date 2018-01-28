@@ -44,6 +44,9 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     private Shadow m_resultShadow;
 
     [SerializeField]
+    private Text m_rightWordText;
+
+    [SerializeField]
     private Button m_OkButton;
 
     private new EndScreenViewModel m_viewModel = null;
@@ -79,6 +82,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
             effectDistance.x = m_resultShadowSize;
             effectDistance.y = -m_resultShadowSize;
             m_resultShadow.effectDistance = effectDistance;
+            m_rightWordText.text = m_viewModel.RightWordString;
 
             if (m_viewModel.IsWin)
             {
@@ -99,6 +103,7 @@ public class EndScreenView : BaseView<EndScreenViewModel>
             effectDistance.x = m_normalShadowSize;
             effectDistance.y = -m_normalShadowSize;
             m_resultShadow.effectDistance = effectDistance;
+            m_rightWordText.text = string.Empty;
         }
     }
 }

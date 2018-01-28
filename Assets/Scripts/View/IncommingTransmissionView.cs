@@ -25,10 +25,10 @@ public class IncommingTransmissionView : BaseView<IncommingTransmissionViewModel
         for (int i = 0; i < m_SyllableList.Count; ++i)
         {
             SyllableView syllableView = m_SyllableList[i];
-            SyllableViewModel syllableViewModel = syllablesViewModelList[i];
 
             if (i < syllablesViewModelList.Length)
             {
+                SyllableViewModel syllableViewModel = syllablesViewModelList[i];
                 syllableView.gameObject.SetActive(true);
                 syllableView.Init(syllableViewModel);
             }

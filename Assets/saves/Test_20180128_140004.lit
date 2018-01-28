@@ -1,19 +1,19 @@
 {
     "saveGameSession": {
-        "CurrentRound": 1,
+        "CurrentRound": 3,
         "SessionParameters": {
-            "Seed": 2025284547,
+            "Seed": 1635746709,
             "RoundCount": 3,
-            "SessionName": "Toodles",
+            "SessionName": "SuperDuperSession",
             "SyllableSearchedAmount": 3,
             "SyllableChoiceAmount": 6,
-            "DisplayDuration": 3.0
+            "LastWordDisplayTime": 3.0
         },
         "TransmissionWord": {
             "syllableIndices": [
                 4,
-                2,
-                2
+                5,
+                0
             ]
         }
     }
