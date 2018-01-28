@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81b6db25121cbb74da2f55c7290d80ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_closeButton: {fileID: 0}
   m_IconImage: {fileID: 114809085806411854}
   m_IconText: {fileID: 114261679356754540}
 --- !u!114 &114261679356754540
@@ -96,18 +97,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 40
-    m_MaxSize: 60
+    m_MinSize: 15
+    m_MaxSize: 30
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SyllableText
+  m_Text: Syllable Text
 --- !u!114 &114809085806411854
 MonoBehaviour:
   m_ObjectHideFlags: 1
