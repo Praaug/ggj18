@@ -56,6 +56,13 @@ public class WordManager : ScriptableObject
 
         var word = wordCollection[random.Next(wordCollection.Length)];
 
+        string msg = "Chose word";
+        for (int i = 0; i < word.syllables.Length; i++)
+        {
+            msg += " " + word.syllables[i];
+        }
+        Debug.Log(msg);
+
         var startWord = new TransmissionWord() { syllableIndices = word.syllableIndices };
         var humanExcerpt = new LanguageExcerpt(startWord, humanLanguage, displaySyllables, random);
         return new TransmissionEndpoint(humanExcerpt, startWord);

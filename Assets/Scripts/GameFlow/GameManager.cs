@@ -57,7 +57,7 @@ public class GameManager : ScriptableObject
 
         SaveGame saveGame = m_saveGameList[index];
 
-        Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.lastSyllableInput, saveGame.saveGameSession.CurrentRound);
+        Session newSession = new Session(saveGame.saveGameSession.SessionParameters, saveGame.saveGameSession.TransmissionWord, saveGame.saveGameSession.CurrentRound);
 
         m_activeSession = newSession;
     }
