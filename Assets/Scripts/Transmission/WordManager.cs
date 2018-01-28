@@ -19,7 +19,7 @@ public class WordManager : ScriptableObject
     /// The list of words this manager holds
     /// </summary>
     [SerializeField]
-    private Word[] words;
+    public Word[] words;
 
     /// <summary>
     /// The generated human language
