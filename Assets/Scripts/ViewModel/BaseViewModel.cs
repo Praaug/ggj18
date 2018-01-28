@@ -34,8 +34,9 @@
             return;
         }
 
-        Show(); // Show this viewmodel
         OnEnterState();
+
+        Show(); // Show this viewmodel
     }
 
     private void Show()

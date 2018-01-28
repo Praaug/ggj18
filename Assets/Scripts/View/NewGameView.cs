@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class NewGameView : BaseView<NewGameViewModel>
 {
-
     [SerializeField]
     private Button m_startGameButton = null;
 
@@ -16,6 +15,9 @@ public class NewGameView : BaseView<NewGameViewModel>
 
     [SerializeField]
     private InputField m_sessionNameInput = null;
+
+    [SerializeField]
+    private Button m_sessionNameRerollButton = null;
 
     [SerializeField]
     private InputField m_searchedCountInput = null;
@@ -30,6 +32,7 @@ public class NewGameView : BaseView<NewGameViewModel>
     private void Init()
     {
         m_viewModel = GameViewModel.instance.NewGameViewModel;
+        m_viewModel.OnShow += ViewModel_OnShow;
         Debug.Assert(m_viewModel != null, "NewGameViewModel not valid");
         base.Init(m_viewModel);
 
@@ -38,11 +41,25 @@ public class NewGameView : BaseView<NewGameViewModel>
         m_playerCountInput.onEndEdit.AddListener(OnPlayerCountEndEdit);
         m_sessionNameInput.onEndEdit.AddListener(OnSessionNameEndEdit);
         m_searchedCountInput.onEndEdit.AddListener(OnSearchedCountEndEdit);
+
+        m_sessionNameRerollButton.onClick.AddListener(OnSessionNameRerollButtonPressed);
+    }
+
+    private void ViewModel_OnShow()
+    {
+        m_sessionNameInput.text = GameManager.instance.GetParameter().SessionName;
     }
 
     private void OnStartButtonClick()
     {
         m_viewModel.StartGameCommand();
+    }
+
+    private void OnSessionNameRerollButtonPressed()
+    {
+        m_viewModel.SessionNameRerollButtonCommand();
+
+        m_sessionNameInput.text = GameManager.instance.GetParameter().SessionName;
     }
 
     private void OnDisplayDurationEndEdit(string inputString)

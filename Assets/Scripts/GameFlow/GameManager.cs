@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 
 
@@ -30,6 +31,27 @@ public class GameManager : ScriptableObject
     public GameResult GetResult()
     {
         return new GameResult();
+    }
+
+    public void ForceRandomSessionName()
+    {
+        StringBuilder randomName = new StringBuilder();
+
+        // Generate random string
+        for (int i = 0; i < m_randomNameGeneratorPool.Length; i++)
+        {
+            var possibities = m_randomNameGeneratorPool[i].possibilites;
+            string subString = possibities[UnityEngine.Random.Range(0, possibities.Length)];
+
+            randomName.Append(subString);
+
+            if (i < m_randomNameGeneratorPool.Length - 1)
+            {
+                randomName.Append(' ');
+            }
+        }
+
+        m_sessionParameters.SessionName = randomName.ToString();
     }
 
     public List<SaveGameRuntimeData> SaveGameList => m_saveGameList;
@@ -245,5 +267,14 @@ public class GameManager : ScriptableObject
     private SessionParameters m_sessionParameters = null;
 
     private SessionParameters m_usedParameters = null;
+
+    [SerializeField]
+    private RandomNamePossbilities[] m_randomNameGeneratorPool = null;
     #endregion
+}
+
+[System.Serializable]
+public struct RandomNamePossbilities
+{
+    public string[] possibilites;
 }
