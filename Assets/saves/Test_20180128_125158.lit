@@ -1,6 +1,6 @@
 {
     "saveGameSession": {
-        "CurrentRound": 1,
+        "CurrentRound": 2,
         "SessionParameters": {
             "Seed": 100017351,
             "RoundCount": 3,
@@ -12,8 +12,8 @@
         "TransmissionWord": {
             "syllableIndices": [
                 5,
-                5,
-                4
+                4,
+                3
             ]
         }
     }
