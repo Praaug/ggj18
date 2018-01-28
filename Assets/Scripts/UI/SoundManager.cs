@@ -4,21 +4,45 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public SoundManager instance => new SoundManager();
-
-    public SoundManager()
+    public void Start()
     {
-
-    }
-
-    public void Init(GameViewModel gameViewModel)
-    {
-        gameViewModel.OnUpdateMenu += GameViewModel_OnUpdateMenu;
+        GameViewModel.instance.OnUpdateMenu += GameViewModel_OnUpdateMenu;
     }
 
     private void GameViewModel_OnUpdateMenu(BaseViewModel newModel, BaseViewModel oldModel)
     {
-        
+        if (newModel.MenuType == MenuEnum.IncommingTransmission || newModel.MenuType == MenuEnum.SyllableInput)
+        {
+            if (isInGame)
+            {
+                return;
+            }
+
+            if (m_fadeCoroutine != null)
+            {
+                StopCoroutine(m_fadeCoroutine);
+            }
+
+            m_fadeCoroutine = StartCoroutine(Coroutine_FadeMusic(m_mainMenuSource, m_ingameSource));
+
+            isInGame = true;
+        }
+        else
+        {
+            if (!isInGame)
+            {
+                return;
+            }
+
+            if (m_fadeCoroutine != null)
+            {
+                StopCoroutine(m_fadeCoroutine);
+            }
+
+            m_fadeCoroutine = StartCoroutine(Coroutine_FadeMusic(m_mainMenuSource, m_ingameSource));
+
+            isInGame = false;
+        }
     }
 
     [SerializeField]
@@ -29,4 +53,24 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField]
     private float m_fadeTime;
+
+    private Coroutine m_fadeCoroutine;
+
+    private bool isInGame = false;
+
+    private IEnumerator Coroutine_FadeMusic(AudioSource oldSource, AudioSource newSource)
+    {
+        float _time = 0.0f;
+        while (_time < m_fadeTime)
+        {
+            _time += Time.deltaTime;
+
+            oldSource.volume = 1 - (_time / m_fadeTime);
+            newSource.volume = _time / m_fadeTime;
+
+            yield return null;
+        }
+
+        m_fadeCoroutine = null;
+    }
 }
