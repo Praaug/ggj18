@@ -47,7 +47,24 @@ public class NewGameView : BaseView<NewGameViewModel>
 
     private void ViewModel_OnShow()
     {
-        m_sessionNameInput.text = GameManager.instance.GetParameter().SessionName;
+        m_startGameButton.onClick.AddListener(OnStartButtonClick);
+        m_displayDurationInput.onEndEdit.AddListener(OnDisplayDurationEndEdit);
+        m_playerCountInput.onEndEdit.AddListener(OnPlayerCountEndEdit);
+        m_sessionNameInput.onEndEdit.AddListener(OnSessionNameEndEdit);
+        m_searchedCountInput.onEndEdit.AddListener(OnSearchedCountEndEdit);
+
+        RefreshView();
+    }
+
+    private void RefreshView()
+    {
+        var parameter = GameManager.instance.GetParameter();
+
+        m_displayDurationInput.text = parameter.LastWordDisplayTime.ToString();
+        m_playerCountInput.text = parameter.RoundCount.ToString();
+        m_sessionNameInput.text = parameter.SessionName;
+        m_searchedCountInput.text = parameter.SyllableSearchedAmount.ToString();
+
     }
 
     private void OnStartButtonClick()
@@ -59,7 +76,7 @@ public class NewGameView : BaseView<NewGameViewModel>
     {
         m_viewModel.SessionNameRerollButtonCommand();
 
-        m_sessionNameInput.text = GameManager.instance.GetParameter().SessionName;
+        RefreshView();
     }
 
     private void OnDisplayDurationEndEdit(string inputString)
@@ -71,6 +88,8 @@ public class NewGameView : BaseView<NewGameViewModel>
         }
 
         m_viewModel.ChangeDisplayDurationCommand(displayDuration);
+
+        RefreshView();
     }
 
     private void OnPlayerCountEndEdit(string inputString)
@@ -82,11 +101,15 @@ public class NewGameView : BaseView<NewGameViewModel>
         }
 
         m_viewModel.ChangePlayerCountCommand(playerCount);
+
+        RefreshView();
     }
 
     private void OnSessionNameEndEdit(string inputString)
     {
         m_viewModel.ChangeSessionNameCommand(inputString);
+
+        RefreshView();
     }
 
     private void OnSearchedCountEndEdit(string inputString)
@@ -97,6 +120,9 @@ public class NewGameView : BaseView<NewGameViewModel>
             return;
         }
 
+        searchedCount = Mathf.Clamp(searchedCount, 3, 5);
         m_viewModel.ChangeSearchedCountChange(searchedCount);
+
+        RefreshView();
     }
 }

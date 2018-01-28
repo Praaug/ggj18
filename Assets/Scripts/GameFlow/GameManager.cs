@@ -162,6 +162,8 @@ public class GameManager : ScriptableObject
 
         // save the game
         SaveCurrentGame();
+
+        
     }
     #endregion
 

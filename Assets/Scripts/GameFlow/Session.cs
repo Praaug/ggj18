@@ -183,7 +183,7 @@ public class Session
         m_SyllableSearchArray[index] = syllable;
     }
 
-    public string SessionName { get; } = "Test";
+    public string SessionName => m_sessionParameter.SessionName;
 
     /// <summary>
     /// Returns the save game info of this game instance
