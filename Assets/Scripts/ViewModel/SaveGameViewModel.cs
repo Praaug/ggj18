@@ -1,6 +1,7 @@
 ﻿public class SaveGameViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => (MenuEnum)(-1);
+    public SaveGame MySaveGame => m_saveGame;
 
     public event System.Action<SaveGameViewModel> OnLoadSaveGameCommand;
 

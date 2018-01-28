@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class SaveGameButtonView : MonoBehaviour
 {
+    public Button MyButton => m_button;
+
     public void Init(SaveGameViewModel viewModel)
     {
         m_button.onClick.AddListener(OnButtonClick);

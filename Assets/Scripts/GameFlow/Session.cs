@@ -10,11 +10,14 @@ public class Session
     #region Public Properties
     public ICryptoSyllable[] CurrentSyllableChoice => m_SyllableChoiceArray;
     public int MaxRounds => m_sessionParameter.RoundCount;
-    public int ActiveRoundIndex => m_activeRoundIndex;
+    /// <summary>
+    /// Index of the currently active round inside this session
+    /// </summary>
+    public int ActiveRoundIndex { get; set; } = 0;
     public TransmissionSetup TransmissionSetup => m_TransmissionSetup;
     public byte[] LastSyllablesInput => m_TransmissionWord.syllableIndices;
     public SessionParameters SessionParams => m_sessionParameter;
-    public GameResult MyGameResult { get; set; }
+    public GameResult MyGameResult { get; set; } = null;
     public TransmissionWord TransmissionWord => m_TransmissionWord;
 
     #endregion
@@ -36,10 +39,10 @@ public class Session
         Debug.Assert(m_TransmissionSetup.Transmissions.Length == sp.RoundCount, "Transmission setup creation returned tansmission array with wrong length");
 
         // Set the active round index to the first entry
-        m_activeRoundIndex = 0;
+        ActiveRoundIndex = 0;
 
         // Start the first round
-        SetRound(m_activeRoundIndex);
+        SetRound(ActiveRoundIndex);
     }
 
     public Session(SessionParameters sessionParameter, TransmissionWord transmissionWord, int currentRoundIndex)
@@ -62,10 +65,10 @@ public class Session
         m_TransmissionSetup = TransmissionManager.BuildTransmissionSetup(sp.Seed, sp.RoundCount, sp.SyllableSearchedAmount, sp.SyllableChoiceAmount);
 
         // Set the active round index to the first entry
-        m_activeRoundIndex = currentRoundIndex;
+        ActiveRoundIndex = currentRoundIndex;
 
         // Start the first round
-        SetRound(m_activeRoundIndex);
+        SetRound(ActiveRoundIndex);
     }
     #endregion
 
@@ -81,14 +84,14 @@ public class Session
             return result;
         }
 
-        bool hasValidRoundIndex = m_activeRoundIndex >= 0 && m_activeRoundIndex < m_TransmissionSetup.Transmissions.Length;
+        bool hasValidRoundIndex = ActiveRoundIndex >= 0 && ActiveRoundIndex < m_TransmissionSetup.Transmissions.Length;
         Debug.Assert(hasValidRoundIndex, "Active round index is out of range for transmission array");
         if (!hasValidRoundIndex)
         {
             return result;
         }
 
-        Transmission currentTransmission = m_TransmissionSetup.Transmissions[m_activeRoundIndex];
+        Transmission currentTransmission = m_TransmissionSetup.Transmissions[ActiveRoundIndex];
 
         var inSyllables = currentTransmission.InLanguage.GetSyllables();
 
@@ -189,7 +192,7 @@ public class Session
     {
         SaveGameSession sessionSaveGame = new SaveGameSession();
 
-        sessionSaveGame.CurrentRound = m_activeRoundIndex;
+        sessionSaveGame.CurrentRound = ActiveRoundIndex;
         sessionSaveGame.SessionParameters = m_sessionParameter;
         sessionSaveGame.TransmissionWord = m_TransmissionWord;
 
@@ -199,11 +202,6 @@ public class Session
 
     #region Private Member
     private SessionParameters m_sessionParameter = null;
-
-    /// <summary>
-    /// Index of the currently active round inside this session
-    /// </summary>
-    private int m_activeRoundIndex = 0;
 
     /// <summary>
     /// The current list of syllable choices entered in this round
@@ -225,6 +223,7 @@ public class Session
     #endregion
 }
 
+[System.Serializable]
 public class SaveGameSession
 {
     public int CurrentRound;
