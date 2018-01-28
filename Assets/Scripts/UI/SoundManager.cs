@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     public void Start()
     {
+        m_ingameSource.volume = 0.0f;
         GameViewModel.instance.OnUpdateMenu += GameViewModel_OnUpdateMenu;
     }
 
@@ -39,7 +40,7 @@ public class SoundManager : MonoBehaviour
                 StopCoroutine(m_fadeCoroutine);
             }
 
-            m_fadeCoroutine = StartCoroutine(Coroutine_FadeMusic(m_mainMenuSource, m_ingameSource));
+            m_fadeCoroutine = StartCoroutine(Coroutine_FadeMusic(m_ingameSource, m_mainMenuSource));
 
             isInGame = false;
         }
