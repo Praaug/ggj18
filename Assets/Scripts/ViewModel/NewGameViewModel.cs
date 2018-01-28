@@ -23,7 +23,7 @@ public class NewGameViewModel : BaseViewModel
 
     public override void OnEnterState()
     {
-        GameManager.instance.SetParameter(null);
+        GameManager.instance.SetDefaultParameter();
     }
 
     public void StartGameCommand()

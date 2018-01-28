@@ -46,12 +46,17 @@ public class GameManager : ScriptableObject
 
     public void SetParameter(SessionParameters parameter)
     {
-        m_sessionParameters = parameter;
+        m_usedParameters = parameter;
+    }
+
+    public void SetDefaultParameter()
+    {
+        m_usedParameters = m_sessionParameters;
     }
 
     public SessionParameters GetParameter()
     {
-        return m_sessionParameters;
+        return m_usedParameters;
     }
 
     public void DeleteFinishedGames()
@@ -88,8 +93,8 @@ public class GameManager : ScriptableObject
     public void StartNewGame()
     {
         m_UsedSaveGameFilename = "";
-        m_sessionParameters.Seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
-        m_activeSession = new Session(m_sessionParameters);
+        m_usedParameters.Seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+        m_activeSession = new Session(m_usedParameters);
     }
 
     public void LoadGame(int index)
@@ -238,5 +243,7 @@ public class GameManager : ScriptableObject
     /// </summary>
     [SerializeField]
     private SessionParameters m_sessionParameters = null;
+
+    private SessionParameters m_usedParameters = null;
     #endregion
 }
