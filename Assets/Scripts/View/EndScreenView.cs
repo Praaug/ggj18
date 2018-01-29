@@ -35,22 +35,22 @@ public class EndScreenView : BaseView<EndScreenViewModel>
     private Color m_looseShadowColor = Color.red;
 
     [SerializeField]
-    private Text m_resultText;
+    private Text m_resultText = null;
 
     [SerializeField]
-    private Text m_sessionNameText;
+    private Text m_sessionNameText = null;
 
     [SerializeField]
-    private Shadow m_resultShadow;
+    private Shadow m_resultShadow = null;
 
     [SerializeField]
-    private Text m_rightWordText;
+    private Text m_rightWordText = null;
 
     [SerializeField]
-    private Button m_OkButton;
+    private Button m_OkButton = null;
 
     [SerializeField]
-    private GameObject m_lastTextGameObject;
+    private GameObject m_lastTextGameObject = null;
 
     private new EndScreenViewModel m_viewModel = null;
 

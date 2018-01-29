@@ -17,7 +17,6 @@ public class SyllableView : BaseView<SyllableViewModel>
 
     public void SetImage(Sprite sprite)
     {
-        Debug.Log("Set Image " + sprite.name);
         Debug.Assert(sprite != null, "You should not set the sprite to manually to null");
 
         // Disable text
@@ -30,7 +29,6 @@ public class SyllableView : BaseView<SyllableViewModel>
 
     public void SetText(string text)
     {
-        Debug.Log("Set Text " + text);
         Debug.Assert(!string.IsNullOrEmpty(text), "You should not set the text of a syllable to an empty string");
 
         // Disable image
@@ -46,7 +44,6 @@ public class SyllableView : BaseView<SyllableViewModel>
         base.Init(viewModel);
 
         var syllableViewModel = (SyllableViewModel)m_viewModel;
-        Debug.Log("Registering OnIconImageChanged");
         syllableViewModel.OnIconImageChanged += SyllableViewModel_OnIconImageChanged;
         syllableViewModel.OnIconTextChanged += SyllableViewModel_OnIconTextChanged;
         syllableViewModel.OnIconHide += SyllableViewModel_OnIconHide;

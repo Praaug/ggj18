@@ -47,13 +47,13 @@ public class SoundManager : MonoBehaviour
     }
 
     [SerializeField]
-    private AudioSource m_mainMenuSource;
+    private AudioSource m_mainMenuSource = null;
 
     [SerializeField]
-    private AudioSource m_ingameSource;
+    private AudioSource m_ingameSource = null;
 
     [SerializeField]
-    private float m_fadeTime;
+    private float m_fadeTime = 0.0f;
 
     private Coroutine m_fadeCoroutine;
 

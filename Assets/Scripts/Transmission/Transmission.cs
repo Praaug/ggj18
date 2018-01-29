@@ -87,8 +87,6 @@ public class Transmission
             msg += " " + outWord.syllableIndices[i];
         }
 
-        UnityEngine.Debug.Log(msg);
-
         return outWord;
     }
     #endregion

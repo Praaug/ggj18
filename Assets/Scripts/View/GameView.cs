@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameView : BaseView<GameViewModel>
 {
     [SerializeField]
-    private Animator m_animator;
+    private Animator m_animator = null;
 
     private new GameViewModel m_viewModel = null;
 

@@ -7,25 +7,25 @@ class MainMenuView : BaseView<MainMenuViewModel>
 {
     #region Private Fields
     [SerializeField]
-    private Button m_newGameButton;
+    private Button m_newGameButton = null;
 
     [SerializeField]
-    private Button m_optionsButton;
+    private Button m_optionsButton = null;
 
     [SerializeField]
-    private Button m_websiteButton;
+    private Button m_websiteButton = null;
 
     [SerializeField]
-    private Button m_openSavegamebutton;
+    private Button m_openSavegamebutton = null;
 
     [SerializeField]
-    private Button m_deleteFinishedGamesCommand;
+    private Button m_deleteFinishedGamesCommand = null;
 
     [SerializeField]
-    private SaveGameButtonView m_saveGameButtonPrefab;
+    private SaveGameButtonView m_saveGameButtonPrefab = null;
 
     [SerializeField]
-    private RectTransform m_contentTransform;
+    private RectTransform m_contentTransform = null;
 
     private new MainMenuViewModel m_viewModel;
 

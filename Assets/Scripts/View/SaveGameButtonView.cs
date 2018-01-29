@@ -16,13 +16,13 @@ public class SaveGameButtonView : MonoBehaviour
     }
 
     [SerializeField]
-    private Button m_button;
+    private Button m_button = null;
 
     [SerializeField]
-    private Text m_nameText;
+    private Text m_nameText = null;
 
     [SerializeField]
-    private Text m_roundsText;
+    private Text m_roundsText = null;
 
     private SaveGameViewModel m_viewModel;
 

@@ -10,7 +10,7 @@ public class CryptoSyllableColor : ICryptoSyllable
     /// The syllable AudioClip
     /// </summary>
     [UnityEngine.SerializeField]
-    private UnityEngine.Color syllable;
+    private UnityEngine.Color syllable = UnityEngine.Color.white;
 
     #endregion
 

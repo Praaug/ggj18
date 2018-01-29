@@ -19,7 +19,7 @@ public class IncommingTransmissionViewModel : BaseViewModel
         return m_DisplayedSyllables;
     }
 
-    public override void OnEnterState()
+    public override void OnEnterState() 
     {
         base.OnEnterState();
 
@@ -45,7 +45,6 @@ public class IncommingTransmissionViewModel : BaseViewModel
             m_DisplayedSyllables[i] = syllableViewModel;
         }
 
-        Debug.Log("OnDisplaySyllablesCountChanged");
         OnDisplaySyllablesCountChanged?.Invoke();
     }
 

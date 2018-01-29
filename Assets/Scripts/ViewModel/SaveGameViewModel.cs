@@ -27,8 +27,6 @@
 
     public void LoadSaveGameCommand()
     {
-        UnityEngine.Debug.Log("Load Save Game Commnd");
-
         OnLoadSaveGameCommand?.Invoke(this);
     }
 

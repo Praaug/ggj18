@@ -10,7 +10,7 @@ public class CryptoSyllableSound : ICryptoSyllable
 	/// The syllable AudioClip
 	/// </summary>
 	[UnityEngine.SerializeField]
-	private UnityEngine.AudioClip syllable;
+	private UnityEngine.AudioClip syllable = null;
 
 	#endregion
 

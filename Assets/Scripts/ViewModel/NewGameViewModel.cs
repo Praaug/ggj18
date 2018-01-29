@@ -4,8 +4,6 @@ public class NewGameViewModel : BaseViewModel
 {
     public override MenuEnum MenuType => MenuEnum.NewGame;
 
-    public event Action RedrawAction;
-
     public event Action OnStartGameCommand;
     public event Action OnCloseNewGameCommand;
     public event Action<float> OnDisplayDurationChange;

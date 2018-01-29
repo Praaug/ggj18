@@ -6,7 +6,7 @@ public class CryptoSyllableSprite : ICryptoSyllable
 {
     #region Private Fields
     [UnityEngine.SerializeField]
-    private UnityEngine.Sprite syllable;
+    private UnityEngine.Sprite syllable = null;
     #endregion
 
     #region Public Methods

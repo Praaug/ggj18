@@ -45,7 +45,6 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
 
     private void ViewModel_OnSwitchTableCommand()
     {
-        Debug.LogFormat("Switching table to {0}", (m_Table.activeSelf ? "off" : "on"));
         m_Table.SetActive(!m_Table.activeSelf);
     }
 
@@ -132,8 +131,8 @@ public class SyllablesInputView : BaseView<SyllablesInputViewModel>
     private GameObject m_popUp = null;
 
     [SerializeField]
-    private Button m_popUpYesButton;
+    private Button m_popUpYesButton = null;
 
     [SerializeField]
-    private Button m_popUpNoButton;
+    private Button m_popUpNoButton = null;
 }

@@ -120,8 +120,6 @@ public class SyllablesInputViewModel : BaseViewModel
     {
         var transmission = m_Session.TransmissionSetup.Transmissions[m_Session.ActiveRoundIndex];
 
-        UnityEngine.Debug.LogFormat("Pressed: {0}, setting: {1}", inputIndex, transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]]);
-
         var syllableIndex = transmission.Conversion[m_ShuffledInLanguageIndexes[inputIndex]];
         m_Session.TransmissionWord.syllableIndices[m_InputIndex] = syllableIndex;
 
@@ -147,7 +145,6 @@ public class SyllablesInputViewModel : BaseViewModel
 
     public void TableButtonCommand()
     {
-        UnityEngine.Debug.Log("Table switch!");
         OnSwitchTableCommand?.Invoke();
     }
 

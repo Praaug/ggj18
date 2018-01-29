@@ -25,7 +25,6 @@ public class SyllableViewModel : BaseViewModel
             }
 
             m_IconImage = value;
-            Debug.Log("OnIconChanged");
             OnIconImageChanged?.Invoke(m_IconImage);
         }
     }
