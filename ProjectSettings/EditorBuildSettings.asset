@@ -8,3 +8,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: d11bc737f9945f04e893558ce167957a
+  - enabled: 1
+    path: Assets/Scenes/NewGame.unity
+    guid: c6dad09d78e91a546998ce18903109ff
+  - enabled: 1
+    path: Assets/Scenes/IncommingTransmission.unity
+    guid: 654ebcc609a97c74b8be8096ccb42a1c
+  - enabled: 1
+    path: Assets/Scenes/Puzzle.unity
+    guid: 9c5d4b41fb9fbda4a9e3fc90cd3394d7
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 05405643ec5dc434097580754ad6600c
