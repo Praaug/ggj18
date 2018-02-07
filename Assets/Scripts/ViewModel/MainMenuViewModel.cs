@@ -39,7 +39,7 @@ public class MainMenuViewModel : BaseViewModel
 
         for (int i = 0; i < saveGameList.Count; i++)
         {
-            SaveGameViewModel saveGameViewModel = new SaveGameViewModel(saveGameList[i].saveGame);
+            SaveGameViewModel saveGameViewModel = new SaveGameViewModel(saveGameList[i]);
             saveGameViewModel.Index = i;
             saveGameViewModel.OnLoadSaveGameCommand += SaveGameViewModel_OnLoadSaveGameCommand;
 

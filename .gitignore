@@ -7,3 +7,6 @@ UnityPackageManager
 .vs
 *.csproj
 Builds
+UpgradeLog.htm
+saves
+/Assets/saves.meta

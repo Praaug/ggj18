@@ -188,9 +188,9 @@ public class Session
     /// <summary>
     /// Returns the save game info of this game instance
     /// </summary>
-    public SaveGameSession CreateSaveGame()
+    public SaveGame CreateSaveGame()
     {
-        SaveGameSession sessionSaveGame = new SaveGameSession();
+        SaveGame sessionSaveGame = new SaveGame();
 
         sessionSaveGame.CurrentRound = ActiveRoundIndex;
         sessionSaveGame.SessionParameters = m_sessionParameter;
@@ -221,12 +221,4 @@ public class Session
     /// </summary>
     private TransmissionWord m_TransmissionWord = null;
     #endregion
-}
-
-[System.Serializable]
-public class SaveGameSession
-{
-    public int CurrentRound;
-    public SessionParameters SessionParameters;
-    public TransmissionWord TransmissionWord;
 }

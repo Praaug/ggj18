@@ -4,61 +4,66 @@ using UnityEngine;
 [CustomEditor(typeof(GameManager))]
 public class GameManagerEditor : Editor
 {
-    private GameManager gameManager => target as GameManager;
+	private GameManager gameManager => target as GameManager;
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+	public override void OnInspectorGUI()
+	{
+		base.OnInspectorGUI();
 
-        // Debug buttons
+		// Debug buttons
 
-        m_FoldoutSettings = EditorGUILayout.Foldout(m_FoldoutSettings, "Game settings");
-        if (m_FoldoutSettings)
-        {
-            parameter.SessionName = EditorGUILayout.TextField("Session Name", parameter.SessionName);
-            parameter.RoundCount = (byte)EditorGUILayout.IntField("Round Count", parameter.RoundCount);
-            parameter.SyllableChoiceAmount = EditorGUILayout.IntField("Syllable Choice Amount", parameter.SyllableChoiceAmount);
-            parameter.SyllableSearchedAmount = EditorGUILayout.IntField("Syllable Searched Amount", parameter.SyllableSearchedAmount);
+		m_FoldoutSettings = EditorGUILayout.Foldout(m_FoldoutSettings, "Game settings");
+		if (m_FoldoutSettings)
+		{
+			parameter.SessionName = EditorGUILayout.TextField("Session Name", parameter.SessionName);
+			parameter.RoundCount = (byte)EditorGUILayout.IntField("Round Count", parameter.RoundCount);
+			parameter.SyllableChoiceAmount = EditorGUILayout.IntField("Syllable Choice Amount", parameter.SyllableChoiceAmount);
+			parameter.SyllableSearchedAmount = EditorGUILayout.IntField("Syllable Searched Amount", parameter.SyllableSearchedAmount);
 
-            GUILayout.BeginHorizontal();
-            parameter.Seed = EditorGUILayout.IntField("Seed", parameter.Seed);
-            if (GUILayout.Button("New", EditorStyles.miniButton, GUILayout.Width(50)))
-            {
-                parameter.Seed = Random.Range(int.MinValue, int.MaxValue);
-            }
-            GUILayout.EndHorizontal();
+			GUILayout.BeginHorizontal();
+			parameter.Seed = EditorGUILayout.IntField("Seed", parameter.Seed);
+			if (GUILayout.Button("New", EditorStyles.miniButton, GUILayout.Width(50)))
+			{
+				parameter.Seed = Random.Range(int.MinValue, int.MaxValue);
+			}
+			GUILayout.EndHorizontal();
 
-        }
+		}
 
-        GUILayout.Space(16.0f); // some fancy empty space to seperate buttons from input fields
+		GUILayout.Space(16.0f); // some fancy empty space to seperate buttons from input fields
 
-        if (GUILayout.Button("StartNewGame"))
-        {
-            gameManager.SetParameter(parameter);
-            gameManager.StartNewGame();
-        }
+		if (GUILayout.Button("StartNewGame"))
+		{
+			gameManager.SetParameter(parameter);
+			gameManager.StartNewGame();
+		}
 
-        GUILayout.Space(64.0f); // some fancy empty space to seperate buttons from input fields
+		if (GUILayout.Button("Get all sessions"))
+		{
+			DatabaseManager.SendGetSessionsCommand((string result) => Debug.Log("on complete callback: " + result));
+		}
 
-        if (gameManager.ActiveSession != null)
-        {
-            GUILayout.Label("Session Info", EditorStyles.boldLabel);
-        }
+		GUILayout.Space(64.0f); // some fancy empty space to seperate buttons from input fields
 
-        // Debug texts
+		if (gameManager.ActiveSession != null)
+		{
+			GUILayout.Label("Session Info", EditorStyles.boldLabel);
+		}
+
+		// Debug texts
 
 
 
-        // Serialization flag
-        if (GUI.changed)
-        {
-            EditorUtility.SetDirty(this);
-        }
-    }
+		// Serialization flag
+		if (GUI.changed)
+		{
+			EditorUtility.SetDirty(this);
+		}
+	}
 
-    [SerializeField]
-    private bool m_FoldoutSettings = false;
+	[SerializeField]
+	private bool m_FoldoutSettings = false;
 
-    [SerializeField]
-    private SessionParameters parameter = new SessionParameters();
+	[SerializeField]
+	private SessionParameters parameter = new SessionParameters();
 }

@@ -70,7 +70,7 @@ class MainMenuView : BaseView<MainMenuViewModel>
             buttonView.transform.SetAsLastSibling();
             buttonView.Init(sgViewModel);
 
-            SaveGameSession saveGame = sgViewModel.MySaveGame.saveGameSession;
+            SaveGame saveGame = sgViewModel.MySaveGame;
             buttonView.MyButton.interactable = saveGame.CurrentRound < saveGame.SessionParameters.RoundCount;
 
             m_saveGameButtonViewModelList.Add(buttonView);
